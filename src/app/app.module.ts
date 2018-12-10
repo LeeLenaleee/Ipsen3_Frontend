@@ -20,6 +20,8 @@ import { BelastingItemComponent } from './belasting/belasting-list/belasting-ite
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
 import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpost-item/kostenpost-item.component';
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
+import { InloggenComponent } from './inloggen-uitloggen/inloggen/inloggen.component';
+import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.c
     BelastingItemComponent,
     KostenpostListComponent,
     KostenpostItemComponent,
-    BtwWijzigenComponent
+    BtwWijzigenComponent,
+    InloggenComponent,
+    UitloggenComponent
   ],
   imports: [
     BrowserModule
