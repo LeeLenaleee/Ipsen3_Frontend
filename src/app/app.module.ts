@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +23,12 @@ import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpo
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
 import { InloggenComponent } from './inloggen-uitloggen/inloggen/inloggen.component';
 import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
+
+
+const appRoutes: Routes = [
+  { path: 'contacten', component: ContactenComponent},
+  { path: 'contacten/toevoegen', component: ContactToevoegenComponent}
+];
 
 @NgModule({
   declarations: [
@@ -48,7 +55,8 @@ import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.com
     UitloggenComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
