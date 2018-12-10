@@ -22,6 +22,8 @@ import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpo
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
 import { InloggenComponent } from './inloggen-uitloggen/inloggen/inloggen.component';
 import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
+import {FooterComponent} from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.com
     KostenpostItemComponent,
     BtwWijzigenComponent,
     InloggenComponent,
-    UitloggenComponent
+    UitloggenComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule

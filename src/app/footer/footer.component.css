@@ -1,6 +1,6 @@
 img {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
 }
 
 .albertNavbar {
@@ -8,7 +8,7 @@ img {
 }
 
 li {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .nav-link {
@@ -19,6 +19,9 @@ li a:hover {
   color: #585858;
 }
 
+.uitloggen {
+  background-color: #D60D00;
+}
 
 
 

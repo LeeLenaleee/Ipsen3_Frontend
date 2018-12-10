@@ -1,0 +1,38 @@
+body {
+  background-color: #018284;
+}
+
+.heading {
+  width: 400px;
+  height: 100px;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.albert {
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+h1 {
+  color: white;
+  font-size: 45px;
+  font-family: Marker Felt, fantasy;
+  text-align: center;
+}
