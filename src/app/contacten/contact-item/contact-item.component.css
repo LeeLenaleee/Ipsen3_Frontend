@@ -4,6 +4,6 @@ label {
 
 .col, [class*="col-"] {
   border: 1px solid black;
-  background-color: #00008e;
-  color: white;
+  /*background-color: #00008e;*/
+  /*color: white;*/
 }

@@ -1,10 +1,12 @@
 <div class="row">
-  <div class="col-sm-2 form-group">
-    <button class="btn" id="zoekButton" (click)="onZoekBedrijf()">Zoek bedrijf</button>
+  <div class="col form-group">
+    <input type="text"
+           id="bedrijf"
+           class="form-control" #bedrijfInput>
   </div>
-  <div class="col-sm-6 form-group">
-      <input type="text" id="bedrijf"
-             class="form-control"
-             #bedrijfInput>
+  <div class="col form-group">
+    <button class="btn"
+            id="zoekButton"
+            (click)="onZoekBedrijf()">Zoek bedrijf</button>
   </div>
 </div>

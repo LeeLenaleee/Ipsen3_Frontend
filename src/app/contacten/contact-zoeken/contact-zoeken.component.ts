@@ -20,9 +20,9 @@ export class ContactZoekenComponent implements OnInit {
     const naam = this.bedrijfNaam.nativeElement.value;
     // TODO uit database zoeken
     const contact = new Contact(1, 'voor', 'achter', 'bedrijf',
-      'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321],
+      'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321, 34567890],
       ['iemand@iets.wat', 'haha@fheod.nl'], 'relatie', 'website.nl');
     this.gekozenContact.emit(contact);
   }
-  
+
 }
