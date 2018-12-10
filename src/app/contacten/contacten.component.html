@@ -1,3 +1,13 @@
-<p>
-  contacten works!
-</p>
+<h2>Contacten</h2>
+<div class="row">
+  <div class="col-md-8">
+    <app-contact-zoeken (bedrijfGezocht)="contactWeergeven($event)"></app-contact-zoeken>
+    <hr>
+    <app-contact-item
+    [contact]="gekozenContact"
+    *ngIf="gekozenContact; else infoText"></app-contact-item>
+    <ng-template #infoText>
+      <p>Zoek een contact.</p>
+    </ng-template>
+  </div>
+</div>
