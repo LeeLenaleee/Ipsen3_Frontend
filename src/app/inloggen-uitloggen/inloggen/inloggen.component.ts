@@ -1,4 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ConnectionBackend, Http, RequestOptions} from '@angular/http';
+
 
 @Component({
   selector: 'app-inloggen',
@@ -8,9 +10,15 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class InloggenComponent implements OnInit {
 
+  email: string;
+  password: string;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  tryLogin(_backend: ConnectionBackend, _defaultOptions: RequestOptions) {
+   console.log(new ApiService(new Http(_backend, _defaultOptions)).getData());
+  }
 }
