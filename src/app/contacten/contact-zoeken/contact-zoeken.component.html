@@ -1,12 +1,40 @@
 <div class="row">
   <div class="col form-group">
-    <input type="text"
-           id="bedrijf"
-           class="form-control" #bedrijfInput>
+    <!--<form autocomplete="off" action="contact-zoeken.component.html">-->
+      <input type="text"
+             id="bedrijf"
+             class="form-control"
+             placeholder="Bedrijf"
+             list="bedrijven"
+             autocomplete="off"
+             (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): return"
+             #bedrijfInput>
+      <datalist id="bedrijven">
+        <select style="display: none">
+          <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.naam }}">
+        </select>
+      </datalist>
+      <script>
+        $(document).ready(function () {
+          var nativedatalist = !!('list' in document.createElement('input')) &&
+            !!(document.createElement('datalist') && window.HTMLDataListElement);
+
+          if (!nativedatalist) {
+            $('input[list]').each(function () {
+              var availableTags = $('#' + $(this).attr("list")).find('option').map(function () {
+                return this.value;
+              }).get();
+              $(this).autocomplete({ source: availableTags });
+            });
+          }
+        });
+      </script>
+    <!--</form>-->
   </div>
   <div class="col form-group">
     <button class="btn"
             id="zoekButton"
+            type="submit"
             (click)="onZoekBedrijf()">Zoek bedrijf</button>
   </div>
 </div>
