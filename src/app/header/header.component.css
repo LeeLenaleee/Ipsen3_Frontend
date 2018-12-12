@@ -3,7 +3,7 @@ img {
   width: 50px;
 }
 
-.albertNavbar {
+.albert-navbar {
   background-color: #12afaf;
 }
 
@@ -16,12 +16,9 @@ li {
 }
 
 li a:hover {
-  color: #585858;
+  color: #fff;
 }
 
-.activeClass {
-  background-color: grey;
+li.active-class > a {
+  color: #fff !important;
 }
-
-
-

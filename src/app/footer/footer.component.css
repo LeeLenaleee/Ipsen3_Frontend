@@ -3,7 +3,7 @@ img {
   width: 30px;
 }
 
-.albertNavbar {
+.albert-navbar {
   background-color: #12afaf;
 }
 
@@ -15,14 +15,16 @@ li {
   color: black;
 }
 
-li a:hover {
-  color: #585858;
+ul li a:hover {
+  color: #fff;
 }
 
-ul.logoutUl li.logoutLi a:hover{
+ul.logout-ul li.logout-li a:hover{
   color: #D60D00;
 }
 
-.activeClass{
-  background-color: grey;
+li.active-class > a {
+  color: #fff !important;
 }
+
+
