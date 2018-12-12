@@ -1,10 +1,20 @@
-<nav class="albertNavbar">
-  <div>
-    <div>
-      <ul class="nav justify-content-end">
-       <li class="nav-item"><a class="nav-link" href="#"><img src="assets/settingsLogo.png">Instellingen</a></li>
-       <li class="nav-item" class="uitloggen"><a class="nav-link" href="#"><img src="assets/logout-icon.png"> Uitloggen</a> </li>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light albertNavbar">
+    <div class="navbar-collapse collapse justify-content-between" >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"  routerLinkActive="activeClass" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" routerLink=""><img src="assets/main-menu-arrow.png"> Hoofdmenu</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav logoutUl">
+       <li class="nav-item" routerLinkActive="activeClass">
+         <a class="nav-link" routerLink="/instellingen"><img src="assets/settingsLogo.png"> Instellingen</a>
+       </li>
+       <li class="nav-item logoutLi" >
+         <a class="nav-link" href="#"><img src="assets/logout-icon.png"> Uitloggen</a>
+       </li>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>

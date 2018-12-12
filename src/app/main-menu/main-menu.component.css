@@ -1,0 +1,24 @@
+.heading {
+  width: 400px;
+  height: 100px;
+  display: block;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.albert {
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+}
+
+h1 {
+  color: white;
+  font-size: 45px;
+  font-family: Marker Felt, fantasy;
+  text-align: center;
+}

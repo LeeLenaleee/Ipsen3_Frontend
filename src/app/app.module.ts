@@ -23,6 +23,10 @@ import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.c
 import { InloggenComponent } from './inloggen-uitloggen/inloggen/inloggen.component';
 import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
 import {FooterComponent} from './footer/footer.component';
+import {AppRoutingModule} from './app-routing.module';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -48,10 +52,14 @@ import {FooterComponent} from './footer/footer.component';
     BtwWijzigenComponent,
     InloggenComponent,
     UitloggenComponent,
-    FooterComponent
+    FooterComponent,
+    MainMenuComponent,
+    ErrorPageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
