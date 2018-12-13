@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -9,10 +9,10 @@ import {HttpClient} from '@angular/common/http';
   encapsulation: ViewEncapsulation.None
 })
 export class InloggenComponent implements OnInit {
+  @ViewChild('email') emailAdress: ElementRef;
+  @ViewChild('password') password: ElementRef;
 
-  email: string;
-  password: string;
-  apiUrl2 = 'http://localhost:8080/api?name=pietertje';
+  apiUrl2 = 'http://localhost:8080/api?name=WietseIsBaas';
   apiUrl3 = 'http://localhost:8080/api?name=';
 
   constructor(private http: HttpClient) { }
@@ -20,14 +20,16 @@ export class InloggenComponent implements OnInit {
   ngOnInit() {
   /*  const response = this.http.get(this.apiUrl2);
     response.subscribe((res) => console.log(res));*/
-    this.email = 'hi@g.com';
-    this.apiUrl3 = 'http://localhost:8080/api?name=' + this.email;
-    const response = this.http.get(this.apiUrl3);
+    // this.email = 'hi@g.com';
+    this.apiUrl3 = 'http://localhost:8080/api?name=pietje';
+    const response = this.http.get(this.apiUrl2);
     response.subscribe((res) => console.log(res));
   }
-  inloggen(emailAdress: any) {
-    this.email = emailAdress.target.mail.email;
-    this.apiUrl3 = 'http://localhost:8080/api?name=' + this.email;
+  inloggen() {
+    const email = this.emailAdress.nativeElement.value;
+    const wachtwoord = this.password.nativeElement.value;
+    // this.email = emailAdress.target.mail.email;
+    this.apiUrl3 = 'http://localhost:8080/api?name=' + wachtwoord;
     const response = this.http.get(this.apiUrl3);
     response.subscribe((res) => console.log(res));
   }
