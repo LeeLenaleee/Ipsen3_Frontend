@@ -53,7 +53,7 @@ import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeke
     BtwWijzigenComponent,
     InloggenComponent,
     UitloggenComponent,
-    ContactZoekenComponent
+    ContactZoekenComponent,
     UitloggenComponent,
     FooterComponent,
     MainMenuComponent,
