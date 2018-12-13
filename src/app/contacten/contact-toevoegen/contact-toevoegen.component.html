@@ -1,55 +1,70 @@
 <form>
-  <div class = "contactinvoer">
-    <div class="row">
-      <div class="col-sm-2 form-group">
-        <label for="voornaam">Voornaam</label>
-        <input type="text" id="voornaam" class="form-control">
-      </div>
-      <div class="col-sm-2 form-group">
-        <label for="postcode">Postcode</label>
-        <input type="text" id="postcode" class="form-control">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+     <label for="inputFirstname">Voornaam</label>
+     <input type="firstname" class="form-control" id="inputFirstname" placeholder="Voornaam">
+   </div>
+    <div class="form-group col-md-6">
+     <label for="inputLastname">Achternaam</label>
+     <input type="lastname" class="form-control" id="inputLastname" placeholder="Achternaam">
+   </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputTelephone">Telefoon nummer</label>
+      <input type="text" class="form-control" id="inputTelephone" placeholder="0612345678">
     </div>
-    <div class="row">
-      <div class="col-sm-2 form-group">
-        <label for="achternaam">Achternaam</label>
-        <input type="text" id="achternaam" class="form-control">
-      </div>
-      <div class="col-sm-3 form-group">
-        <label for="land">Land</label>
-        <input type="text" id="land" class="form-control">
-      </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail">Email adres</label>
+      <input type="text" class="form-control" id="inputEmail" placeholder="voorbeeld@voorbeeld.nl">
     </div>
-    <div class="row">
-      <div class="col-sm-3 form-group">
-        <label for="bedrijf">Bedrijf</label>
-        <input type="text" id="bedrijf" class="form-control">
-      </div>
-      <div class="col-sm-2 form-group">
-        <label for="telefoonnummer">Telefoonnummer</label>
-        <input type="tel" id="telefoonnummer" class="form-control">
-      </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCompany">Bedrijf</label>
+      <input type="text" class="form-control" id="inputCompany" placeholder="Ing, Jumbo, HSLeiden">
     </div>
-    <div class="row">
-      <div class="col-sm-3 form-group">
-        <label for="straatnaam">Straatnaam</label>
-        <input type="text" id="straatnaam" class="form-control">
-      </div>
-      <div class="col-sm-3 form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" class="form-control">
-      </div>
+    <div class="form-group col-md-6">
+      <label for="inputWebsite">Website</label>
+      <input type="text" class="form-control" id="inputWebsite" placeholder="Google.nl">
     </div>
-    <div class="row">
-      <div class="col-sm-3 form-group">
-        <label for="woonplaats">Woonplaats</label>
-        <input type="text" id="woonplaats" class="form-control">
-      </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Woonplaats</label>
+      <input type="text" class="form-control" id="inputCity" placeholder="Amsterdam, Leiden, Nijmegen">
     </div>
-    <div class="row">
-      <div class="col-sm-2 form-group">
-        <button type="submit" id ="toevoegknop">Contact toevoegen</button>
-      </div>
+    <div class="form-group col-md-6">
+      <label for="inputRelation">Relatie</label>
+      <select id="inputRelation" class="form-control">
+      <option selected>Anders</option>
+      <option>Familie</option>
+      <option>Kennis</option>
+      <option>Klant</option>
+      <option>Vriend</option>
+      <option>Leverancier</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputStreet">Straatnaam</label>
+      <input type="text" class="form-control" id="inputStreet" placeholder="Zernikedreef, Kalverstraat">
+    </div>
+      <div class="form-group col-md-4">
+       <label for="inputNumber">Huisnummer</label>
+       <input type="text" class="form-control" id="inputNumber" placeholder="1234">
+     </div>
+    <div class="form-group col-md-2">
+     <label for="inputZip">Postcode</label>
+      <input type="text" class="form-control" id="inputZip" placeholder="1234AB">
     </div>
   </div>
 </form>
+
+
+
