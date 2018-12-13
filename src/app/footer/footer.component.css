@@ -1,6 +1,6 @@
 img {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
 }
 
 .albert-navbar {
@@ -8,17 +8,23 @@ img {
 }
 
 li {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .nav-link {
   color: black;
 }
 
-li a:hover {
+ul li a:hover {
   color: #fff;
+}
+
+ul.logout-ul li.logout-li a:hover{
+  color: #D60D00;
 }
 
 li.active-class > a {
   color: #fff !important;
 }
+
+
