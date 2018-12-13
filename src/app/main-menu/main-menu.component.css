@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Unlock;
+  src: url("../../assets/fonts/Unlock-Regular.ttf") format('truetype');
+}
+
 .heading {
   width: 400px;
   height: 100px;
@@ -20,6 +25,6 @@
 h1 {
   color: white;
   font-size: 45px;
-  font-family: Marker Felt, fantasy;
+  font-family: Unlock, sans-serif;
   text-align: center;
 }
