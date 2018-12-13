@@ -29,6 +29,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -63,9 +64,10 @@ import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeke
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
