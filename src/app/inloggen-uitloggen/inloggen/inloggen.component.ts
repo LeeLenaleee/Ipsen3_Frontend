@@ -17,18 +17,11 @@ export class InloggenComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  /*  const response = this.http.get(this.apiUrl2);
-    response.subscribe((res) => console.log(res));*/
-    // this.email = 'hi@g.com';
-    this.apiUrl3 = 'http://localhost:8080/api?name=pietje';
-    const response = this.http.get(this.apiUrl2);
-    response.subscribe((res) => console.log(res));
-  }
+  ngOnInit() {  }
+
   inloggen() {
     const email = this.emailAdress.nativeElement.value;
     const wachtwoord = this.password.nativeElement.value;
-    // this.email = emailAdress.target.mail.email;
     this.apiUrl3 = 'http://localhost:8080/api?name=' + wachtwoord;
     const response = this.http.get(this.apiUrl3);
     response.subscribe((res) => console.log(res));
