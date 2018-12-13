@@ -14,6 +14,7 @@
                    class="form-control"
                    placeholder="email adress"
                    name="mail"
+                   required="required"
                    #email
                    >
 
@@ -25,10 +26,13 @@
             <input type="password"
                    class="form-control"
                    placeholder="password"
+                   required="required"
                    #password>
           </div>
           <div class="form-group">
-            <button  class="btn float-right login_btn"
+            <!--type button zorgt ervoor dat page niet gerload wordt-->
+            <button  type="button"
+                     class="btn float-right login_btn"
                      (click)="inloggen()"> Login</button>
           </div>
         </form>
