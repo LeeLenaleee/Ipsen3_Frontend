@@ -27,6 +27,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 
 
 @NgModule({
@@ -51,6 +52,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     KostenpostItemComponent,
     BtwWijzigenComponent,
     InloggenComponent,
+    UitloggenComponent,
+    ContactZoekenComponent
     UitloggenComponent,
     FooterComponent,
     MainMenuComponent,
