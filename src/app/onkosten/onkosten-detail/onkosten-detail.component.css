@@ -1,18 +1,9 @@
 .center-items {
   margin: auto;
-  /*background-color: rgba(0,0,0,0.5);*/
 }
 
 .item-margin {
   margin: 4px;
-}
-
-.col-md-5 {
-  display: inline-block;
-}
-
-label {
-  width:110px;
 }
 
 span {
@@ -28,6 +19,5 @@ span {
 }
 
 .select-class {
-
   height: auto;
 }

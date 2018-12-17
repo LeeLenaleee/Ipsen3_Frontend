@@ -1,0 +1,11 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix">
+  <div >
+    <h4 class="list-group-item-heading"><b>Bedrijf: </b> <i>{{ onkosten.bedrijf }}</i></h4>
+    <p class="list-group-item-text"><b>Datum: </b> <i>{{ onkosten.datum }} </i> <b> Kostenpost: </b> <i>{{ onkosten.kostenpost }}</i></p>
+    <p class="list-group-item-text"><b>Omschrijving: </b> <i>{{ onkosten.omschrijving }}</i></p>
+  </div>
+</a>

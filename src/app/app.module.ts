@@ -15,7 +15,7 @@ import { ContactToevoegenComponent } from './contacten/contact-toevoegen/contact
 import { ContactWijzigenComponent } from './contacten/contact-wijzigen/contact-wijzigen.component';
 import { ContactItemComponent } from './contacten/contact-item/contact-item.component';
 import { OnkostenToevoegenComponent } from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
-import { OnkostenItemComponent } from './onkosten/onkosten-item/onkosten-item.component';
+import { OnkostenItemComponent } from './onkosten/onkosten-list/onkosten-item/onkosten-item.component';
 import { BelastingListComponent } from './belasting/belasting-list/belasting-list.component';
 import { BelastingItemComponent } from './belasting/belasting-list/belasting-item/belasting-item.component';
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';

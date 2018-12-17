@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Onkosten} from '../onkosten.model';
+import {Onkosten} from '../../onkosten.model';
 
 @Component({
   selector: 'app-onkosten-item',
