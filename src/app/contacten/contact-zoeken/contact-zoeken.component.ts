@@ -1,5 +1,6 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Contact} from '../contact.model';
+import {ContactenService} from '../contacten.service';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -11,7 +12,7 @@ export class ContactZoekenComponent implements OnInit {
   @ViewChild('bedrijfInput') bedrijfNaam: ElementRef;
   mogelijkeBedrijven: {id: number, naam: string}[];
 
-  constructor() { }
+  constructor(private contactenService: ContactenService) { }
 
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class ContactZoekenComponent implements OnInit {
   }
 
     getContact(id: number) {
-    // TODO uit database zoeken
+    // TODO uit database zoeken, dit moet in een service?
     const contact = new Contact(1, 'voor', 'achter', 'bedrijf',
       'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321, 34567890],
       ['iemand@iets.wat', 'haha@fheod.nl'], 'relatie', 'website.nl');
