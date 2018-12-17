@@ -1,0 +1,24 @@
+img {
+  height: 50px;
+  width: 50px;
+}
+
+.albert-navbar {
+  background-color: #12afaf;
+}
+
+li {
+  font-size: 30px;
+}
+
+.nav-link {
+  color: black;
+}
+
+li a:hover {
+  color: #fff;
+}
+
+li.active-class > a {
+  color: #fff !important;
+}
