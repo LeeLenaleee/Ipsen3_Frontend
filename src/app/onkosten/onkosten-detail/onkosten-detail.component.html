@@ -1,3 +1,15 @@
+<!--<div class="input-group mb-3">-->
+<!--<div class="input-group-prepend">-->
+<!--<button type="button" class="btn btn-secondary">Zoek</button>-->
+<!--</div>-->
+<!--<select class="custom-select" id="inputCompany">-->
+<!--<option selected>Choose...</option>-->
+<!--<option value="1">One</option>-->
+<!--<option value="2">Two</option>-->
+<!--<option value="3">Three</option>-->
+<!--</select>-->
+<!--</div>-->
+
 <hr>
 
 <div class="col-md-10 center-items">
@@ -5,7 +17,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Bedrijf</span>
     </div>
-    <textarea class="form-control" aria-label="companyLabel"></textarea>
+    <textarea class="form-control" aria-label="companyLabel">{{ onkosten.bedrijf }}</textarea>
   </div>
 
   <hr>
@@ -14,7 +26,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Datum</span>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="DD-MM-JJJJ"></textarea>
+    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="DD-MM-JJJJ">{{ onkosten.datum }}</textarea>
     <div class="input-group-prepend">
       <span class="input-group-text margin-left">Onkosten</span>
     </div>
@@ -30,7 +42,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Omschrijving</span>
     </div>
-    <textarea class="form-control" aria-label="companyLabel"></textarea>
+    <textarea class="form-control" aria-label="companyLabel">{{ onkosten.omschrijving }}</textarea>
   </div>
 
   <hr>
@@ -39,22 +51,22 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Bruto €</span>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--"></textarea>
+    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--">{{ onkosten.brutoPrijs }}</textarea>
     <div class="input-group-prepend">
       <span class="input-group-text margin-left">BTW %</span>
     </div>
-    <textarea class="form-control" aria-label="companyLabel" placeholder="0.00%"></textarea>
+    <textarea class="form-control" aria-label="companyLabel" placeholder="0.00%">{{ onkosten.brutoPercentage }}</textarea>
   </div>
 
   <div class="input-group item-margin">
     <div class="input-group-prepend">
       <span class="input-group-text">BTW €</span>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--"></textarea>
+    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--">{{ onkosten.brutoKost }}</textarea>
     <div class="input-group-prepend">
       <span class="input-group-text margin-left">Netto €</span>
     </div>
-    <textarea class="form-control" aria-label="companyLabel" placeholder="€--,--"></textarea>
+    <textarea class="form-control" aria-label="companyLabel" placeholder="€--,--">{{ onkosten.nettoPrijs }}</textarea>
   </div>
 
   <hr>
@@ -64,3 +76,4 @@
   <button class="btn btn-danger">test</button>
 
 </div>
+

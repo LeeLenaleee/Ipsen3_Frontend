@@ -1,0 +1,12 @@
+table {
+  border-collapse: collapse !important;
+}
+
+table, th, td {
+  border: 1px solid black;
+  overflow: auto;
+}
+
+div {
+  margin: auto;
+}

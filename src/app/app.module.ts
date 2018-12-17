@@ -31,6 +31,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoeken.component';
+import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.component';
+import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
+import {OnkostenService} from './onkosten/onkosten.service';
+import { OnkostenStartComponent } from './onkosten/onkosten-start/onkosten-start.component';
 
 
 @NgModule({
@@ -63,13 +67,16 @@ import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoe
     ErrorPageComponent,
     PageNotFoundComponent,
     OnkostenZoekenComponent,
+    OnkostenListComponent,
+    OnkostenDetailComponent,
+    OnkostenStartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AppComponent],
+  providers: [OnkostenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
