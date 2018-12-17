@@ -20,7 +20,7 @@ export class ContactZoekenComponent implements OnInit {
 
   onZoekBedrijf() {
     const naam = this.bedrijfNaam.nativeElement.value;
-    let naamIndex = null; // = this.mogelijkeBedrijven.indexOf(naam);
+    let naamIndex = null;
 
     for (const bedrijf of this.mogelijkeBedrijven) {
       if (bedrijf.naam === naam) {
@@ -28,13 +28,15 @@ export class ContactZoekenComponent implements OnInit {
       }
     }
     if (naamIndex === null) {
-      // TODO foutmelding geven
-      console.log('dit bedrijf bestaat niet')
+      alert('Dit bedrijf bestaat niet');
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
     console.log(id);
+    this.getContact(id);
+  }
 
+    getContact(id: number) {
     // TODO uit database zoeken
     const contact = new Contact(1, 'voor', 'achter', 'bedrijf',
       'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321, 34567890],
@@ -44,8 +46,7 @@ export class ContactZoekenComponent implements OnInit {
   }
 
   krijgMogelijkeBedrijven() {
-    // TODO uit de backhand alle bedrijfnamen + id halen
+    // TODO uit de backend alle bedrijfnamen + id halen
     this.mogelijkeBedrijven = [{id: 0, naam: 'Abedrijf'}, {id: 1, naam: 'Bbedrijf'}, {id: 2, naam: 'Cbedrijf'}];
   }
-
 }
