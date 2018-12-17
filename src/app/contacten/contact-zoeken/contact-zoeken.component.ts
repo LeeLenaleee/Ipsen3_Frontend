@@ -1,6 +1,5 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {Contact} from '../contact.model';
-import {ContactenService} from '../contacten.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ContactZoekenService} from '../contact-zoeken.service';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -8,15 +7,14 @@ import {ContactenService} from '../contacten.service';
   styleUrls: ['./contact-zoeken.component.css']
 })
 export class ContactZoekenComponent implements OnInit {
-  @Output() bedrijfGezocht = new EventEmitter<Contact>();
   @ViewChild('bedrijfInput') bedrijfNaam: ElementRef;
-  mogelijkeBedrijven: {id: number, naam: string}[];
+  mogelijkeBedrijven: {id: number, naam: string}[] = [];
 
-  constructor(private contactenService: ContactenService) { }
-
+  constructor(private service: ContactZoekenService) { }
 
   ngOnInit() {
-    this.krijgMogelijkeBedrijven();
+    this.service.krijgMogelijkeBedrijven();
+    this.mogelijkeBedrijven = this.service.mogelijkeBedrijven;
   }
 
   onZoekBedrijf() {
@@ -33,21 +31,6 @@ export class ContactZoekenComponent implements OnInit {
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
-    console.log(id);
-    this.getContact(id);
-  }
-
-    getContact(id: number) {
-    // TODO uit database zoeken, dit moet in een service?
-    const contact = new Contact(1, 'voor', 'achter', 'bedrijf',
-      'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321, 34567890],
-      ['iemand@iets.wat', 'haha@fheod.nl'], 'relatie', 'website.nl');
-
-    this.bedrijfGezocht.emit(contact);
-  }
-
-  krijgMogelijkeBedrijven() {
-    // TODO uit de backend alle bedrijfnamen + id halen
-    this.mogelijkeBedrijven = [{id: 0, naam: 'Abedrijf'}, {id: 1, naam: 'Bbedrijf'}, {id: 2, naam: 'Cbedrijf'}];
+    this.service.getContact(id);
   }
 }

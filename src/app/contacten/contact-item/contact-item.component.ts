@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from '../contact.model';
+import {ContactZoekenService} from '../contact-zoeken.service';
 
 @Component({
   selector: 'app-contact-item',
@@ -7,11 +8,15 @@ import {Contact} from '../contact.model';
   styleUrls: ['./contact-item.component.css']
 })
 export class ContactItemComponent implements OnInit {
-  @Input() contact: Contact;
+  contact: Contact = new Contact(null, null, null, null, null,
+    null, null, null, [null], [null], null, null);
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private contactZoekenService: ContactZoekenService) {
+    this.contactZoekenService.bedrijfGezocht.subscribe(
+      (contactGekregen: Contact) => this.contact = contactGekregen
+  );
   }
+
+  ngOnInit() { }
 
 }

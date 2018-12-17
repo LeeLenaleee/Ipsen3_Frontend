@@ -1,5 +1,5 @@
-import {ElementRef, EventEmitter, Injectable, Output, ViewChild} from '@angular/core';
-import {Contact} from '../contact.model';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Contact} from './contact.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,6 @@ export class ContactZoekenService {
       ['iemand@iets.wat', 'haha@fheod.nl'], 'relatie', 'website.nl');
 
     this.bedrijfGezocht.emit(contact);
-    console.log('service: ' + contact);
   }
 
   krijgMogelijkeBedrijven() {
