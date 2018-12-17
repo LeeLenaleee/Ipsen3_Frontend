@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Onkosten} from '../onkosten.model';
-import {OnkostenService} from '../onkosten.service';
 
 @Component({
   selector: 'app-onkosten-item',
@@ -9,13 +8,11 @@ import {OnkostenService} from '../onkosten.service';
 })
 export class OnkostenItemComponent implements OnInit {
   @Input() onkosten: Onkosten;
+  @Input() index: number;
 
-  constructor(private onkostenService: OnkostenService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  onSelected() {
-    this.onkostenService.onkostenSelected.emit(this.onkosten);
-  }
 }

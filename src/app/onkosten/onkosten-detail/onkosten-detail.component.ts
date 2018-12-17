@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Onkosten} from '../onkosten.model';
+import {ActivatedRoute, Params} from '@angular/router';
+import {OnkostenService} from '../onkosten.service';
 
 @Component({
   selector: 'app-onkosten-detail',
@@ -7,11 +9,20 @@ import {Onkosten} from '../onkosten.model';
   styleUrls: ['./onkosten-detail.component.css']
 })
 export class OnkostenDetailComponent implements OnInit {
-  @Input() onkosten: Onkosten;
+  onkosten: Onkosten;
+  id: number;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private onkostenService: OnkostenService) { }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.onkosten = this.onkostenService.getOnkost(this.id);
+        }
+      );
   }
 
 }

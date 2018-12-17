@@ -12,7 +12,7 @@ import {OnkostenDetailComponent} from './onkosten/onkosten-detail/onkosten-detai
 const appRoutes: Routes = [
   { path: '', component: MainMenuComponent },
   { path: 'onkosten', component: OnkostenComponent, children: [
-      { path: 'onkosten-start', component: OnkostenStartComponent },
+      { path: '', component: OnkostenStartComponent },
       { path: ':id', component: OnkostenDetailComponent }
     ] },
 

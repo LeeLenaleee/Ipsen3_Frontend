@@ -1,7 +1,7 @@
 export class Onkosten {
   id: number;
   bedrijf: string;
-  datum: Date;
+  datum: string;
   onkostenSoort: string;
   omschrijving: string;
   brutoPrijs: number;
@@ -9,7 +9,7 @@ export class Onkosten {
   brutoPercentage: number;
   nettoPrijs: number;
 
-  constructor(id: number, bedrijf: string, datum: Date, onkostenSoort: string, omschrijving: string,
+  constructor(id: number, bedrijf: string, datum: string, onkostenSoort: string, omschrijving: string,
               brutoPrijs: number, brutoKost: number, brutoPercentage: number,
               nettoPrijs: number) {
     this.id = id;
