@@ -1,3 +1,39 @@
-<p>
-  belasting-item works!
-</p>
+<input type="text" id="search" (input)="zoekContacten($event)" placeholder="Zoek op contacten...">
+
+<label class="switch">
+  <input type="checkbox">
+  <span class="toggle"></span>
+</label>
+
+<table id="contactlijst">
+  <tr>
+    <th>Klant ID</th>
+    <th>Klant naam</th>
+    <th>Heeft Betaald?</th>
+  </tr>
+  <tr>
+    <td>01</td>
+    <td>{{databaseContacten[0]}}</td>
+    <td>Nee</td>
+  </tr>
+  <tr>
+    <td>02</td>
+    <td>{{databaseContacten[1]}}</td>
+    <td>Ja</td>
+  </tr>
+  <tr>
+    <td>03</td>
+    <td>{{databaseContacten[2]}}</td>
+    <td>Ja</td>
+  </tr>
+  <tr>
+    <td>04</td>
+    <td>{{databaseContacten[3]}}</td>
+    <td>Ja</td>
+  </tr>
+  <tr>
+    <td>05</td>
+    <td>{{databaseContacten[4]}}</td>
+    <td>Ja</td>
+  </tr>
+</table>
