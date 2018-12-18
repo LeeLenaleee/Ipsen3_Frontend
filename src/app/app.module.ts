@@ -30,6 +30,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { HttpClientModule } from '@angular/common/http';
     MainMenuComponent,
     ErrorPageComponent,
     PageNotFoundComponent,
+    ContactenListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ContactZoekenService} from '../contact-zoeken.service';
-import {Contact} from '../contact.model';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -13,10 +12,6 @@ export class ContactZoekenComponent implements OnInit {
   gezochtePersonen: {id: number, bedrijf: string, naam: string}[] = [];
 
   constructor(private service: ContactZoekenService) { }
-
-  hey() {
-    console.log('het werkt?');
-  }
 
   ngOnInit() {
     this.service.krijgMogelijkeBedrijven();
@@ -41,10 +36,6 @@ export class ContactZoekenComponent implements OnInit {
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
-    this.service.getContact(id);
-  }
-
-  kiesPersoon(id: number) {
     this.service.getContact(id);
   }
 }

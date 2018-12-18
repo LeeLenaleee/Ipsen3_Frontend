@@ -1,3 +1,4 @@
+<br>
 <div class="row">
   <div class="col-xl-10">
       <input type="text"
@@ -24,15 +25,7 @@
 <hr>
 <div class="row">
   <div class="col-sm-3" *ngIf="gezochtePersonen.length > 1">
-    <table class="table table-bordered table-hover table-sm">
-      <tbody style="cursor: pointer">
-      <tr *ngFor="let persoon of gezochtePersonen"
-      (click)="kiesPersoon(persoon.id)">
-        <th scope="row">{{ persoon.bedrijf }}</th>
-        <td>{{ persoon.naam }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <app-contacten-list [gezochtePersonen]="gezochtePersonen"></app-contacten-list>
   </div>
   <div class="col">
     <app-contact-item></app-contact-item>
