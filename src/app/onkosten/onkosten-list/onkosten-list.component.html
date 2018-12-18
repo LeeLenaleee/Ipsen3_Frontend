@@ -1,9 +1,14 @@
 <hr>
-<div class="row" style="overflow:scroll; height: 400px;">
-  <div>
-    <app-onkosten-item
-      *ngFor="let onkostenEl of onkosten; let i = index"
-      [onkosten]="onkostenEl"
-      [index]="i"></app-onkosten-item>
+
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <app-onkosten-item
+        *ngFor="let onkost of onkosten; let i = index"
+        [onkosten]="onkost"
+        [index]="i"
+      ></app-onkosten-item>
+    </div>
+
   </div>
 </div>

@@ -34,7 +34,6 @@ import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoe
 import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.component';
 import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
 import {OnkostenService} from './onkosten/onkosten.service';
-import { OnkostenStartComponent } from './onkosten/onkosten-start/onkosten-start.component';
 
 
 @NgModule({
@@ -69,7 +68,6 @@ import { OnkostenStartComponent } from './onkosten/onkosten-start/onkosten-start
     OnkostenZoekenComponent,
     OnkostenListComponent,
     OnkostenDetailComponent,
-    OnkostenStartComponent,
   ],
   imports: [
     BrowserModule,

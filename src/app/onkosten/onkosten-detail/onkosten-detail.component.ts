@@ -1,28 +1,34 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Onkosten} from '../onkosten.model';
 import {ActivatedRoute, Params} from '@angular/router';
 import {OnkostenService} from '../onkosten.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-onkosten-detail',
   templateUrl: './onkosten-detail.component.html',
   styleUrls: ['./onkosten-detail.component.css']
 })
-export class OnkostenDetailComponent implements OnInit {
+export class OnkostenDetailComponent implements OnInit, OnDestroy {
   onkosten: Onkosten;
   id: number;
+
+  subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private onkostenService: OnkostenService) { }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.onkosten = this.onkostenService.getOnkost(this.id);
-        }
-      );
+    this.subscription = this.onkostenService.getObservable().subscribe(
+      data => {
+        this.id = data.id;
+        this.onkosten = data;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

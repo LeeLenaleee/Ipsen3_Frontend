@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Onkosten} from './onkosten.model';
 import {OnkostenService} from './onkosten.service';
+import {OnkostenZoekenComponent} from './onkosten-zoeken/onkosten-zoeken.component';
+import {OnkostenListComponent} from './onkosten-list/onkosten-list.component';
 
 @Component({
   selector: 'app-onkosten',
@@ -9,6 +11,9 @@ import {OnkostenService} from './onkosten.service';
 })
 export class OnkostenComponent implements OnInit {
   selectedOnkosten: Onkosten;
+
+  @ViewChild(OnkostenZoekenComponent) onkostenZoekComponent: OnkostenZoekenComponent;
+  @ViewChild(OnkostenListComponent) onkostenListComponent: OnkostenListComponent;
 
   constructor(private onkostenService: OnkostenService) { }
 

@@ -1,9 +1,14 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Onkosten} from './onkosten.model';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class OnkostenService {
+
+  subject = new Subject<Onkosten>();
+
   onkostenSelected = new EventEmitter<Onkosten>();
+  onkostenGezocht = new EventEmitter<Onkosten[]>();
 
   private onkosten: Onkosten[] = [
     new Onkosten(
@@ -66,5 +71,13 @@ export class OnkostenService {
 
   getOnkost(index: number) {
     return this.onkosten[index];
+  }
+
+  getObservable() {
+    return this.subject.asObservable();
+  }
+
+  selectOnkosten(data) {
+    this.subject.next(data);
   }
 }
