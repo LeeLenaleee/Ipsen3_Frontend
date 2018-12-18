@@ -1,66 +1,104 @@
 <hr>
 
-<div class="col-md-10 center-items">
-  <div class="input-group item-margin">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Bedrijf</span>
+<div class="row">
+  <div class="col-12">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Bedrijf</span>
+      </div>
+      <textarea class="form-control"></textarea>
     </div>
-    <textarea class="form-control" aria-label="companyLabel"></textarea>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-6">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Datum</span>
+      </div>
+      <textarea class="form-control" placeholder="DD-MM-JJJJ"></textarea>
+    </div>
   </div>
 
-  <hr>
-
-  <div class="input-group item-margin">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Datum</span>
+  <div class="col-6" select-class>
+    <div class="input-group item-margin select-class">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Kostenpost</span>
+      </div>
+      <select class="form-control select-class">
+        <option selected></option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="DD-MM-JJJJ"></textarea>
-    <div class="input-group-prepend">
-      <span class="input-group-text margin-left">Kostenpost</span>
-    </div>
-    <select class="form-control select-class" id="inputGroupSelect01">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
   </div>
+</div>
 
-  <div class="input-group item-margin">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Omschrijving</span>
+<div class="row">
+  <div class="col-12">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Omschrijving</span>
+      </div>
+      <textarea class="form-control" aria-label="companyLabel"></textarea>
     </div>
-    <textarea class="form-control" aria-label="companyLabel"></textarea>
   </div>
+</div>
 
-  <hr>
+<hr>
 
-  <div class="input-group item-margin">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Bruto €</span>
+<div class="row">
+  <div class="col-6">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Bruto €</span>
+      </div>
+      <textarea class="form-control" placeholder="€--,--"></textarea>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--"></textarea>
-    <div class="input-group-prepend">
-      <span class="input-group-text margin-left">BTW %</span>
-    </div>
-    <textarea class="form-control" aria-label="companyLabel" placeholder="0.00%"></textarea>
   </div>
-
-  <div class="input-group item-margin">
-    <div class="input-group-prepend">
-      <span class="input-group-text">BTW €</span>
+  <div class="col-6">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">BTW %</span>
+      </div>
+      <textarea class="form-control" placeholder="0.00%"></textarea>
     </div>
-    <textarea class="form-control margin-right" aria-label="companyLabel" placeholder="€--,--"></textarea>
-    <div class="input-group-prepend">
-      <span class="input-group-text margin-left">Netto €</span>
-    </div>
-    <textarea class="form-control" aria-label="companyLabel" placeholder="€--,--"></textarea>
   </div>
+</div>
 
-  <hr>
+<div class="row">
+  <div class="col-6">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">BTW €</span>
+      </div>
+      <textarea class="form-control" placeholder="€--,--"></textarea>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="input-group item-margin">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Netto €</span>
+      </div>
+      <textarea class="form-control"  placeholder="€--,--"></textarea>
+    </div>
+  </div>
+</div>
 
-  <button class="btn btn-primary">test</button>
-  <button class="btn btn-secondary">test</button>
-  <button class="btn btn-danger">test</button>
+<hr>
 
+<div class="row">
+  <div class="col-4">
+    <button class="btn btn-primary">Nieuwe uitgave</button>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-secondary">Voeg uitgave toe</button>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-danger">Verwijder uitgave</button>
+  </div>
 </div>
