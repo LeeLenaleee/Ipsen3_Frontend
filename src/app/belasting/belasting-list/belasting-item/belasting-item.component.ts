@@ -10,7 +10,7 @@ export class BelastingItemComponent implements OnInit {
   input = ' ';
   i: number;
 
-  // TODO: databaseContacten moet uiteindelijk uit de database gehaald worden en in een array komen.
+  // TODO: De database contacten moeten uiteindelijk uit de database worden gehaald en in deze array eindigen.
   databaseContacten = ['Simon', 'Jacco', 'Kasper', 'Jazzlyn', 'Wietse'];
 
   contactList = []; // Een lijst voor de zoekfunctie.
@@ -21,6 +21,11 @@ export class BelastingItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  /*
+    @author Wietse Nicolaas
+    Methode die zoekt naar contacten in het belasting scherm.
+    De gebruiker kan zo kijken of een contact al heeft betaald.
+   */
   zoekContacten(event: any) {
     this.input = (<HTMLInputElement>event.target).value.toUpperCase();
     // @ts-ignore
