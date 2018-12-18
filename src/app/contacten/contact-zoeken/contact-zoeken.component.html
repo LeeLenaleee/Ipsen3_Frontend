@@ -10,7 +10,7 @@
              #bedrijfInput>
       <datalist id="bedrijven">
         <!--<select style="display: none">-->
-          <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.naam }}">
+          <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.bedrijf }}">
         <!--</select>-->
       </datalist>
   </div>
@@ -19,6 +19,23 @@
             id="zoekButton"
             type="submit"
             (click)="onZoekBedrijf()">Zoek bedrijf</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-3" *ngIf="gezochtePersonen.length > 1">
+    <table class="table table-bordered table-hover table-sm">
+      <tbody style="cursor: pointer">
+      <tr *ngFor="let persoon of gezochtePersonen"
+      (click)="kiesPersoon(persoon.id)">
+        <th scope="row">{{ persoon.bedrijf }}</th>
+        <td>{{ persoon.naam }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <app-contact-item></app-contact-item>
   </div>
 </div>
 

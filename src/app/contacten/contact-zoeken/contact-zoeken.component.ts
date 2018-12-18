@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ContactZoekenService} from '../contact-zoeken.service';
+import {Contact} from '../contact.model';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -8,9 +9,14 @@ import {ContactZoekenService} from '../contact-zoeken.service';
 })
 export class ContactZoekenComponent implements OnInit {
   @ViewChild('bedrijfInput') bedrijfNaam: ElementRef;
-  mogelijkeBedrijven: {id: number, naam: string}[] = [];
+  mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
+  gezochtePersonen: {id: number, bedrijf: string, naam: string}[] = [];
 
   constructor(private service: ContactZoekenService) { }
+
+  hey() {
+    console.log('het werkt?');
+  }
 
   ngOnInit() {
     this.service.krijgMogelijkeBedrijven();
@@ -20,10 +26,14 @@ export class ContactZoekenComponent implements OnInit {
   onZoekBedrijf() {
     const naam = this.bedrijfNaam.nativeElement.value;
     let naamIndex = null;
+    this.gezochtePersonen = [];
 
     for (const bedrijf of this.mogelijkeBedrijven) {
-      if (bedrijf.naam === naam) {
-        naamIndex = this.mogelijkeBedrijven.indexOf(bedrijf);
+      if (bedrijf.bedrijf === naam) {
+        this.gezochtePersonen.push(bedrijf);
+        if (naamIndex === null) {
+          naamIndex = this.mogelijkeBedrijven.indexOf(bedrijf);
+        }
       }
     }
     if (naamIndex === null) {
@@ -31,6 +41,10 @@ export class ContactZoekenComponent implements OnInit {
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
+    this.service.getContact(id);
+  }
+
+  kiesPersoon(id: number) {
     this.service.getContact(id);
   }
 }
