@@ -45,7 +45,6 @@ input:checked + .toggle:before {
 }
 
 p {
-  left: 0;
   text-align: center;
   font-size: small;
 }

@@ -6,11 +6,6 @@
   background-color: #EFEFD5;
 }
 
-#contactlijst {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #contactlijst li:hover {
   background-color: #dfdfc6;
 }
@@ -25,12 +20,22 @@
   margin: 25px;
 }
 
-.col-sm-4 {
-  margin-left: 11%;
+.col-4 {
+  margin-left: 12%;
 }
 
-.col-sm-2 {
-  margin-left: 5%;
+.col-2 {
+  margin-left: -12%;
 }
 
+.buttoncolumn {
+  background: #016B6B;
+  border: #005959 solid 3px;
+}
 
+.buttoncolumn button{
+  margin: 24px auto;
+  background-color: orange;
+  border: 1px solid #ad6900;
+  color: white;
+}
