@@ -32,6 +32,8 @@ export class OnkostenDetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-
+  showEmptyItem() {
+    this.id = null;
+  }
 
 }

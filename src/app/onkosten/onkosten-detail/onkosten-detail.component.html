@@ -1,6 +1,7 @@
+<ng-template #leeg>  <app-onkosten-toevoegen></app-onkosten-toevoegen>
+</ng-template>
 
-
-<div *ngIf="id">
+<div *ngIf="id; else leeg">
 
 <hr>
 
@@ -97,7 +98,7 @@
 
   <div class="row">
     <div class="col-4">
-      <button class="btn btn-primary">Nieuwe uitgave</button>
+      <button class="btn btn-primary" (click)="showEmptyItem()">Nieuwe uitgave</button>
     </div>
     <div class="col-4">
       <button class="btn btn-secondary">Voeg uitgave toe</button>
