@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {Md5} from 'ts-md5';
 
 @Injectable()
 export class AuthenticationService {
@@ -8,15 +9,14 @@ export class AuthenticationService {
 
 
   login(email: string, password: string) {
+    const password2 = Md5.hashStr(password);
     // return this.http.get<any>(`http://localhost:8080/api/login?email=` + email + '&password=' + password)
-    return this.http.post<any>(`http://localhost:8080/api/login`, { email: email, password: password })
+    return this.http.post<any>(`http://localhost:8080/api/login`, { email: email, password: password2 })
       .pipe(map(user => {
         // login successful
-        if (email === user.emailAddress && password === user.password) {
+        if (email === user.emailAddress && password2 === user.password) {
           // store user details in local storage to keep user logged in between page refreshes
-          console.log('kk');
           localStorage.setItem('currentUser', JSON.stringify(user));
-          console.log(localStorage.getItem('currentUser') + ' pietjekappa');
         }
         return user;
       }));
