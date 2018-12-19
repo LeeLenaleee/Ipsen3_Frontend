@@ -1,7 +1,7 @@
-<div class="card w-100" (click)="selectOnkosten()">
-  <div class="card-body">
-    <h5>Bedrijf: {{onkosten.bedrijf}}</h5>
-    <p>Datum: {{onkosten.datum}}</p>
-    <p>Omschrijving: {{onkosten.omschrijving}}</p>
+<div class="card w-100 " (click)="selectOnkosten()">
+  <div class="card-body item-select">
+    <h5><b>Bedrijf: </b> <i> {{onkosten.bedrijf}} </i></h5>
+    <p><b>Datum: </b> <i>{{onkosten.datum}} </i> <b>  Kostenpost: </b> <i>{{ onkosten.kostenpost }}</i></p>
+    <p><b>Omschrijving: </b> <i> {{onkosten.omschrijving}}</i></p>
   </div>
 </div>

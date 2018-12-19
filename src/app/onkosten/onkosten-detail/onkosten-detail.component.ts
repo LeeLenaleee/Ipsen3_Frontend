@@ -1,6 +1,6 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Onkosten} from '../onkosten.model';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OnkostenService} from '../onkosten.service';
 import {Subscription} from 'rxjs';
 
@@ -15,7 +15,8 @@ export class OnkostenDetailComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private onkostenService: OnkostenService) { }
 
   ngOnInit() {
@@ -30,5 +31,7 @@ export class OnkostenDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
 
 }
