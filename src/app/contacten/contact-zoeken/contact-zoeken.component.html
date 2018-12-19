@@ -7,7 +7,7 @@
              placeholder="Bedrijf"
              list="bedrijven"
              autocomplete="off"
-             (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): return"
+             (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
              #bedrijfInput>
       <datalist id="bedrijven">
         <!--<select style="display: none">-->

@@ -14,8 +14,12 @@ export class ContactZoekenComponent implements OnInit {
   constructor(private service: ContactZoekenService) { }
 
   ngOnInit() {
-    this.service.krijgMogelijkeBedrijven();
+    this.service.krijgMogelijkeBedrijven('hey');
     this.mogelijkeBedrijven = this.service.mogelijkeBedrijven;
+  }
+
+  onKeyDown() {
+    this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
   }
 
   onZoekBedrijf() {
