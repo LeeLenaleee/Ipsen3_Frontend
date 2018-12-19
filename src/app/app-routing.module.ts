@@ -6,6 +6,9 @@ import {BelastingComponent} from './belasting/belasting.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {FacturenSchermComponent} from './belasting/facturen-scherm/facturen-scherm.component';
+import {UitgavenoverzichtComponent} from './belasting/uitgavenoverzicht/uitgavenoverzicht.component';
+import {KwartaalWeergavenComponent} from './belasting/kwartaal-weergaven/kwartaal-weergaven.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainMenuComponent },
@@ -13,6 +16,9 @@ const appRoutes: Routes = [
   { path: 'contacten', component: ContactenComponent },
   { path: 'belasting', component: BelastingComponent },
   { path: 'instellingen', component: InstellingenComponent },
+  { path: 'facturen', component: FacturenSchermComponent},
+  { path: 'uitgaven', component: UitgavenoverzichtComponent},
+  { path: 'kwartaal', component: KwartaalWeergavenComponent},
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
 ];

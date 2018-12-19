@@ -1,9 +1,8 @@
 #contactlijst td, th {
-  border: 1px solid;
-  list-style-type: none;
+  border: 1px solid black;
   width: 20%;
   padding: 10px;
-  background-color: #EFEFD5;
+  background-color: white;
 }
 
 #contactlijst li:hover {
