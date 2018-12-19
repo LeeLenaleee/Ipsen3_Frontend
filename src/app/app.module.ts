@@ -34,6 +34,7 @@ import {AuthenticationService} from './inloggen-uitloggen/inloggen/authenticatio
 import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AlertComponent} from './inloggen-uitloggen/inloggen';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MainMenuComponent,
     ErrorPageComponent,
     PageNotFoundComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

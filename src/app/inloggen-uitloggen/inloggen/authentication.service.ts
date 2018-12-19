@@ -9,9 +9,7 @@ export class AuthenticationService {
 
 
   login(email: string, password: string) {
-    console.log(password);
     const password2 = Md5.hashStr(password);
-    console.log(password2);
     // return this.http.get<any>(`http://localhost:8080/api/login?email=` + email + '&password=' + password)
     return this.http.post<any>(`http://localhost:8080/api/login`, { email: email, password: password2 })
       .pipe(map(user => {
