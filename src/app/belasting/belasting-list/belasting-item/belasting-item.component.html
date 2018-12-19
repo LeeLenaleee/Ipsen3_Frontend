@@ -1,6 +1,11 @@
-<input type="text" id="search" (input)="zoekContacten($event)" placeholder="Zoek op contacten...">
-
-<app-toggle-switch></app-toggle-switch>
+<div class="row">
+  <div class="col-sm-4">
+  <input type="text" id="search" (input)="zoekContacten($event)" placeholder="Zoek op contacten...">
+  </div>
+  <div class="col-sm-2">
+  <app-toggle-switch [(switchStatus)]="switchStatus" (input)="filterDebiteuren()"></app-toggle-switch>
+  </div>
+</div>
 
 <table id="contactlijst">
   <tr>
@@ -16,12 +21,12 @@
   <tr>
     <td>02</td>
     <td>{{databaseContacten[1]}}</td>
-    <td>Ja</td>
+    <td>Nee</td>
   </tr>
   <tr>
     <td>03</td>
     <td>{{databaseContacten[2]}}</td>
-    <td>Ja</td>
+    <td>Nee</td>
   </tr>
   <tr>
     <td>04</td>
