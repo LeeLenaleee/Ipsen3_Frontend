@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Http, ResponseContentType} from '@angular/http';
+import 'rxjs-compat/add/operator/map';
 
 @Component({
   selector: 'app-factuur-tikken',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FactuurTikkenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
   ngOnInit() {
   }
