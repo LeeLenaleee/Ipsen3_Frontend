@@ -9,7 +9,7 @@ import {ContactZoekenService} from '../contact-zoeken.service';
 })
 export class ContactItemComponent implements OnInit {
   contact: Contact = new Contact(null, null, null, null, null,
-    null, null, null, [null], [null], null, null);
+    null, null, null,  null, null);
 
   constructor(private contactZoekenService: ContactZoekenService) {
     this.contactZoekenService.bedrijfGezocht.subscribe(

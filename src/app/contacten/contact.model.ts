@@ -1,16 +1,16 @@
 export class Contact {
   public id: number;
-  public voornaam: string;
-  public achternaam: string;
-  public bedrijf: string;
-  public straatnaam: string;
-  public postcode: string;
-  public woonplaats: string;
-  public land: string;
+  public contact_voornaam: string;
+  public contact_achternaam: string;
+  public contact_bedrijf: string;
+  public contact_straatnaam: string;
+  public contact_postcode: string;
+  public contact_plaats: string;
+  public contact_land: string;
   // public telefoon: number[];
   // public email: string[];
-  public relatie: string;
-  public website: string;
+  public contact_relatie: string;
+  public contact_website: string;
 
 
   constructor(id: number, voornaam: string, achternaam: string, bedrijf: string,
@@ -18,16 +18,16 @@ export class Contact {
               // telefoon: number[], email: string[],
               relatie: string, website: string) {
     this.id = id;
-    this.voornaam = voornaam;
-    this.achternaam = achternaam;
-    this.bedrijf = bedrijf;
-    this.straatnaam = straatnaam;
-    this.postcode = postcode;
-    this.woonplaats = woonplaats;
-    this.land = land;
+    this.contact_voornaam = voornaam;
+    this.contact_achternaam = achternaam;
+    this.contact_bedrijf = bedrijf;
+    this.contact_straatnaam = straatnaam;
+    this.contact_postcode = postcode;
+    this.contact_plaats = woonplaats;
+    this.contact_land = land;
     // this.telefoon = telefoon;
     // this.email = email;
-    this.relatie = relatie;
-    this.website = website;
+    this.contact_relatie = relatie;
+    this.contact_website = website;
   }
 }

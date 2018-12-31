@@ -1,8 +1,8 @@
-<table class="table table-bordered table-hover table-sm">
+<table class="table table-bordered table-hover table-sm text-center">
   <tbody style="cursor: pointer">
   <tr *ngFor="let persoon of gezochtePersonen"
       (click)="kiesPersoon(persoon.id)">
-    <th scope="row">{{ persoon.bedrijf }}</th>
+    <!--<th scope="row">{{ persoon.bedrijf }}</th>-->
     <td>{{ persoon.naam }}</td>
   </tr>
   </tbody>

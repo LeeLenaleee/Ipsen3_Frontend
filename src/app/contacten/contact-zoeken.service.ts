@@ -7,34 +7,45 @@ import {Observable} from 'rxjs';
 export class ContactZoekenService {
   bedrijfGezocht = new EventEmitter<Contact>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
+  testUrl = 'assets/test.json';
+  idUrl = 'http://localhost:8080/api/contacts/';
+  test2Url = 'assets/test2.json';
+  zoektermUrl = 'http://localhost:8080/api/contacts/company/';
 
   constructor(private http: HttpClient) { }
 
   getContact(id: number) {
     // TODO uit database zoeken
-    const contact = new Contact(0, 'voor', 'achter', 'bedrijf',
-      'straat', 'postcode', 'woonplaats', 'nederland',  'relatie', 'website.nl');
-    const contact2 = new Contact(3, 'voornaam', 'achternaam', 'bedrijff',
-      'straatnaam', 'postco', 'woonpla', 'nede',  'relatie', 'webite.nl');
-    const array = [contact, contact2];
+    this.showContact(id).subscribe(
+      (contact: Contact) => {
+      this.bedrijfGezocht.emit(contact);
+      },
+      (error) => console.log(error));
+  }
 
-    let gekozenContact: Contact;
-    for (const iemand of array) {
-      if (iemand.id === id) {
-        gekozenContact = iemand;
-      }
-    }
-
-    this.bedrijfGezocht.emit(gekozenContact);
+  showContact(id: number) {
+    // return this.http.get<Contact>(this.idUrl + id);
+    return this.http.get<Contact>(this.testUrl);
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
     // TODO uit de backend alle bedrijfnamen + id halen
-    this.mogelijkeBedrijven = [{id: 0, bedrijf: 'Abedrijf', naam: 'piet met een lange naam'}, {id: 1, bedrijf: 'Bbedrijf', naam: 'jan'},
-      {id: 2, bedrijf: 'Cbedrijf', naam: 'klaas'}, {id: 3, bedrijf: 'Abedrijf', naam: 'voornaam achternaam'}];
+    this.mogelijkeBedrijven = [];
+    this.showMogelijkeBedrijven(zoekterm)
+      .subscribe(
+        (data: Contact[]) => {
+          for (const contact of data) {
+            this.mogelijkeBedrijven.push({id: contact.id,
+              bedrijf: contact.contact_bedrijf,
+              naam: contact.contact_achternaam + ', ' + contact.contact_voornaam});
+          }
+          },
+        (error) => console.log(error) // als de letter zit mogelijk niet in de dingen
+      );
+  }
 
-    // this.mogelijkeBedrijven = [];
-    // this.http.get<Contact>('http://localhost:8080/api/contacts/company/' + zoekterm);
-    // krijg id, bedrijf en naam?
+  showMogelijkeBedrijven(zoekterm: string) {
+    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    return this.http.get<any[]>(this.test2Url);
   }
 }

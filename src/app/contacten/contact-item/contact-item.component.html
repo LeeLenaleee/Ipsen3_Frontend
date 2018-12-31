@@ -8,23 +8,23 @@
         </tr>
         <tr>
           <th scope="row">Voornaam:</th>
-          <td>{{ contact.voornaam }}</td>
+          <td>{{ contact.contact_voornaam }}</td>
         </tr>
         <tr>
           <th scope="row">Achternaam:</th>
-          <td>{{ contact.achternaam }}</td>
+          <td>{{ contact.contact_achternaam }}</td>
         </tr>
         <tr>
           <th scope="row">Bedrijf:</th>
-          <td>{{ contact.bedrijf }}</td>
+          <td>{{ contact.contact_bedrijf }}</td>
         </tr>
-        <tr *ngFor="let nummer of contact.telefoon; let i = index">
-          <th scope="row">{{ i === 0 ? 'Telefoon:': return }}</th>
-          <td>{{ nummer }}</td>
-        </tr>
+        <!--<tr *ngFor="let nummer of contact.telefoon; let i = index">-->
+          <!--<th scope="row">{{ i === 0 ? 'Telefoon:': return }}</th>-->
+          <!--<td>{{ nummer }}</td>-->
+        <!--</tr>-->
         <tr>
           <th scope="row">Relatie:</th>
-          <td>{{ contact.relatie }}</td>
+          <td>{{ contact.contact_relatie }}</td>
         </tr>
       </tbody>
     </table>
@@ -34,27 +34,27 @@
       <tbody>
         <tr>
           <th scope="row">Straatnaam:</th>
-          <td>{{ contact.straatnaam }}</td>
+          <td>{{ contact.contact_straatnaam }}</td>
         </tr>
         <tr>
           <th scope="row">Postcode:</th>
-          <td>{{ contact.postcode }}</td>
+          <td>{{ contact.contact_postcode }}</td>
         </tr>
         <tr>
           <th scope="row">Woonplaats:</th>
-          <td>{{ contact.woonplaats }}</td>
+          <td>{{ contact.contact_plaats }}</td>
         </tr>
         <tr>
           <th scope="row">Land:</th>
-          <td>{{ contact.land }}</td>
-        </tr>
-        <tr *ngFor="let mail of contact.email; let i = index">
-          <th scope="row">{{ i === 0 ? 'Email:': return }}</th>
-          <td>{{ mail }}</td>
-        </tr>
+          <td>{{ contact.contact_land }}</td>
+        <!--</tr>-->
+        <!--<tr *ngFor="let mail of contact.email; let i = index">-->
+          <!--<th scope="row">{{ i === 0 ? 'Email:': return }}</th>-->
+          <!--<td>{{ mail }}</td>-->
+        <!--</tr>-->
         <tr>
           <th scope="row">Website:</th>
-          <td>{{ contact.website }}</td>
+          <td>{{ contact.contact_website }}</td>
         </tr>
       </tbody>
     </table>
