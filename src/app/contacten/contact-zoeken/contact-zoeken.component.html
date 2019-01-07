@@ -10,9 +10,7 @@
              (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
              #bedrijfInput>
       <datalist id="bedrijven">
-        <!--<select style="display: none">-->
           <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.bedrijf }}">
-        <!--</select>-->
       </datalist>
   </div>
   <div class="col-">
@@ -22,7 +20,8 @@
             (click)="onZoekBedrijf()">Zoek bedrijf</button>
   </div>
 </div>
-<hr>
+<br>
+<br>
 <div class="row">
   <div class="col">
     <app-contact-item></app-contact-item>
