@@ -30,10 +30,11 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ToggleSwitchComponent } from './belasting/belasting-list/toggle-switch/toggle-switch.component';
+import { ToggleSwitchComponent } from './belasting/toggle-switch/toggle-switch.component';
 import { FacturenSchermComponent } from './belasting/facturen-scherm/facturen-scherm.component';
 import { UitgavenoverzichtComponent } from './belasting/uitgavenoverzicht/uitgavenoverzicht.component';
 import { KwartaalWeergavenComponent } from './belasting/kwartaal-weergaven/kwartaal-weergaven.component';
+import { KlantenoverzichtComponent } from './belasting/klantenoverzicht/klantenoverzicht.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { KwartaalWeergavenComponent } from './belasting/kwartaal-weergaven/kwart
     FacturenSchermComponent,
     UitgavenoverzichtComponent,
     KwartaalWeergavenComponent,
+    KlantenoverzichtComponent,
   ],
   imports: [
     BrowserModule,
