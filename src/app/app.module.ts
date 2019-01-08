@@ -31,6 +31,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { ContactenListComponent } from './contacten/contact-zoeken/contacten-lis
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

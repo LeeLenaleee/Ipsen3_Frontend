@@ -14,4 +14,6 @@ form {
 :host {
 }
 
-
+input.ng-invalid.ng-touched {
+  border-left: 2px solid red;
+}
