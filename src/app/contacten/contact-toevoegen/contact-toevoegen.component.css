@@ -17,3 +17,17 @@ form {
 input.ng-invalid.ng-touched {
   border-left: 2px solid red;
 }
+
+button.rood, button.groen {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 2px;
+}
+
+.groen {
+  background-color: lawngreen;
+}
+
+.rood {
+  background-color: red;
+}

@@ -25,23 +25,70 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputTelephone">Telefoon nummer</label>
+      <button class="groen btn" tabindex="-1" type="button" (click)="telErbij()">+</button>
+      <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
       <input type="text"
              class="form-control"
              id="inputTelephone"
              placeholder="0612345678"
              ngModel
-             name="telefoon"
+             name="telefoon1"
              required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">Email adres</label>
+      <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
+      <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
       <input type="email"
              class="form-control"
              id="inputEmail"
              placeholder="voorbeeld@voorbeeld.nl"
              ngModel
-             name="email"
+             name="email1"
+             email
              required>
+    </div>
+  </div>
+    <div class="form-row" *ngIf="aantalTel > 1 || aantalEmail > 1">
+      <div class="form-group col-md-6">
+        <input type="text"
+               class="form-control"
+               id="inputTelephone2"
+               placeholder="0612345678"
+               ngModel
+               name="telefoon2"
+               *ngIf="aantalTel > 1">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="email"
+               class="form-control"
+               id="inputEmail2"
+               placeholder="voorbeeld@voorbeeld.nl"
+               ngModel
+               name="email2"
+               email
+               *ngIf="aantalEmail > 1">
+      </div>
+  </div>
+  <div class="form-row" *ngIf="aantalTel > 2 || aantalEmail > 2">
+    <div class="form-group col-md-6">
+      <input type="text"
+             class="form-control"
+             id="inputTelephone3"
+             placeholder="0612345678"
+             ngModel
+             name="telefoon3"
+             *ngIf="aantalTel > 2">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="email"
+             class="form-control"
+             id="inputEmail3"
+             placeholder="voorbeeld@voorbeeld.nl"
+             ngModel
+             name="email3"
+             email
+             *ngIf="aantalEmail > 2">
     </div>
   </div>
 
@@ -89,7 +136,7 @@
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-8">
       <label for="inputStreet">Straatnaam</label>
       <input type="text"
              class="form-control"
@@ -109,7 +156,9 @@
               name="huisnummer"
               required>
      </div>
-    <div class="form-group col-md-2">
+  </div>
+  <div class="form-row">
+  <div class="form-group col-md-4">
      <label for="inputZip">Postcode</label>
       <input type="text"
              class="form-control"
@@ -117,6 +166,17 @@
              placeholder="1234AB"
              ngModel
              name="postcode"
+             required>
+    </div>
+    <div class="form-group col-md-8">
+      <label for="inputLand">Land</label>
+      <input type="text"
+             class="form-control"
+             id="inputLand"
+             placeholder="Nederland"
+             value="Nederland"
+             [ngModel]="land"
+             name="land"
              required>
     </div>
   </div>
