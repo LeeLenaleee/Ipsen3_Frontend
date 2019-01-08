@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {ContactToevoegenService} from './contact-toevoegen.service';
 
 @Component({
   selector: 'app-contact-toevoegen',
-  templateUrl: './contact-toevoegen.component.html',
-  styleUrls: ['./contact-toevoegen.component.css']
+  templateUrl: '../shared/contact-toevoegen.component.html',
+  styleUrls: ['../shared/contact-toevoegen.component.css']
 })
 export class ContactToevoegenComponent implements OnInit {
   selectedRelatie = 'Anders';
   land = 'Nederland';
+  buttonText = 'Contact Toevoegen';
   aantalTel = 1;
   aantalEmail = 1;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];

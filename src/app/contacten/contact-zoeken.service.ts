@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 export class ContactZoekenService {
   contact: Contact;
   bedrijfGezocht = new EventEmitter<Contact>();
+  telNrs = new EventEmitter<string[]>();
+  emails = new EventEmitter<string[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
   testUrl = 'assets/test.json';
   idUrl = 'http://localhost:8080/api/contacts/';
@@ -18,7 +20,7 @@ export class ContactZoekenService {
 
   getContact(id: number) {
     // TODO uit database zoeken
-    console.log('dit moet niks zijn: ' + this.contact);
+    // console.log('dit moet niks zijn: ' + this.contact);
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
@@ -27,7 +29,7 @@ export class ContactZoekenService {
       },
       (error) => console.log(error));
 
-    console.log('contact: ' + this.contact);
+    // console.log('contact: ' + this.contact);
 
     // this.getTelefoon(id);
     // this.getEmail(id);
@@ -40,36 +42,38 @@ export class ContactZoekenService {
     return this.http.get<Contact>(this.testUrl);
   }
 
-  // getTelefoon(id: number) {
-  //   this.showTelefoon(id).subscribe(
-  //     (nummers: number[]) => {
-  //       for (const nummer of nummers) {
-  //         console.log('tel erbij: ' + nummer);
-  //         this.contact.telefoon.push(nummer);
-  //       }
-  //     }
-  //   );
-  // }
-  //
-  // showTelefoon(id: number) {
-  //   // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-  //   return this.http.get<number[]>(this.telUrl);
-  // }
-  //
-  // getEmail(id: number) {
-  //   this.showEmail(id).subscribe(
-  //     (mails: string[]) => {
-  //       for (const mail of mails) {
-  //         this.contact.email.push(mail);
-  //       }
-  //     }
-  //   );
-  // }
-  //
-  // showEmail(id: number) {
-  //   // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-  //   return this.http.get<string[]>(this.mailUrl);
-  // }
+  getTelefoon(id: number) {
+    this.showTelefoon(id).subscribe(
+      (nummers: string[]) => {
+        this.telNrs.emit(nummers);
+        // for (const nummer of nummers) {
+        //   console.log('tel erbij: ' + nummer);
+        //   // this.contact.telefoon.push(nummer);
+        // }
+      }
+    );
+  }
+
+  showTelefoon(id: number) {
+    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    return this.http.get<string[]>(this.telUrl);
+  }
+
+  getEmail(id: number) {
+    this.showEmail(id).subscribe(
+      (mails: string[]) => {
+        this.emails.emit(mails);
+        // for (const mail of mails) {
+        //   this.contact.email.push(mail);
+        // }
+      }
+    );
+  }
+
+  showEmail(id: number) {
+    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    return this.http.get<string[]>(this.mailUrl);
+  }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
     // TODO uit de backend alle bedrijfnamen + id halen

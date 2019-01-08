@@ -175,12 +175,12 @@
              id="inputLand"
              placeholder="Nederland"
              value="Nederland"
-             [ngModel]="land"
+             [(ngModel)]="land"
              name="land"
              required>
     </div>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit form</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid && f.touched">{{ buttonText }}</button>
 </form>
 
 

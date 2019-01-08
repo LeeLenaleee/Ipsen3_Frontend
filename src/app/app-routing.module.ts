@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'onkosten', component: OnkostenComponent },
   { path: 'contacten', component: ContactenComponent, children: [
       { path: 'zoeken', component: ContactZoekenComponent },
-      { path: 'wijzigen', component: ContactWijzigenComponent },
+      { path: ':id/wijzigen', component: ContactWijzigenComponent },
       { path: 'toevoegen', component: ContactToevoegenComponent },
       { path: '', pathMatch: 'full', redirectTo: 'zoeken' }
     ] },
