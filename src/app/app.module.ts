@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactenComponent } from './contacten/contacten.component';
@@ -21,7 +19,6 @@ import { BelastingItemComponent } from './belasting/belasting-list/belasting-ite
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
 import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpost-item/kostenpost-item.component';
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
-import { InloggenComponent } from './inloggen-uitloggen/inloggen/inloggen.component';
 import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
 import {FooterComponent} from './footer/footer.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -29,7 +26,15 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
+import {AlertService} from './inloggen-uitloggen/inloggen/alert.service';
+import {AuthenticationService} from './inloggen-uitloggen/inloggen/authentication.service';
+import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor';
+import {LoginComponent} from './login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AlertComponent} from './inloggen-uitloggen/inloggen';
 
 
 @NgModule({
@@ -53,7 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     KostenpostListComponent,
     KostenpostItemComponent,
     BtwWijzigenComponent,
-    InloggenComponent,
+    LoginComponent,
     UitloggenComponent,
     ContactZoekenComponent,
     UitloggenComponent,
@@ -61,13 +66,22 @@ import { HttpClientModule } from '@angular/common/http';
     MainMenuComponent,
     ErrorPageComponent,
     PageNotFoundComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [AppComponent],
+  providers: [
+    AppComponent,
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
