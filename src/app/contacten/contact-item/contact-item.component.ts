@@ -13,7 +13,12 @@ export class ContactItemComponent implements OnInit {
 
   constructor(private contactZoekenService: ContactZoekenService) {
     this.contactZoekenService.bedrijfGezocht.subscribe(
-      (contactGekregen: Contact) => this.contact = contactGekregen
+      (contactGekregen: Contact) => {
+        // console.log(this.contact);
+        this.contact = contactGekregen;
+        // console.log(contactGekregen);
+        // console.log(this.contact);
+      }
   );
   }
 

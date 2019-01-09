@@ -9,10 +9,8 @@ export class ContactZoekenService {
   telNrs = new EventEmitter<string[]>();
   emails = new EventEmitter<string[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
-  testUrl = 'assets/test.json';
   idUrl = 'http://localhost:8080/api/contacts/';
-  test2Url = 'assets/test2.json';
-  zoektermUrl = 'http://localhost:8080/api/contacts/company/';
+  zoektermUrl = 'http://localhost:8080/api/contacts?bedrijf=';
   telUrl = 'assets/testTel.json';
   mailUrl = 'assets/testMail.json';
 
@@ -20,12 +18,12 @@ export class ContactZoekenService {
 
   getContact(id: number) {
     // TODO uit database zoeken
-    // console.log('dit moet niks zijn: ' + this.contact);
+    // console.log(this.showContact(id));
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
         // this.contact = contact;
-        // console.log('is dit legit.2? ' + contact);
+        // console.log('is dit ' + contact);
       },
       (error) => console.log(error));
 
@@ -38,8 +36,8 @@ export class ContactZoekenService {
   }
 
   showContact(id: number) {
-    // return this.http.get<Contact>(this.idUrl + id);
-    return this.http.get<Contact>(this.testUrl);
+    return this.http.get<Contact>(this.idUrl + id);
+    // return this.http.get<Contact>(this.testUrl);
   }
 
   getTelefoon(id: number) {
@@ -76,15 +74,19 @@ export class ContactZoekenService {
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
-    // TODO uit de backend alle bedrijfnamen + id halen
+    if (zoekterm === null) {
+      zoekterm = '';
+    }
     this.mogelijkeBedrijven = [];
     this.showMogelijkeBedrijven(zoekterm)
       .subscribe(
         (data: Contact[]) => {
+          // console.log(data);
           for (const contact of data) {
+            // console.log(contact);
             this.mogelijkeBedrijven.push({id: contact.id,
-              bedrijf: contact.contact_bedrijf,
-              naam: contact.contact_achternaam + ', ' + contact.contact_voornaam});
+              bedrijf: contact.contactBedrijf,
+              naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
           }
           },
         (error) => console.log(error) // als de letter zit mogelijk niet in de dingen
@@ -92,7 +94,7 @@ export class ContactZoekenService {
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-    return this.http.get<any[]>(this.test2Url);
+    return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    // return this.http.get<any[]>(this.test2Url);
   }
 }

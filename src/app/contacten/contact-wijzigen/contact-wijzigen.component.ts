@@ -82,24 +82,24 @@ export class ContactWijzigenComponent implements OnInit {
   }
 
   setValues(contact: Contact, telNummers: string[], emails: string[]) {
-    let straat = contact.contact_straatnaam;
+    let straat = contact.contactStraatnaam;
     const delen = straat.split(' ');
     const huisnummer = delen.pop();
     straat = delen.join(' ');
 
     this.form.form.patchValue({
-      voornaam: contact.contact_voornaam,
-      achternaam: contact.contact_achternaam,
+      voornaam: contact.contactVoornaam,
+      achternaam: contact.contactAchternaam,
       telefoon1: telNummers[0]['telnr'],
       email1: emails[0]['email'],
-      bedrijf: contact.contact_bedrijf,
-      website: contact.contact_website,
-      woonplaats: contact.contact_plaats,
-      relatie: contact.contact_relatie,
+      bedrijf: contact.contactBedrijf,
+      website: contact.contactWebsite,
+      woonplaats: contact.contactPlaats,
+      relatie: contact.contactRelatie,
       straatnaam: straat,
       huisnummer: huisnummer,
-      postcode: contact.contact_postcode,
-      land: contact.contact_land
+      postcode: contact.contactPostcode,
+      land: contact.contactLand
     });
 
     if (this.aantalTel > 1) {
