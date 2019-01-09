@@ -1,0 +1,16 @@
+<input type="text" id="search" (input)="zoekFacturen($event)" placeholder="Zoek facturen...">
+
+<table id="facturentabel">
+  <tr>
+    <th>Factuur ID</th>
+    <th>Factuur Naam</th>
+    <th>Factuur Begindatum</th>
+    <th>Factuur Einddatum</th>
+  </tr>
+  <tr *ngFor="let factuur of facturen">
+    <td>{{factuur.id}}</td>
+    <td>{{factuur.beschrijving}}</td>
+    <td>{{factuur.beginDatum}}</td>
+    <td>{{factuur.eindDatum}}</td>
+  </tr>
+</table>

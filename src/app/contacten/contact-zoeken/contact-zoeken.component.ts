@@ -20,7 +20,7 @@ export class ContactZoekenComponent implements OnInit {
 
   onZoekBedrijf() {
     const naam = this.bedrijfNaam.nativeElement.value;
-    let naamIndex = null; // = this.mogelijkeBedrijven.indexOf(naam);
+    let naamIndex = null; // = this.mogelijkeBedrijven.indexOf(beschrijving);
 
     for (const bedrijf of this.mogelijkeBedrijven) {
       if (bedrijf.naam === naam) {
@@ -29,7 +29,7 @@ export class ContactZoekenComponent implements OnInit {
     }
     if (naamIndex === null) {
       // TODO foutmelding geven
-      console.log('dit bedrijf bestaat niet')
+      console.log('dit bedrijf bestaat niet');
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;

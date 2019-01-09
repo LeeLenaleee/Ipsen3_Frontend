@@ -1,0 +1,40 @@
+#contactlijst td, th {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: white;
+  width: 20%;
+}
+
+#contactlijst li:hover {
+  background-color: #dfdfc6;
+}
+
+#search {
+  /*noinspection CssUnknownTarget*/
+  background-image: url('src/assets/zoekicoon.png');
+  background-position: 0px -2px;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  padding: 10px 10px 10px 50px;
+  margin: 25px;
+}
+
+.buttoncolumn {
+  background: #016B6B;
+  border: #005959 solid 3px;
+}
+
+.buttoncolumn button{
+  margin: 24px auto;
+  background-color: orange;
+  border: 1px solid #ad6900;
+  color: white;
+}
+
+.debiteurentoggle {
+ margin-left: -12%;
+}
+
+.col-4{
+ margin-left: 12%;
+}

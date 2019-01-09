@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-1">
+    <!--<input class="form-control" id="jaarInvoer" placeholder="Jaar" type="number" maxlength="4">-->
+    <input class="form-control" id="jaarInvoer" [(ngModel)]="jaar"
+           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+           type="number"
+           maxlength = "4"
+           (input)="veranderJaar($event)"
+    />
+  </div>
+  <div class="col-sm-1">
+    <select (input)="zetKwartaalMaanden($event)">
+      <option>Kwartaal 1</option>
+      <option>Kwartaal 2</option>
+      <option>Kwartaal 3</option>
+      <option>Kwartaal 4</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-9">
+    <table id="contactlijst">
+      <tr>
+        <th>Beschrijving</th>
+        <th>Balans</th>
+        <th>Datum</th>
+      </tr>
+      <tr *ngFor="let weergave of weergaven">
+        <td>{{weergave.beschrijving}}</td>
+        <td>{{weergave.netto}}</td>
+        <td>{{weergave.eindDatum}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

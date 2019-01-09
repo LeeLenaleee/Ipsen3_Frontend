@@ -1,0 +1,10 @@
+#contactlijst td, th {
+  border: 1px solid black;
+  width: 20%;
+  padding: 10px;
+  background-color: white;
+}
+
+#contactlijst li:hover {
+  background-color: #dfdfc6;
+}
