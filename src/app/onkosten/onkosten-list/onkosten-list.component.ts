@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Onkosten} from '../onkosten.model';
 import {OnkostenService} from '../onkosten.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-onkosten-list',
@@ -9,6 +10,7 @@ import {OnkostenService} from '../onkosten.service';
 })
 export class OnkostenListComponent implements OnInit {
   onkosten: Onkosten[];
+  subscription: Subscription;
 
   constructor(private onkostenService: OnkostenService) {
     this.onkostenService.onkostenGezocht
@@ -20,6 +22,11 @@ export class OnkostenListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onkosten = this.onkostenService.getOnkosten();
+    this.onkostenService.getOnkosten()
+      .subscribe(
+        (onkosten: Onkosten[]) => {
+          this.onkosten = onkosten;
+        }
+      );
   }
 }

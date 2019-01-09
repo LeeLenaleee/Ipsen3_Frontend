@@ -7,11 +7,15 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {OnkostenDetailComponent} from './onkosten/onkosten-detail/onkosten-detail.component';
+import {OnkostenToevoegenComponent} from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
+import {OnkostenResolver} from './shared/onkosten.resolver';
 
 const appRoutes: Routes = [
   { path: '', component: MainMenuComponent },
   { path: 'onkosten', component: OnkostenComponent, children: [
-      { path: '', component: OnkostenDetailComponent }
+      { path: ':id', component: OnkostenDetailComponent,
+        resolve: { onkost: OnkostenResolver }},
+      { path: 'toevoegen', component: OnkostenToevoegenComponent }
     ] },
 
   { path: 'contacten', component: ContactenComponent },
@@ -24,7 +28,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [OnkostenResolver]
 })
 export class AppRoutingModule {
 

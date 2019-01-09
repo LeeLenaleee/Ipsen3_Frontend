@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Onkosten} from '../onkosten.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {OnkostenService} from '../onkosten.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-onkosten-detail',
@@ -11,29 +10,21 @@ import {Subscription} from 'rxjs';
 })
 export class OnkostenDetailComponent implements OnInit, OnDestroy {
   onkosten: Onkosten;
-  id: number;
-
-  subscription: Subscription;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
-              private onkostenService: OnkostenService) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.onkostenService.getObservable().subscribe(
-      data => {
-        this.id = data.id;
-        this.onkosten = data;
-      }
-    );
+    // kan altijd nog worden omgebouwd naar dat onkosten detail component elke keer opnieuw wordt aangemaakt.
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.onkosten = this.route.snapshot.data.onkost;
+        }
+      );
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // empty
   }
-
-  showEmptyItem() {
-    this.id = null;
-  }
-
 }

@@ -34,6 +34,7 @@ import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoe
 import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.component';
 import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
 import {OnkostenService} from './onkosten/onkosten.service';
+import {OnkostenResolver} from './shared/onkosten.resolver';
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import {OnkostenService} from './onkosten/onkosten.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [OnkostenService],
+  providers: [OnkostenService, OnkostenResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

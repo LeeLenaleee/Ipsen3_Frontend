@@ -1,81 +1,37 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Onkosten} from './onkosten.model';
 import {Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class OnkostenService {
 
-  subject = new Subject<Onkosten>();
+  subject = new Subject<Onkosten[]>();
 
   onkostenSelected = new EventEmitter<Onkosten>();
   onkostenGezocht = new EventEmitter<Onkosten[]>();
 
-  private onkosten: Onkosten[] = [
-    new Onkosten(
-      1,
-      'mac',
-      '22-22-2022' ,
-      'restaurant',
-      'big menk',
-      2.00,
-      0.50,
-      21,
-      2.50,
-),
-    new Onkosten(
-      2,
-      'vriendin',
-      'datum klopt nog niet xd' ,
-      'cadeau',
-      'nieuwe fiets',
-      500,
-      20,
-      21,
-      60000,
-    ),    new Onkosten(
-      3,
-      'hema',
-      '07-17-2018' ,
-      'materialen',
-      'tekenpennen rood zwart',
-      6,
-      4,
-      5,
-      70,
-    ),    new Onkosten(
-      4,
-      'vogeltre',
-      '15-05-1998' ,
-      'reiskosten',
-      'vakantie valencia',
-      89,
-      71,
-      5,
-      718,
-    ),    new Onkosten(
-      5,
-      'bedrijff',
-      '21-12-1998' ,
-      'geboorte',
-      'lucia geboren',
-      78,
-      5,
-      61,
-      3,
-    ),
-  ];
+  constructor(private httpClient: HttpClient) {}
 
   getOnkosten() {
-    return this.onkosten.slice();
+    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', {
+      observe: 'body',
+      responseType: 'json'
+    });
+    // return this.onkosten.slice();
   }
 
   getOnkost(index: number) {
-    return this.onkosten[index];
+    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , {
+      observe: 'body',
+      responseType: 'json'
+    });
   }
 
-  getObservable() {
-    return this.subject.asObservable();
-  }
+
+  // getObservable() {
+  //   return this.subject.asObservable();
+  // }
 
   selectOnkosten(data) {
     this.subject.next(data);

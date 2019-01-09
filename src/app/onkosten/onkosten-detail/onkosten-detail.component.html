@@ -1,7 +1,7 @@
-<ng-template #leeg>  <app-onkosten-toevoegen></app-onkosten-toevoegen>
-</ng-template>
+<!--<ng-template #leeg>  <app-onkosten-toevoegen></app-onkosten-toevoegen>-->
+<!--</ng-template>-->
 
-<div *ngIf="id; else leeg">
+<!--<div *ngIf="id >= 0; else leeg">-->
 
 <hr>
 
@@ -11,7 +11,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bedrijf</span>
         </div>
-        <textarea class="form-control">{{ onkosten.bedrijf }}</textarea>
+        <textarea class="form-control">{{ onkosten.onkostenBedrijf }}</textarea>
       </div>
     </div>
   </div>
@@ -24,21 +24,16 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Datum</span>
         </div>
-        <textarea class="form-control" placeholder="DD-MM-JJJJ">{{ onkosten.datum }}</textarea>
+        <textarea class="form-control" placeholder="DD-MM-JJJJ">{{ onkosten.onkostenDatum }}</textarea>
       </div>
     </div>
 
     <div class="col-6" select-class>
-      <div class="input-group item-margin select-class">
+      <div class="input-group item-margin">
         <div class="input-group-prepend">
           <span class="input-group-text">Kostenpost</span>
         </div>
-        <select class="form-control select-class">
-          <option selected>{{ onkosten.kostenpost }}</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <textarea class="form-control" placeholder="Materiaal">{{ onkosten.onkostenKostenpost }}</textarea>
       </div>
     </div>
   </div>
@@ -49,7 +44,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Omschrijving</span>
         </div>
-        <textarea class="form-control" aria-label="companyLabel">{{ onkosten.omschrijving }}</textarea>
+        <textarea class="form-control" aria-label="companyLabel">{{ onkosten.onkostenOmschrijving }}</textarea>
       </div>
     </div>
   </div>
@@ -62,7 +57,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bruto €</span>
         </div>
-        <textarea class="form-control" placeholder="€--,--">{{ onkosten.brutoPrijs }}</textarea>
+        <textarea class="form-control" placeholder="€--,--">{{ onkosten.onkostenBrutoKosten }}</textarea>
       </div>
     </div>
     <div class="col-6">
@@ -70,7 +65,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW %</span>
         </div>
-        <textarea class="form-control" placeholder="0.00%">{{ onkosten.brutoPercentage }}</textarea>
+        <textarea class="form-control" placeholder="0.00%">{{ onkosten.onkostenBtwKosten }}</textarea>
       </div>
     </div>
   </div>
@@ -81,7 +76,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW €</span>
         </div>
-        <textarea class="form-control" placeholder="€--,--">{{ onkosten.brutoKost }}</textarea>
+        <textarea class="form-control" placeholder="€--,--">{{ onkosten.onkostenBtwPercentage }}</textarea>
       </div>
     </div>
     <div class="col-6">
@@ -89,7 +84,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Netto €</span>
         </div>
-        <textarea class="form-control"  placeholder="€--,--">{{ onkosten.nettoPrijs }}</textarea>
+        <textarea class="form-control"  placeholder="€--,--">{{ onkosten.onkostenNettoKosten }}</textarea>
       </div>
     </div>
   </div>
@@ -98,7 +93,7 @@
 
   <div class="row">
     <div class="col-4">
-      <button class="btn btn-primary" (click)="showEmptyItem()">Nieuwe uitgave</button>
+      <button class="btn btn-primary" routerLink="/toevoegen">Nieuwe uitgave</button>
     </div>
     <div class="col-4">
       <button class="btn btn-secondary">Voeg uitgave toe</button>
@@ -108,4 +103,4 @@
     </div>
   </div>
 
-</div>
+<!--</div>-->

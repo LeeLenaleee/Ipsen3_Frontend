@@ -1,33 +1,13 @@
-.center-items {
-  margin: auto;
-  /*background-color: rgba(0,0,0,0.5);*/
-}
-
-.item-margin {
-  margin: 4px;
-}
-
-.col-md-5 {
-  display: inline-block;
-}
-
-label {
-  width:110px;
-}
-
 span {
   width:110px;
 }
 
-.margin-right {
-  margin-right: 10px;
-}
-
-.margin-left {
-  margin-left: 10px;
-}
-
 .select-class {
-
-  height: auto;
+  height: auto !important;
 }
+
+.item-margin {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+

@@ -15,23 +15,29 @@ export class OnkostenZoekenComponent implements OnInit {
   ngOnInit() {
   }
 
-  koppelOmschrijving() {
-    const omschrijving = this.omschrijving.nativeElement.value;
-    const elementen = this.onkostenService.getOnkosten();
-    this.onkostenArray = [];
-    for (let i = 0; i < elementen.length; i++) {
-      if (this.zoekOmschrijving(elementen[i], omschrijving) !== null) {
-        this.onkostenArray.push((this.zoekOmschrijving(elementen[i], omschrijving)));
-      }
-    }
-    this.onkostenService.onkostenGezocht.emit(this.onkostenArray);
-  }
-
-  zoekOmschrijving(onkosten: Onkosten, zoekterm: string) {
-    if (onkosten.omschrijving.includes(zoekterm)) {
-      return onkosten;
-    } else {
-      return null;
-    }
-  }
+  // koppelOmschrijving() {
+  //   const omschrijving = this.omschrijving.nativeElement.value;
+  //   let elementen;
+  //     this.onkostenService.getOnkosten()
+  //     .subscribe(
+  //       (onkosten: Onkosten[]) => {
+  //         elementen = onkosten;
+  //       }
+  //     );
+  //   this.onkostenArray = [];
+  //   for (let i = 0; i < elementen.length; i++) {
+  //     if (this.zoekOmschrijving(elementen[i], omschrijving) !== null) {
+  //       this.onkostenArray.push((this.zoekOmschrijving(elementen[i], omschrijving)));
+  //     }
+  //   }
+  //   this.onkostenService.onkostenGezocht.emit(this.onkostenArray);
+  // }
+  //
+  // zoekOmschrijving(onkosten: Onkosten, zoekterm: string) {
+  //   if (onkosten.onkostenOmschrijving.includes(zoekterm)) {
+  //     return onkosten;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }
