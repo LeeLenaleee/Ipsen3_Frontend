@@ -1,6 +1,8 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Contact} from './contact.model';
 import {HttpClient} from '@angular/common/http';
+import {Telefoon} from './contact-telefoonnummer.model';
+import {Email} from './contact-email.model';
 
 @Injectable()
 export class ContactZoekenService {
@@ -9,68 +11,61 @@ export class ContactZoekenService {
   telNrs = new EventEmitter<string[]>();
   emails = new EventEmitter<string[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
-  idUrl = 'http://localhost:8080/api/contacts/';
-  zoektermUrl = 'http://localhost:8080/api/contacts?bedrijf=';
-  telUrl = 'assets/testTel.json';
-  mailUrl = 'assets/testMail.json';
+  idUrl = 'http://localhost:8080/api/contacten/';
+  zoektermUrl = 'http://localhost:8080/api/contacten?bedrijf=';
 
   constructor(private http: HttpClient) { }
 
   getContact(id: number) {
-    // TODO uit database zoeken
-    // console.log(this.showContact(id));
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
-        // this.contact = contact;
-        // console.log('is dit ' + contact);
       },
       (error) => console.log(error));
 
-    // console.log('contact: ' + this.contact);
-
-    // this.getTelefoon(id);
-    // this.getEmail(id);
-
-    // this.bedrijfGezocht.emit(this.contact);
+    this.getTelefoon(id);
+    this.getEmail(id);
   }
 
   showContact(id: number) {
     return this.http.get<Contact>(this.idUrl + id);
-    // return this.http.get<Contact>(this.testUrl);
   }
 
   getTelefoon(id: number) {
-    this.showTelefoon(id).subscribe(
-      (nummers: string[]) => {
-        this.telNrs.emit(nummers);
-        // for (const nummer of nummers) {
-        //   console.log('tel erbij: ' + nummer);
-        //   // this.contact.telefoon.push(nummer);
-        // }
+    this.showTelefoon().subscribe(
+      (nummers: Telefoon[]) => {
+        const geselecteerdeNummers: string[] = [];
+        for (const nummer of nummers) {
+          if (nummer['contactId']['id'] === id) {
+            geselecteerdeNummers.push(nummer['telnr']);
+          }
+        }
+        this.telNrs.emit(geselecteerdeNummers);
       }
     );
   }
 
-  showTelefoon(id: number) {
-    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-    return this.http.get<string[]>(this.telUrl);
+  showTelefoon() {
+    return this.http.get<Telefoon[]>('http://localhost:8080/api/telefoonnummer');
   }
 
   getEmail(id: number) {
-    this.showEmail(id).subscribe(
-      (mails: string[]) => {
-        this.emails.emit(mails);
-        // for (const mail of mails) {
-        //   this.contact.email.push(mail);
-        // }
+    this.showEmail().subscribe(
+      (mails: Email[]) => {
+        console.log(mails);
+        const geselecteerdeEmails: string[] = [];
+        for (const mail of mails) {
+          if (mail['contactId']['id'] === id) {
+            geselecteerdeEmails.push(mail['email']);
+          }
+        }
+        this.emails.emit(geselecteerdeEmails);
       }
     );
   }
 
-  showEmail(id: number) {
-    // return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-    return this.http.get<string[]>(this.mailUrl);
+  showEmail() {
+    return this.http.get<Email[]>('http://localhost:8080/api/email');
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
@@ -81,9 +76,7 @@ export class ContactZoekenService {
     this.showMogelijkeBedrijven(zoekterm)
       .subscribe(
         (data: Contact[]) => {
-          // console.log(data);
           for (const contact of data) {
-            // console.log(contact);
             this.mogelijkeBedrijven.push({id: contact.id,
               bedrijf: contact.contactBedrijf,
               naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
@@ -95,6 +88,5 @@ export class ContactZoekenService {
 
   showMogelijkeBedrijven(zoekterm: string) {
     return this.http.get<any[]>(this.zoektermUrl + zoekterm);
-    // return this.http.get<any[]>(this.test2Url);
   }
 }

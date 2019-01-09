@@ -18,10 +18,10 @@
           <th scope="row">Bedrijf:</th>
           <td>{{ contact.contactBedrijf }}</td>
         </tr>
-        <!--<tr *ngFor="let nummer of contact.telefoon; let i = index">-->
-          <!--<th scope="row">{{ i === 0 ? 'Telefoon:': return }}</th>-->
-          <!--<td>{{ nummer }}</td>-->
-        <!--</tr>-->
+        <tr *ngFor="let nummer of telNummers; let i = index">
+          <th scope="row">{{ i === 0 ? 'Telefoon:': return }}</th>
+          <td>{{ nummer }}</td>
+        </tr>
         <tr>
           <th scope="row">Relatie:</th>
           <td>{{ contact.contactRelatie }}</td>
@@ -47,11 +47,11 @@
         <tr>
           <th scope="row">Land:</th>
           <td>{{ contact.contactLand }}</td>
-        <!--</tr>-->
-        <!--<tr *ngFor="let mail of contact.email; let i = index">-->
-          <!--<th scope="row">{{ i === 0 ? 'Email:': return }}</th>-->
-          <!--<td>{{ mail }}</td>-->
-        <!--</tr>-->
+        </tr>
+        <tr *ngFor="let mail of emails; let i = index">
+          <th scope="row">{{ i === 0 ? 'Email:': return }}</th>
+          <td>{{ mail }}</td>
+        </tr>
         <tr>
           <th scope="row">Website:</th>
           <td>{{ contact.contactWebsite }}</td>
