@@ -27,7 +27,7 @@
       <label for="inputTelephone">Telefoon nummer</label>
       <button class="groen btn" tabindex="-1" type="button" (click)="telErbij()">+</button>
       <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
-      <input type="text"
+      <input type="number"
              class="form-control"
              id="inputTelephone"
              placeholder="0612345678"
@@ -51,7 +51,7 @@
   </div>
     <div class="form-row" *ngIf="aantalTel > 1 || aantalEmail > 1">
       <div class="form-group col-md-6">
-        <input type="text"
+        <input type="number"
                class="form-control"
                id="inputTelephone2"
                placeholder="0612345678"
@@ -72,7 +72,7 @@
   </div>
   <div class="form-row" *ngIf="aantalTel > 2 || aantalEmail > 2">
     <div class="form-group col-md-6">
-      <input type="text"
+      <input type="number"
              class="form-control"
              id="inputTelephone3"
              placeholder="0612345678"

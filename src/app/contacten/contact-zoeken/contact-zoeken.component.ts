@@ -41,5 +41,7 @@ export class ContactZoekenComponent implements OnInit {
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
     this.service.getContact(id);
+    this.service.getTelefoon(id);
+    this.service.getEmail(id);
   }
 }

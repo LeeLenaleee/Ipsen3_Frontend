@@ -25,27 +25,42 @@ export class ContactWijzigenComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.params['id'];
     let contact: Contact;
-    let nummers: string[];
-    let emails: string[];
+    const nummers: string[] = [];
+    const emails: string[] = [];
     this.zoekenService.getTelefoon(id);
     this.zoekenService.getEmail(id);
     this.zoekenService.getContact(id);
-    this.zoekenService.telNrs.subscribe(
+    this.zoekenService.telNrs
+      .subscribe(
       (num: string[]) => {
         this.aantalTel = num.length;
-        nummers = num;
+        for (const tel of num) {
+          nummers.push(tel);
+        }
+        if (contact !== null && emails.length !== 0) {
+          this.setValues(contact, nummers, emails);
+        }
       }
     );
-    this.zoekenService.emails.subscribe(
+    this.zoekenService.emails
+      .subscribe(
       (mails: string[]) => {
         this.aantalEmail = mails.length;
-        emails = mails;
+        for (const mail of mails) {
+          emails.push(mail);
+        }
+        if (contact !== null && nummers.length !== 0) {
+          this.setValues(contact, nummers, emails);
+        }
       }
     );
-    this.zoekenService.bedrijfGezocht.subscribe(
+    this.zoekenService.bedrijfGezocht
+      .subscribe(
       (cont: Contact) => {
         contact = cont;
-        this.setValues(contact, nummers, emails);
+        if (emails.length !== 0 && nummers.length !== 0) {
+          this.setValues(contact, nummers, emails);
+        }
       }
     );
   }
@@ -90,8 +105,8 @@ export class ContactWijzigenComponent implements OnInit {
     this.form.form.patchValue({
       voornaam: contact.contactVoornaam,
       achternaam: contact.contactAchternaam,
-      telefoon1: telNummers[0]['telnr'],
-      email1: emails[0]['email'],
+      telefoon1: telNummers[0],
+      email1: emails[0],
       bedrijf: contact.contactBedrijf,
       website: contact.contactWebsite,
       woonplaats: contact.contactPlaats,
@@ -103,21 +118,17 @@ export class ContactWijzigenComponent implements OnInit {
     });
 
     if (this.aantalTel > 1) {
-      this.form.form.patchValue({telefoon2: telNummers[1]['telnr']});
+      this.form.form.patchValue({telefoon2: telNummers[1]});
       if (this.aantalTel > 2) {
-        this.form.form.patchValue({telefoon3: telNummers[2]['telnr']});
+        this.form.form.patchValue({telefoon3: telNummers[2]});
       }
     }
     if (this.aantalEmail > 1) {
-      this.form.form.patchValue({email2: emails[1]['email']});
+      this.form.form.patchValue({email2: emails[1]});
       if (this.aantalEmail > 2) {
-        this.form.form.patchValue({email3: emails[2]['email']});
+        this.form.form.patchValue({email3: emails[2]});
       }
     }
-    // ,
-    // ,
-    // ,
-    // ,
   }
 
 }

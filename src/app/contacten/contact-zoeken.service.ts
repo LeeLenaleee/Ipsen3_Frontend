@@ -22,9 +22,6 @@ export class ContactZoekenService {
       this.bedrijfGezocht.emit(contact);
       },
       (error) => console.log(error));
-
-    this.getTelefoon(id);
-    this.getEmail(id);
   }
 
   showContact(id: number) {
@@ -52,7 +49,6 @@ export class ContactZoekenService {
   getEmail(id: number) {
     this.showEmail().subscribe(
       (mails: Email[]) => {
-        console.log(mails);
         const geselecteerdeEmails: string[] = [];
         for (const mail of mails) {
           if (mail['contactId']['id'] === id) {
