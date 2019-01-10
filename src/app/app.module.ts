@@ -35,6 +35,7 @@ import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.co
 import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
 import {OnkostenService} from './onkosten/onkosten.service';
 import {OnkostenResolver} from './shared/onkosten.resolver';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {OnkostenResolver} from './shared/onkosten.resolver';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [OnkostenService, OnkostenResolver],
   bootstrap: [AppComponent]

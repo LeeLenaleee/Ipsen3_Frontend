@@ -1,9 +1,5 @@
-<!--<ng-template #leeg>  <app-onkosten-toevoegen></app-onkosten-toevoegen>-->
-<!--</ng-template>-->
-
-<!--<div *ngIf="id >= 0; else leeg">-->
-
-<hr>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <hr>
 
   <div class="row">
     <div class="col-12">
@@ -11,7 +7,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bedrijf</span>
         </div>
-        <textarea class="form-control">{{ onkosten.onkostenBedrijf }}</textarea>
+        <textarea class="form-control"
+                  placeholder="Hema"
+                  ngModel
+                  name="bedrijf"
+                  required></textarea>
       </div>
     </div>
   </div>
@@ -24,7 +24,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Datum</span>
         </div>
-        <textarea class="form-control" placeholder="DD-MM-JJJJ">{{ onkosten.onkostenDatum }}</textarea>
+        <textarea class="form-control"
+                  placeholder="DD-MM-JJJJ"
+                  ngModel
+                  name="datum"
+                  required></textarea>
       </div>
     </div>
 
@@ -33,7 +37,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Kostenpost</span>
         </div>
-        <textarea class="form-control" placeholder="Materiaal">{{ onkosten.onkostenKostenpost }}</textarea>
+        <textarea class="form-control"
+                  placeholder="Materiaal"
+                  ngModel
+                  name="kostenpost"
+                  required></textarea>
       </div>
     </div>
   </div>
@@ -44,7 +52,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Omschrijving</span>
         </div>
-        <textarea class="form-control" aria-label="companyLabel">{{ onkosten.onkostenOmschrijving }}</textarea>
+        <textarea class="form-control"
+                  placeholder="Rode en blauwe pennen"
+                  ngModel
+                  name="omschrijving"
+                  required></textarea>
       </div>
     </div>
   </div>
@@ -57,7 +69,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bruto €</span>
         </div>
-        <textarea class="form-control" placeholder="€--,--">{{ onkosten.onkostenBrutoKosten }}</textarea>
+        <textarea class="form-control"
+                  placeholder="€--,--"
+                  ngModel
+                  name="brutokost"
+                  required></textarea>
       </div>
     </div>
     <div class="col-6">
@@ -65,7 +81,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW %</span>
         </div>
-        <textarea class="form-control" placeholder="0.00%">{{ onkosten.onkostenBtwKosten }}</textarea>
+        <textarea class="form-control"
+                  placeholder="0.00%"
+                  ngModel
+                  name="btwprocent"
+                  required></textarea>
       </div>
     </div>
   </div>
@@ -76,7 +96,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW €</span>
         </div>
-        <textarea class="form-control" placeholder="€--,--">{{ onkosten.onkostenBtwPercentage }}</textarea>
+        <textarea class="form-control"
+                  placeholder="€--,--"
+                  ngModel
+                  name="btwkost"
+                  required></textarea>
       </div>
     </div>
     <div class="col-6">
@@ -84,7 +108,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Netto €</span>
         </div>
-        <textarea class="form-control"  placeholder="€--,--">{{ onkosten.onkostenNettoKosten }}</textarea>
+        <textarea class="form-control"
+                  placeholder="€--,--"
+                  ngModel
+                  name="nettokost"
+                  required></textarea>
       </div>
     </div>
   </div>
@@ -93,14 +121,15 @@
 
   <div class="row">
     <div class="col-4">
-      <button class="btn btn-primary" routerLink="/onkosten">Nieuwe uitgave</button>
+      <button class="btn btn-primary" type="submit">{{ buttonTextOne }}</button>
     </div>
-    <div class="col-4">
-      <button class="btn btn-secondary">Voeg uitgave toe</button>
-    </div>
-    <div class="col-4">
-      <button class="btn btn-danger">Verwijder uitgave</button>
-    </div>
+      <div class="col-4">
+        <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" routerLink="/onkosten">Nieuw</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-danger" [disabled]="buttonTextOne === 'Voeg toe'">Verwijder</button>
+      </div>
   </div>
 
-<!--</div>-->
+</form>
+
