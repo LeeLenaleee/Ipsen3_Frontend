@@ -14,10 +14,10 @@ const appRoutes: Routes = [
   { path: '', component: MainMenuComponent },
   { path: 'onkosten', component: OnkostenComponent },
   { path: 'contacten', component: ContactenComponent, children: [
-      { path: 'zoeken', component: ContactZoekenComponent },
+      // { path: 'zoeken', component: ContactZoekenComponent },
       { path: ':id/wijzigen', component: ContactWijzigenComponent },
       { path: 'toevoegen', component: ContactToevoegenComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'zoeken' }
+      { path: '', pathMatch: 'full', redirectTo: 'toevoegen' }
     ] },
   { path: 'belasting', component: BelastingComponent },
   { path: 'instellingen', component: InstellingenComponent },

@@ -6,10 +6,12 @@ import {Contact} from '../contact.model';
   providedIn: 'root'
 })
 export class ContactWijzigenService {
-  contactUrl = 'http://localhost:8080/api/contacten';
+  contactUrl = 'http://localhost:8080/api/contacten/';
 
   constructor(private http: HttpClient) { }
 
-
+  putContact(contact: Contact, id: number) {
+    return this.http.put<Contact>(this.contactUrl + id, contact);
+  }
 
 }

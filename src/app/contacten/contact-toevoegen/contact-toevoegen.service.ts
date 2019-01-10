@@ -10,33 +10,33 @@ import {Email} from '../contact-email.model';
   providedIn: 'root'
 })
 export class ContactToevoegenService {
-  contactUrl = 'http://localhost:8080/api/contacten';
+  contactUrl = 'http://localhost:8080/api/contacten/';
   telefoonUrl = 'http://localhost:8080/api/telefoonnummer';
   emailUrl = 'http://localhost:8080/api/email';
 
   constructor(private http: HttpClient, private zoekenService: ContactZoekenService) { }
 
   voegContactToe(form: NgForm) {
-    const contact = this.formToContact(form);
+    const contact: Contact = this.formToContact(form);
 
-    this.addContact(contact).subscribe(
-      (response) => {
-        // alert('Contact toegevoegd!');
+    this.postContact(contact).subscribe(
+      () => {
+        alert('Contact toegevoegd!');
         form.onReset();
         const id = this.getId(contact);
         contact.id = id;
         // console.log('contact: ' + contact);
         // TODO tel en email met http toevoegen
-        const telNummers = this.formToTel(form);
-        for (const nummer of telNummers) {
-          this.addTelefoon(nummer, contact).subscribe(
-            (response2) => console.log(response2)
-          );
-        }
+        // const telNummers = this.formToTel(form);
+        // for (const nummer of telNummers) {
+        //   this.postTelefoon(nummer, contact).subscribe(
+        //     (response) => console.log(response)
+        //   );
+        // }
         // const emails = this.formToEmail(form);
         // for (const email of emails) {
         //   this.addEmail(email, contact).subscribe(
-        //     (response3) => console.log(response3)
+        //     (response1) => console.log(response1)
         //   );
         // }
       },
@@ -45,7 +45,7 @@ export class ContactToevoegenService {
   }
 
   getId(contact: Contact) {
-    let id: number;
+    let id = 0;
     this.zoekenService.showMogelijkeBedrijven(contact.contactBedrijf)
       .subscribe(
         (contacten: Contact[]) => {
@@ -57,15 +57,15 @@ export class ContactToevoegenService {
     return id;
   }
 
-  addContact(contact: Contact) {
+  postContact(contact: Contact) {
     return this.http.post<Contact>(this.contactUrl, contact);
   }
 
-  addTelefoon(telefoon: string, contact: Contact) {
+  postTelefoon(telefoon: string, contact: Contact) {
     return this.http.post<Telefoon>(this.telefoonUrl, new Telefoon(null, telefoon, contact));
   }
 
-  addEmail(email: string, contact: Contact) {
+  postEmail(email: string, contact: Contact) {
     return this.http.post<Email>(this.emailUrl, new Email(null, email, contact));
   }
 

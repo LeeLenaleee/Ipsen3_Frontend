@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ContactZoekenService} from '../contact-zoeken.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -11,7 +12,8 @@ export class ContactZoekenComponent implements OnInit {
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
   gezochtePersonen: {id: number, bedrijf: string, naam: string}[] = [];
 
-  constructor(private service: ContactZoekenService) { }
+  constructor(private service: ContactZoekenService,
+              private router: Router) { }
 
   ngOnInit() {
     this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
@@ -40,8 +42,9 @@ export class ContactZoekenComponent implements OnInit {
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
-    this.service.getContact(id);
-    this.service.getTelefoon(id);
-    this.service.getEmail(id);
+    // this.service.getContact(id);
+    // this.service.getTelefoon(id);
+    // this.service.getEmail(id);
+    this.router.navigate(['/contacten', id, 'wijzigen']);
   }
 }

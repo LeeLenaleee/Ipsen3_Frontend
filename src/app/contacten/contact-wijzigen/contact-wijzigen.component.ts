@@ -3,28 +3,58 @@ import {NgForm} from '@angular/forms';
 import {Contact} from '../contact.model';
 import {ContactWijzigenService} from './contact-wijzigen.service';
 import {ContactZoekenService} from '../contact-zoeken.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ContactToevoegenService} from '../contact-toevoegen/contact-toevoegen.service';
 
 @Component({
   selector: 'app-contact-wijzigen',
-  templateUrl: '../shared/contact-toevoegen.component.html',
-  styleUrls: ['../shared/contact-toevoegen.component.css']
+  templateUrl: '../contact-shared/contact-form.component.html',
+  styleUrls: ['../contact-shared/contact-form.component.css'],
+  providers: [ContactWijzigenService, ContactToevoegenService]
 })
 export class ContactWijzigenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonText = 'Contact Wijzigen';
+  buttonText2 = 'Contact Wijzigingen verwijderen';
   aantalTel = 3;
   aantalEmail = 3;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
 
   constructor(private wijzigenService: ContactWijzigenService,
               private zoekenService: ContactZoekenService,
-              private route: ActivatedRoute) {
+              private toevoegenService: ContactToevoegenService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(
+        () => this.getValues()
+      );
+  }
+
+  onSubmit(form: NgForm) {
+    if (confirm('Weet u het zeker?')) {
+      const contact = this.toevoegenService.formToContact(form);
+      const id = this.route.snapshot.params['id'];
+      this.wijzigenService.putContact(contact, id)
+        .subscribe(
+          () => alert(contact.contactBedrijf + ' gewijzigd!')
+        );
+    }
+  }
+
+
+  onButton(form: NgForm) {
+    if (confirm('Weet u het zeker?')) {
+      this.getValues();
+    }
+  }
+
+  getValues() {
     const id = +this.route.snapshot.params['id'];
-    let contact: Contact;
+    let contact: Contact = null;
     const nummers: string[] = [];
     const emails: string[] = [];
     this.zoekenService.getTelefoon(id);
@@ -32,42 +62,38 @@ export class ContactWijzigenComponent implements OnInit {
     this.zoekenService.getContact(id);
     this.zoekenService.telNrs
       .subscribe(
-      (num: string[]) => {
-        this.aantalTel = num.length;
-        for (const tel of num) {
-          nummers.push(tel);
+        (num: string[]) => {
+          this.aantalTel = num.length;
+          for (const tel of num) {
+            nummers.push(tel);
+          }
+          if (contact !== null && emails.length === this.aantalEmail) {
+            this.setValues(contact, nummers, emails);
+          }
         }
-        if (contact !== null && emails.length === this.aantalEmail) {
-          this.setValues(contact, nummers, emails);
-        }
-      }
-    );
+      );
     this.zoekenService.emails
       .subscribe(
-      (mails: string[]) => {
-        this.aantalEmail = mails.length;
-        for (const mail of mails) {
-          emails.push(mail);
+        (mails: string[]) => {
+          this.aantalEmail = mails.length;
+          for (const mail of mails) {
+            emails.push(mail);
+          }
+          if (contact !== null && nummers.length === this.aantalTel) {
+            this.setValues(contact, nummers, emails);
+          }
         }
-        if (contact !== null && nummers.length === this.aantalTel) {
-          this.setValues(contact, nummers, emails);
-        }
-      }
-    );
+      );
     this.zoekenService.bedrijfGezocht
       .subscribe(
-      (cont: Contact) => {
-        contact = cont;
-        if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
-          this.setValues(contact, nummers, emails);
+        (cont: Contact) => {
+          contact = cont;
+          this.router.navigate(['/contacten', cont.id, 'wijzigen']);
+          if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
+            this.setValues(contact, nummers, emails);
+          }
         }
-      }
-    );
-  }
-
-
-  onSubmit(form: NgForm) {
-    console.log(form);
+      );
   }
 
   telErbij() {

@@ -4,14 +4,15 @@ import {ContactToevoegenService} from './contact-toevoegen.service';
 
 @Component({
   selector: 'app-contact-toevoegen',
-  templateUrl: '../shared/contact-toevoegen.component.html',
-  styleUrls: ['../shared/contact-toevoegen.component.css'],
+  templateUrl: '../contact-shared/contact-form.component.html',
+  styleUrls: ['../contact-shared/contact-form.component.css'],
   providers: [ContactToevoegenService]
 })
 export class ContactToevoegenComponent implements OnInit {
   selectedRelatie = 'Anders';
   land = 'Nederland';
   buttonText = 'Contact Toevoegen';
+  buttonText2 = 'Leeg velden';
   aantalTel = 1;
   aantalEmail = 1;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
@@ -49,6 +50,12 @@ export class ContactToevoegenComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.service.voegContactToe(form);
+  }
+
+  onButton(form: NgForm) {
+    if (confirm('Weet u het zeker?')) {
+      form.onReset();
+    }
   }
 
 }

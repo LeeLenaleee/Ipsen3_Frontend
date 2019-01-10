@@ -13,7 +13,6 @@ import { OfferteTikkenComponent } from './contacten/offerte-tikken/offerte-tikke
 import { FactuurTikkenComponent } from './contacten/factuur-tikken/factuur-tikken.component';
 import { ContactToevoegenComponent } from './contacten/contact-toevoegen/contact-toevoegen.component';
 import { ContactWijzigenComponent } from './contacten/contact-wijzigen/contact-wijzigen.component';
-import { ContactItemComponent } from './contacten/contact-item/contact-item.component';
 import { OnkostenToevoegenComponent } from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
 import { OnkostenItemComponent } from './onkosten/onkosten-item/onkosten-item.component';
 import { BelastingListComponent } from './belasting/belasting-list/belasting-list.component';
@@ -47,7 +46,6 @@ import {FormsModule} from '@angular/forms';
     FactuurTikkenComponent,
     ContactToevoegenComponent,
     ContactWijzigenComponent,
-    ContactItemComponent,
     OnkostenToevoegenComponent,
     OnkostenItemComponent,
     BelastingListComponent,
