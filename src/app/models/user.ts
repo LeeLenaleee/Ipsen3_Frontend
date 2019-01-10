@@ -1,7 +1,7 @@
 export class User {
-  fullName: string;
-  postcode: string;
-  streetnumber: string;
-  emailAddress: string;
-  password: string;
+  id: number;
+  gebruikersnaam: string;
+  email_adres: string;
+  wachtwoord: string;
+  role: string;
 }

@@ -5,6 +5,7 @@ img {
 
 .albert-navbar {
   background-color: #12afaf;
+  position: relative;
   font-family: Unlock,Arial, Helvetica, sans-serif;
 }
 
@@ -28,4 +29,6 @@ li.active-class > a {
   color: #fff !important;
 }
 
+@media only screen and (max-width: 1550px) {
+}
 
