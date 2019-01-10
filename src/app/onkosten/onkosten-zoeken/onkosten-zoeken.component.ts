@@ -8,36 +8,18 @@ import {Onkosten} from '../onkosten.model';
   styleUrls: ['./onkosten-zoeken.component.css']
 })
 export class OnkostenZoekenComponent implements OnInit {
-  @ViewChild('omschrijvingInput') omschrijving: ElementRef;
-  private onkostenArray: Onkosten[] = [];
+  @ViewChild('inputOmschrijving') omschrijving: ElementRef;
+
   constructor(private onkostenService: OnkostenService) { }
 
   ngOnInit() {
   }
 
-  // koppelOmschrijving() {
-  //   const omschrijving = this.omschrijving.nativeElement.value;
-  //   let elementen;
-  //     this.onkostenService.getOnkosten()
-  //     .subscribe(
-  //       (onkosten: Onkosten[]) => {
-  //         elementen = onkosten;
-  //       }
-  //     );
-  //   this.onkostenArray = [];
-  //   for (let i = 0; i < elementen.length; i++) {
-  //     if (this.zoekOmschrijving(elementen[i], omschrijving) !== null) {
-  //       this.onkostenArray.push((this.zoekOmschrijving(elementen[i], omschrijving)));
-  //     }
-  //   }
-  //   this.onkostenService.onkostenGezocht.emit(this.onkostenArray);
-  // }
-  //
-  // zoekOmschrijving(onkosten: Onkosten, zoekterm: string) {
-  //   if (onkosten.onkostenOmschrijving.includes(zoekterm)) {
-  //     return onkosten;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  searchOmschrijving() {
+    this.onkostenService.getOnkostenByOmschrijving(this.omschrijving.nativeElement.value)
+      .subscribe(
+        (onkosten: Onkosten[]) => {
+          this.onkostenService.onkostenEmitter.emit(onkosten);
+        });
+  }
 }

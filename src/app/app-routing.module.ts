@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'onkosten', component: OnkostenComponent, children: [
       { path: ':id', component: OnkostenDetailComponent,
         resolve: { onkost: OnkostenResolver }},
-      { path: 'toevoegen', component: OnkostenToevoegenComponent }
+      { path: '', component: OnkostenToevoegenComponent }
     ] },
 
   { path: 'contacten', component: ContactenComponent },

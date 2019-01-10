@@ -6,19 +6,23 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class OnkostenService {
 
+  onkostenEmitter = new EventEmitter<Onkosten[]>();
   subject = new Subject<Onkosten[]>();
-
   onkostenSelected = new EventEmitter<Onkosten>();
   onkostenGezocht = new EventEmitter<Onkosten[]>();
 
   constructor(private httpClient: HttpClient) {}
 
   getOnkosten() {
-    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', {
+    this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', {
       observe: 'body',
       responseType: 'json'
-    });
-    // return this.onkosten.slice();
+    })
+      .subscribe(
+        (onkosten: Onkosten[]) => {
+          this.onkostenEmitter.emit(onkosten);
+        }
+      );
   }
 
   getOnkost(index: number) {
@@ -28,10 +32,12 @@ export class OnkostenService {
     });
   }
 
-
-  // getObservable() {
-  //   return this.subject.asObservable();
-  // }
+  getOnkostenByOmschrijving(omschrijving: string) {
+    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten/zoek?omschrijving=' + omschrijving, {
+      observe: 'body',
+      responseType: 'json'
+    });
+  }
 
   selectOnkosten(data) {
     this.subject.next(data);

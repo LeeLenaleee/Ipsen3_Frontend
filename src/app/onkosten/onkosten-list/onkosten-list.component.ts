@@ -10,7 +10,6 @@ import {Subscription} from 'rxjs';
 })
 export class OnkostenListComponent implements OnInit {
   onkosten: Onkosten[];
-  subscription: Subscription;
 
   constructor(private onkostenService: OnkostenService) {
     this.onkostenService.onkostenGezocht
@@ -22,7 +21,8 @@ export class OnkostenListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onkostenService.getOnkosten()
+    this.onkostenService.getOnkosten();
+    this.onkostenService.onkostenEmitter
       .subscribe(
         (onkosten: Onkosten[]) => {
           this.onkosten = onkosten;
