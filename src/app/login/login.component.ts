@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService, AuthenticationService } from '../inloggen-uitloggen/inloggen';
+import {first} from 'rxjs/operators';
 
 @Component({
   templateUrl: 'login.component.html',
@@ -44,10 +45,11 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(localStorage.getItem('currentUser'));
+    // 3 regels hieronder voor test om header en footer te showen na login
+    /*console.log(localStorage.getItem('currentUser'));
     localStorage.setItem('currentUser', 'test');
-    console.log(localStorage.getItem('currentUser'));
-    /*this.loading = true;
+    console.log(localStorage.getItem('currentUser'));*/
+    this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -57,6 +59,6 @@ export class LoginComponent implements OnInit {
         error => {
           this.alertService.error(error);
           this.loading = false;
-        });*/
+        });
   }
 }
