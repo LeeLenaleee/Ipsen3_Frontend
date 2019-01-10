@@ -1,7 +1,7 @@
 export class User {
   id: number;
+  emailAdres: string;
   gebruikersnaam: string;
-  email_adres: string;
-  wachtwoord: string;
+  name: string;
   role: string;
 }
