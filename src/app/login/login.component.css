@@ -18,8 +18,9 @@
   background-color: white	;
 }
 .vertical-center{
-  margin-top: 8%;
+  padding-top: 13%;
 }
+
 #albert{
   width: 220px;
   height: auto;
@@ -50,7 +51,7 @@
   }
 
   .vertical-center{
-    margin-top: 8%;
+    padding-top: 8%;
   }
 
   .center{
