@@ -1,7 +1,7 @@
 <form style="padding: 8px" (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
-     <label for="inputFirstname">Voornaam</label>
+     <label for="inputFirstname">Voornaam*</label>
      <input type="text"
             class="form-control"
             id="inputFirstname"
@@ -11,7 +11,7 @@
             required>
    </div>
     <div class="form-group col-md-6">
-     <label for="inputLastname">Achternaam</label>
+     <label for="inputLastname">Achternaam*</label>
      <input type="text"
             class="form-control"
             id="inputLastname"
@@ -24,7 +24,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputTelephone">Telefoon nummer</label>
+      <label for="inputTelephone">Telefoon nummer*</label>
       <button class="groen btn" tabindex="-1" type="button" (click)="telErbij()">+</button>
       <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
       <input type="number"
@@ -36,7 +36,7 @@
              required>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputEmail">Email adres</label>
+      <label for="inputEmail">Email adres*</label>
       <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
       <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
       <input type="email"
@@ -94,7 +94,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCompany">Bedrijf</label>
+      <label for="inputCompany">Bedrijf*</label>
       <input type="text"
              class="form-control"
              id="inputCompany"
@@ -115,7 +115,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Woonplaats</label>
+      <label for="inputCity">Woonplaats*</label>
       <input type="text"
              class="form-control"
              id="inputCity"
@@ -125,7 +125,7 @@
              required>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputRelation">Relatie</label>
+      <label for="inputRelation">Relatie*</label>
       <select id="inputRelation"
               class="form-control"
               [(ngModel)]="selectedRelatie"
@@ -137,7 +137,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <label for="inputStreet">Straatnaam</label>
+      <label for="inputStreet">Straatnaam*</label>
       <input type="text"
              class="form-control"
              id="inputStreet"
@@ -147,7 +147,7 @@
              required>
     </div>
       <div class="form-group col-md-4">
-       <label for="inputNumber">Huisnummer</label>
+       <label for="inputNumber">Huisnummer*</label>
        <input type="text"
               class="form-control"
               id="inputNumber"
@@ -159,7 +159,7 @@
   </div>
   <div class="form-row">
   <div class="form-group col-md-4">
-     <label for="inputZip">Postcode</label>
+     <label for="inputZip">Postcode*</label>
       <input type="text"
              class="form-control"
              id="inputZip"
@@ -169,7 +169,7 @@
              required>
     </div>
     <div class="form-group col-md-8">
-      <label for="inputLand">Land</label>
+      <label for="inputLand">Land*</label>
       <input type="text"
              class="form-control"
              id="inputLand"

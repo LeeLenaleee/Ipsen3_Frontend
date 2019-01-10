@@ -13,6 +13,8 @@ export class ContactZoekenService {
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
   idUrl = 'http://localhost:8080/api/contacten/';
   zoektermUrl = 'http://localhost:8080/api/contacten?bedrijf=';
+  telUrl = 'http://localhost:8080/api/telefoonnummer';
+  emailUrl = 'http://localhost:8080/api/email';
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +35,7 @@ export class ContactZoekenService {
       (nummers: Telefoon[]) => {
         const geselecteerdeNummers: string[] = [];
         for (const nummer of nummers) {
+          // if (nummer['contactId'] === id) {
           if (nummer['contactId']['id'] === id) {
             geselecteerdeNummers.push(nummer['telnr']);
           }
@@ -43,7 +46,7 @@ export class ContactZoekenService {
   }
 
   showTelefoon() {
-    return this.http.get<Telefoon[]>('http://localhost:8080/api/telefoonnummer');
+    return this.http.get<Telefoon[]>(this.telUrl);
   }
 
   getEmail(id: number) {
@@ -61,7 +64,7 @@ export class ContactZoekenService {
   }
 
   showEmail() {
-    return this.http.get<Email[]>('http://localhost:8080/api/email');
+    return this.http.get<Email[]>(this.emailUrl);
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {

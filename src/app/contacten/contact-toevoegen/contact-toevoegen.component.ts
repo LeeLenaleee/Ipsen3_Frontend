@@ -5,7 +5,8 @@ import {ContactToevoegenService} from './contact-toevoegen.service';
 @Component({
   selector: 'app-contact-toevoegen',
   templateUrl: '../shared/contact-toevoegen.component.html',
-  styleUrls: ['../shared/contact-toevoegen.component.css']
+  styleUrls: ['../shared/contact-toevoegen.component.css'],
+  providers: [ContactToevoegenService]
 })
 export class ContactToevoegenComponent implements OnInit {
   selectedRelatie = 'Anders';

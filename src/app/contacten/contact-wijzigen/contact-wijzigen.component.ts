@@ -13,8 +13,8 @@ import {ActivatedRoute} from '@angular/router';
 export class ContactWijzigenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonText = 'Contact Wijzigen';
-  aantalTel = 1;
-  aantalEmail = 1;
+  aantalTel = 3;
+  aantalEmail = 3;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
 
   constructor(private wijzigenService: ContactWijzigenService,
@@ -37,7 +37,7 @@ export class ContactWijzigenComponent implements OnInit {
         for (const tel of num) {
           nummers.push(tel);
         }
-        if (contact !== null && emails.length !== 0) {
+        if (contact !== null && emails.length === this.aantalEmail) {
           this.setValues(contact, nummers, emails);
         }
       }
@@ -49,7 +49,7 @@ export class ContactWijzigenComponent implements OnInit {
         for (const mail of mails) {
           emails.push(mail);
         }
-        if (contact !== null && nummers.length !== 0) {
+        if (contact !== null && nummers.length === this.aantalTel) {
           this.setValues(contact, nummers, emails);
         }
       }
@@ -58,7 +58,7 @@ export class ContactWijzigenComponent implements OnInit {
       .subscribe(
       (cont: Contact) => {
         contact = cont;
-        if (emails.length !== 0 && nummers.length !== 0) {
+        if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
           this.setValues(contact, nummers, emails);
         }
       }
