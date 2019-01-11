@@ -18,55 +18,55 @@ export class ContactToevoegenService {
 
   voegContactToe(form: NgForm) {
     const contact: Contact = this.formToContact(form);
+    const telNummers = this.formToTel(form);
+    const emails = this.formToEmail(form);
 
     this.postContact(contact).subscribe(
       () => {
-        alert('Contact toegevoegd!');
         form.onReset();
-        const id = this.getId(contact);
-        contact.id = id;
-        // console.log('contact: ' + contact);
-        // TODO tel en email met http toevoegen
-        // const telNummers = this.formToTel(form);
-        // for (const nummer of telNummers) {
-        //   this.postTelefoon(nummer, contact).subscribe(
-        //     (response) => console.log(response)
-        //   );
-        // }
-        // const emails = this.formToEmail(form);
-        // for (const email of emails) {
-        //   this.addEmail(email, contact).subscribe(
-        //     (response1) => console.log(response1)
-        //   );
-        // }
-      },
+        let id;
+
+        this.zoekenService.showMogelijkeBedrijven(contact.contactBedrijf)
+          .subscribe(
+            (contacten: Contact[]) => {
+              id = contacten[contacten.length - 1]['id'];
+              this.voegTelToe(telNummers, contact, id);
+              this.voegEmailToe(emails, contact, id);
+            }
+          );
+        },
       (error) => console.log(error)
     );
   }
 
-  getId(contact: Contact) {
-    let id = 0;
-    this.zoekenService.showMogelijkeBedrijven(contact.contactBedrijf)
-      .subscribe(
-        (contacten: Contact[]) => {
-          // console.log(contacten);
-          console.log(contacten[contacten.length - 1]['id']);
-          id = contacten[contacten.length - 1]['id'];
-        }
-      );
-    return id;
+  voegTelToe(telNummers: string[], contact: Contact, id) {
+    contact.id = id;
+    for (const nummer of telNummers) {
+      this.postTelefoon(nummer, contact).subscribe();
+    }
+  }
+
+  voegEmailToe(emails: string[], contact: Contact, id) {
+    contact.id = id;
+    for (const email of emails) {
+      this.postEmail(email, contact).subscribe();
+    }
+    alert('Contact toegevoegd!');
+
   }
 
   postContact(contact: Contact) {
     return this.http.post<Contact>(this.contactUrl, contact);
   }
 
-  postTelefoon(telefoon: string, contact: Contact) {
-    return this.http.post<Telefoon>(this.telefoonUrl, new Telefoon(null, telefoon, contact));
+  postTelefoon(nummer: string, contact: Contact) {
+    const telefoon = new Telefoon(null, nummer, contact);
+    return this.http.post<Telefoon>(this.telefoonUrl, telefoon);
   }
 
-  postEmail(email: string, contact: Contact) {
-    return this.http.post<Email>(this.emailUrl, new Email(null, email, contact));
+  postEmail(mail: string, contact: Contact) {
+    const email = new Email(null, mail, contact);
+    return this.http.post<Email>(this.emailUrl, email);
   }
 
   formToContact(form: NgForm) {

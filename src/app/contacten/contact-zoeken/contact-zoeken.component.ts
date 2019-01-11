@@ -26,9 +26,10 @@ export class ContactZoekenComponent implements OnInit {
 
   onZoekBedrijf() {
     const naam = this.bedrijfNaam.nativeElement.value;
+    // this.service.getContact(id);
     let naamIndex = null;
-    this.gezochtePersonen = [];
 
+    this.gezochtePersonen = [];
     for (const bedrijf of this.mogelijkeBedrijven) {
       if (bedrijf.bedrijf === naam) {
         this.gezochtePersonen.push(bedrijf);
@@ -42,9 +43,9 @@ export class ContactZoekenComponent implements OnInit {
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
-    // this.service.getContact(id);
     // this.service.getTelefoon(id);
     // this.service.getEmail(id);
     this.router.navigate(['/contacten', id, 'wijzigen']);
+    this.bedrijfNaam.nativeElement.value = '';
   }
 }

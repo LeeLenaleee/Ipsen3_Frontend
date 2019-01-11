@@ -15,7 +15,7 @@ import {ContactToevoegenService} from '../contact-toevoegen/contact-toevoegen.se
 export class ContactWijzigenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonText = 'Contact Wijzigen';
-  buttonText2 = 'Contact Wijzigingen verwijderen';
+  buttonText2 = 'Wijzigingen verwijderen';
   aantalTel = 3;
   aantalEmail = 3;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
@@ -34,21 +34,37 @@ export class ContactWijzigenComponent implements OnInit {
       );
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     if (confirm('Weet u het zeker?')) {
-      const contact = this.toevoegenService.formToContact(form);
+      const contact = this.toevoegenService.formToContact(this.form);
       const id = this.route.snapshot.params['id'];
       this.wijzigenService.putContact(contact, id)
         .subscribe(
-          () => alert(contact.contactBedrijf + ' gewijzigd!')
+          () => {
+            alert(contact.contactBedrijf + ' gewijzigd!');
+            this.router.navigate(['/contacten']);
+          }
         );
     }
   }
 
 
-  onButton(form: NgForm) {
+  onButton() {
     if (confirm('Weet u het zeker?')) {
       this.getValues();
+    }
+  }
+
+  onDelete() {
+    if (confirm('Weet u het zeker?')) {
+      // const contact = this.toevoegenService.formToContact(this.form);
+      // this.wijzigenService.deleteContact(contact)
+      //   .subscribe(
+      //     (response) => {
+      //       console.log(response);
+      //     },
+      //     (error) => console.log(error)
+      //   );
     }
   }
 

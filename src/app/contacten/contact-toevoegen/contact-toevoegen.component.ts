@@ -9,6 +9,7 @@ import {ContactToevoegenService} from './contact-toevoegen.service';
   providers: [ContactToevoegenService]
 })
 export class ContactToevoegenComponent implements OnInit {
+  @ViewChild('f') form: NgForm;
   selectedRelatie = 'Anders';
   land = 'Nederland';
   buttonText = 'Contact Toevoegen';
@@ -48,13 +49,13 @@ export class ContactToevoegenComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm) {
-    this.service.voegContactToe(form);
+  onSubmit() {
+    this.service.voegContactToe(this.form);
   }
 
-  onButton(form: NgForm) {
+  onButton() {
     if (confirm('Weet u het zeker?')) {
-      form.onReset();
+      this.form.onReset();
     }
   }
 
