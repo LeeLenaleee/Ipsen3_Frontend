@@ -45,6 +45,7 @@ export class ContactWijzigenComponent implements OnInit {
             this.router.navigate(['/contacten']);
           }
         );
+      // TODO verwijder de emails en tels en dan nieuwe toevoegen
     }
   }
 
@@ -57,14 +58,14 @@ export class ContactWijzigenComponent implements OnInit {
 
   onDelete() {
     if (confirm('Weet u het zeker?')) {
-      // const contact = this.toevoegenService.formToContact(this.form);
-      // this.wijzigenService.deleteContact(contact)
-      //   .subscribe(
-      //     (response) => {
-      //       console.log(response);
-      //     },
-      //     (error) => console.log(error)
-      //   );
+      const contact = this.toevoegenService.formToContact(this.form);
+      this.wijzigenService.deleteContact(contact)
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => console.log(error)
+        );
     }
   }
 

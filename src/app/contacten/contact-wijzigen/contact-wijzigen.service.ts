@@ -8,6 +8,8 @@ import {Telefoon} from '../contact-telefoonnummer.model';
 })
 export class ContactWijzigenService {
   contactUrl = 'http://localhost:8080/api/contacten/';
+  telefoonUrl = 'http://localhost:8080/api/telefoonnummer';
+  emailUrl = 'http://localhost:8080/api/email';
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +18,11 @@ export class ContactWijzigenService {
   }
 
   putTelefoon(telefoon: Telefoon, id: number) {
-    return this.http.put<Contact>(this.contactUrl + id, telefoon);
+    return this.http.put<Telefoon>(this.telefoonUrl + id, telefoon);
   }
 
   deleteContact(contact: Contact) {
-    return this.http.delete<Contact>(this.contactUrl);
+    return this.http.delete<Contact>(this.contactUrl, );
   }
 
 }
