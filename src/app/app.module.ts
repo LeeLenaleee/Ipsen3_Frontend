@@ -11,7 +11,6 @@ import { OfferteTikkenComponent } from './contacten/offerte-tikken/offerte-tikke
 import { FactuurTikkenComponent } from './contacten/factuur-tikken/factuur-tikken.component';
 import { ContactToevoegenComponent } from './contacten/contact-toevoegen/contact-toevoegen.component';
 import { ContactWijzigenComponent } from './contacten/contact-wijzigen/contact-wijzigen.component';
-import { ContactItemComponent } from './contacten/contact-item/contact-item.component';
 import { OnkostenToevoegenComponent } from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
 import { OnkostenItemComponent } from './onkosten/onkosten-item/onkosten-item.component';
 import { BelastingListComponent } from './belasting/belasting-list/belasting-list.component';
@@ -35,6 +34,9 @@ import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor'
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
+import { HttpClientModule } from '@angular/common/http';
+import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -50,7 +52,6 @@ import {AlertComponent} from './inloggen-uitloggen/inloggen';
     FactuurTikkenComponent,
     ContactToevoegenComponent,
     ContactWijzigenComponent,
-    ContactItemComponent,
     OnkostenToevoegenComponent,
     OnkostenItemComponent,
     BelastingListComponent,
@@ -67,6 +68,7 @@ import {AlertComponent} from './inloggen-uitloggen/inloggen';
     ErrorPageComponent,
     PageNotFoundComponent,
     AlertComponent
+    ContactenListComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,8 @@ import {AlertComponent} from './inloggen-uitloggen/inloggen';
     FormsModule,
     ReactiveFormsModule,
     HttpModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     AppComponent,
