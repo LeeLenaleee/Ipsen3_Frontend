@@ -12,7 +12,7 @@ import { FactuurTikkenComponent } from './contacten/factuur-tikken/factuur-tikke
 import { ContactToevoegenComponent } from './contacten/contact-toevoegen/contact-toevoegen.component';
 import { ContactWijzigenComponent } from './contacten/contact-wijzigen/contact-wijzigen.component';
 import { OnkostenToevoegenComponent } from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
-import { OnkostenItemComponent } from './onkosten/onkosten-item/onkosten-item.component';
+import { OnkostenItemComponent } from './onkosten/onkosten-list/onkosten-item/onkosten-item.component';
 import { BelastingListComponent } from './belasting/belasting-list/belasting-list.component';
 import { BelastingItemComponent } from './belasting/belasting-list/belasting-item/belasting-item.component';
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
@@ -25,6 +25,13 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoeken.component';
+import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.component';
+import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
+import {OnkostenService} from './onkosten/onkosten.service';
+import {OnkostenResolver} from './shared/onkosten.resolver';
+import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
 import {AlertService} from './inloggen-uitloggen/inloggen/alert.service';
@@ -64,6 +71,9 @@ import { ContactenListComponent } from './contacten/contact-zoeken/contacten-lis
     MainMenuComponent,
     ErrorPageComponent,
     PageNotFoundComponent,
+    OnkostenZoekenComponent,
+    OnkostenListComponent,
+    OnkostenDetailComponent,
     AlertComponent,
     ContactenListComponent,
   ],
@@ -71,11 +81,14 @@ import { ContactenListComponent } from './contacten/contact-zoeken/contacten-lis
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule
+    AppRoutingModule,
     ReactiveFormsModule,
     // HttpModule,
     AppRoutingModule,
     FormsModule
   ],
+  providers: [OnkostenService, OnkostenResolver],
   providers: [
     AppComponent,
     AuthGuard,
