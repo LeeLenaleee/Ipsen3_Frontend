@@ -1,11 +1,11 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {Contact} from './contact.model';
 import {HttpClient} from '@angular/common/http';
 import {Telefoon} from './contact-telefoonnummer.model';
 import {Email} from './contact-email.model';
 
 @Injectable()
-export class ContactZoekenService {
+export class ContactZoekenService implements OnInit {
   contact: Contact;
   bedrijfGezocht = new EventEmitter<Contact>();
   telNrs = new EventEmitter<string[]>();
@@ -18,7 +18,7 @@ export class ContactZoekenService {
 
   constructor(private http: HttpClient) { }
 
-  getContact(id: number) {
+  /*getContact(id: number) {
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
@@ -87,5 +87,9 @@ export class ContactZoekenService {
 
   showMogelijkeBedrijven(zoekterm: string) {
     return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+  }
+*/
+  ngOnInit(): void {
+    console.log(localStorage.getItem('currentUser'));
   }
 }
