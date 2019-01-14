@@ -26,7 +26,6 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {HttpModule} from '@angular/http';
 import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
 import {AlertService} from './inloggen-uitloggen/inloggen/alert.service';
 import {AuthenticationService} from './inloggen-uitloggen/inloggen/authentication.service';
@@ -34,9 +33,7 @@ import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor'
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
-import { HttpClientModule } from '@angular/common/http';
 import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
-import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -67,16 +64,15 @@ import {FormsModule} from '@angular/forms';
     MainMenuComponent,
     ErrorPageComponent,
     PageNotFoundComponent,
-    AlertComponent
+    AlertComponent,
     ContactenListComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    // HttpModule,
     AppRoutingModule,
     FormsModule
   ],
