@@ -17,16 +17,6 @@ const appRoutes: Routes = [
   { path: '', component: MainMenuComponent, canActivate: [AuthGuard] },
   { path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'contacten', component: ContactenComponent, canActivate: [AuthGuard], children: [
-      { path: ':id/wijzigen', component: ContactWijzigenComponent },
-      { path: 'toevoegen', component: ContactToevoegenComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'toevoegen' }
-    ] },
-  { path: 'onkosten', component: OnkostenComponent, canActivate: [AuthGuard], children: [
-      { path: ':id', component: OnkostenDetailComponent,
-        resolve: { onkost: OnkostenResolver }},
-      { path: '', component: OnkostenToevoegenComponent }
-    ] },
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
 ];

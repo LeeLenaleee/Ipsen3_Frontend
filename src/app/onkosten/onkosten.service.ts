@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Onkosten} from './onkosten.model';
 import {Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 
 @Injectable()
@@ -11,6 +11,7 @@ export class OnkostenService {
   subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
   onkostenGezocht = new EventEmitter<Onkosten[]>();
+
 
   constructor(private httpClient: HttpClient) {}
 
