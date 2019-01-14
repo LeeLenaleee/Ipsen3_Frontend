@@ -10,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OnkostenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
+  buttonTextTwo = 'Leeg velden';
 
   constructor(private onkostenService: OnkostenService,
               private httpClient: HttpClient) { }

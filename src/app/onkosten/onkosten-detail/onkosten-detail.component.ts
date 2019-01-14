@@ -13,6 +13,7 @@ export class OnkostenDetailComponent implements OnInit {
   onkost: Onkosten;
   @ViewChild('f') form: NgForm;
   buttonTextOne = 'Wijzig';
+  buttonTextTwo = 'Verwijder';
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class OnkostenDetailComponent implements OnInit {
     // kan altijd nog worden omgebouwd naar dat onkosten detail component elke keer opnieuw wordt aangemaakt.
     this.route.params
       .subscribe(
-        (params: Params) => {
+        () => {
           this.onkost = this.route.snapshot.data.onkost;
           this.setValues(this.onkost);
         }

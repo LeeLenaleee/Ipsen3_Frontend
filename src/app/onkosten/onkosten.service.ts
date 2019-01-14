@@ -55,6 +55,10 @@ export class OnkostenService {
     return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost);
   }
 
+  // deleteOnkost(onkost: Onkosten) {
+  //   this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/', onkost);
+  // }
+
   selectOnkosten(data) {
     this.subject.next(data);
   }
