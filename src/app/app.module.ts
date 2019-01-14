@@ -25,13 +25,11 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactZoekenComponent } from './contacten/contact-zoeken/contact-zoeken.component';
-import { HttpClientModule } from '@angular/common/http';
 import { OnkostenZoekenComponent } from './onkosten/onkosten-zoeken/onkosten-zoeken.component';
 import { OnkostenListComponent } from './onkosten/onkosten-list/onkosten-list.component';
 import { OnkostenDetailComponent } from './onkosten/onkosten-detail/onkosten-detail.component';
 import {OnkostenService} from './onkosten/onkosten.service';
 import {OnkostenResolver} from './shared/onkosten.resolver';
-import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
 import {AlertService} from './inloggen-uitloggen/inloggen/alert.service';
@@ -81,19 +79,20 @@ import { ContactenListComponent } from './contacten/contact-zoeken/contacten-lis
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     // HttpModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [OnkostenService, OnkostenResolver],
   providers: [
     AppComponent,
     AuthGuard,
     AlertService,
     AuthenticationService,
+    OnkostenService,
+    OnkostenResolver,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
