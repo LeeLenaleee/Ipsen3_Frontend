@@ -18,7 +18,7 @@ export class ContactZoekenService implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  /*getContact(id: number) {
+  getContact(id: number) {
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
@@ -88,7 +88,7 @@ export class ContactZoekenService implements OnInit {
   showMogelijkeBedrijven(zoekterm: string) {
     return this.http.get<any[]>(this.zoektermUrl + zoekterm);
   }
-*/
+
   ngOnInit(): void {
     console.log(localStorage.getItem('currentUser'));
   }

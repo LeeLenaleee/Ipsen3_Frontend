@@ -20,7 +20,7 @@ export class ContactZoekenComponent implements OnInit {
     this.mogelijkeBedrijven = this.service.mogelijkeBedrijven;*/
   }
 
- /* onKeyDown() {
+  onKeyDown() {
     this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
   }
 
@@ -47,5 +47,5 @@ export class ContactZoekenComponent implements OnInit {
     // this.service.getEmail(id);
     this.router.navigate(['/contacten', id, 'wijzigen']);
     this.bedrijfNaam.nativeElement.value = '';
-  }*/
+  }
 }
