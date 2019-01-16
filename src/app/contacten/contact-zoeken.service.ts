@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {Contact} from './contact.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Telefoon} from './contact-telefoonnummer.model';
 import {Email} from './contact-email.model';
 
@@ -81,12 +81,21 @@ export class ContactZoekenService implements OnInit {
               naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
           }
           },
-        (error) => console.log(error) // als de letter zit mogelijk niet in de dingen
+        (error) => console.log('error: ' + error) // als de letter zit mogelijk niet in de dingen
       );
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    const user = localStorage.getItem('currentUser');
+    const password = localStorage.getItem('password');
+    console.log('user: ' + user + '\npassword: ' + password);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'gebruikersnaam': 'test@test.com',
+        'wachtwoord': password
+      })
+    };
+    return this.http.get<any[]>(this.zoektermUrl + zoekterm, httpOptions);
   }
 
   ngOnInit(): void {
