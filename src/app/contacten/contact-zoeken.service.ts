@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {Contact} from './contact.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Telefoon} from './contact-telefoonnummer.model';
 import {Email} from './contact-email.model';
 
@@ -15,6 +15,8 @@ export class ContactZoekenService implements OnInit {
   zoektermUrl = 'http://localhost:8080/api/contacten?bedrijf=';
   telUrl = 'http://localhost:8080/api/telefoonnummer';
   emailUrl = 'http://localhost:8080/api/email';
+  headers_object;
+  httpOptions;
 
   constructor(private http: HttpClient) { }
 
@@ -81,15 +83,33 @@ export class ContactZoekenService implements OnInit {
               naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
           }
           },
-        (error) => console.log(error) // als de letter zit mogelijk niet in de dingen
+        (error) => console.log('error: ' + error) // als de letter zit mogelijk niet in de dingen
       );
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    return this.http.get<any[]>(this.zoektermUrl + zoekterm);
+    const user = localStorage.getItem('currentUser');
+    const password = localStorage.getItem('password');
+    console.log('user: ' + user + '\npassword: ' + password);
+    console.log(password);
+
+    const headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+        '2B0B822CD15D6C15B0F00A08')});
+
+    const httpOptions = {
+      headers: headers_object
+    };
+    console.log(httpOptions.headers.get('Authorization'));
+    return this.http.get<any[]>(this.zoektermUrl + zoekterm, httpOptions);
   }
 
   ngOnInit(): void {
+    this.headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+        '2B0B822CD15D6C15B0F00A08')});
+
+    this.httpOptions = {
+      headers: this.headers_object
+    };
     console.log(localStorage.getItem('currentUser'));
   }
 }

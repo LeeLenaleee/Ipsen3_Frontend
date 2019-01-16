@@ -17,6 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         // setTimeout( () => {location.reload(true); }, 5000);
       }
 
+      console.log(err);
       const error = 'Er is iets mis gegaan bij het inloggen probeer het opnieuw' || err.statusText;
       return throwError(error);
     }));
