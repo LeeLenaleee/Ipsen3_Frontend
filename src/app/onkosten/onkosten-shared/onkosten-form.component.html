@@ -7,11 +7,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bedrijf</span>
         </div>
-        <textarea class="form-control"
+        <input    type="text"
+                  class="form-control"
                   placeholder="Hema"
                   ngModel
                   name="bedrijf"
-                  required></textarea>
+                  required>
       </div>
     </div>
   </div>
@@ -24,11 +25,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Datum</span>
         </div>
-        <textarea class="form-control"
+        <input    type="text"
+                  class="form-control"
                   placeholder="DD-MM-JJJJ"
                   ngModel
                   name="datum"
-                  required></textarea>
+                  required>
       </div>
     </div>
 
@@ -37,11 +39,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Kostenpost</span>
         </div>
-        <textarea class="form-control"
+        <input    type="text"
+                  class="form-control"
                   placeholder="Materiaal"
                   ngModel
                   name="kostenpost"
-                  required></textarea>
+                  required>
       </div>
     </div>
   </div>
@@ -52,11 +55,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Omschrijving</span>
         </div>
-        <textarea class="form-control"
+        <input    type="text"
+                  class="form-control"
                   placeholder="Rode en blauwe pennen"
                   ngModel
                   name="omschrijving"
-                  required></textarea>
+                  required>
       </div>
     </div>
   </div>
@@ -69,11 +73,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bruto €</span>
         </div>
-        <textarea class="form-control"
+        <input type="number"
+                  class="form-control"
                   placeholder="€--,--"
                   ngModel
                   name="brutokost"
-                  required></textarea>
+                  required>
       </div>
     </div>
     <div class="col-6">
@@ -81,11 +86,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW %</span>
         </div>
-        <textarea class="form-control"
+        <input    type="number"
+                  class="form-control"
                   placeholder="0.00%"
                   ngModel
                   name="btwprocent"
-                  required></textarea>
+                  required>
       </div>
     </div>
   </div>
@@ -96,11 +102,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW €</span>
         </div>
-        <textarea class="form-control"
+        <input    type="number"
+                  class="form-control"
                   placeholder="€--,--"
                   ngModel
                   name="btwkost"
-                  required></textarea>
+                  required>
       </div>
     </div>
     <div class="col-6">
@@ -108,11 +115,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Netto €</span>
         </div>
-        <textarea class="form-control"
+      <input      type="number"
+                  class="form-control"
                   placeholder="€--,--"
                   ngModel
                   name="nettokost"
-                  required></textarea>
+                  required>
       </div>
     </div>
   </div>
@@ -121,13 +129,13 @@
 
   <div class="row">
     <div class="col-4">
-      <button class="btn btn-primary" type="submit">{{ buttonTextOne }}</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
     </div>
       <div class="col-4">
-        <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" routerLink="/onkosten">Nieuw</button>
+        <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/onkosten">Nieuw</button>
       </div>
       <div class="col-4">
-        <button class="btn btn-danger" [disabled]="buttonTextOne === 'Voeg toe'">{{ buttonTextTwo }}</button>
+        <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
       </div>
   </div>
 

@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Onkosten} from './onkosten.model';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 
@@ -11,15 +11,16 @@ export class OnkostenService {
   subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
   onkostenGezocht = new EventEmitter<Onkosten[]>();
-
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+      '2B0B822CD15D6C15B0F00A08')});
+  httpOptions = {
+    headers: this.headers_object
+  };
 
   constructor(private httpClient: HttpClient) {}
 
   getOnkosten() {
-    this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', {
-      observe: 'body',
-      responseType: 'json'
-    })
+    this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', this.httpOptions)
       .subscribe(
         (onkosten: Onkosten[]) => {
           this.onkostenEmitter.emit(onkosten);
@@ -28,17 +29,11 @@ export class OnkostenService {
   }
 
   getOnkost(index: number) {
-    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , {
-      observe: 'body',
-      responseType: 'json'
-    });
+    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , this.httpOptions);
   }
 
   getOnkostenByOmschrijving(omschrijving: string) {
-    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten/zoek?omschrijving=' + omschrijving, {
-      observe: 'body',
-      responseType: 'json'
-    });
+    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten/zoek?omschrijving=' + omschrijving , this.httpOptions);
   }
 
   formToOnkost(form: NgForm) {
@@ -49,11 +44,11 @@ export class OnkostenService {
   }
 
   postOnkost(onkost: Onkosten) {
-    return this.httpClient.post<Onkosten>('http://localhost:8080/api/onkosten', onkost);
+    return this.httpClient.post<Onkosten>('http://localhost:8080/api/onkosten', onkost, this.httpOptions);
   }
 
   putOnkost(onkost: Onkosten, id: number) {
-    return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost);
+    return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost, this.httpOptions);
   }
 
   // deleteOnkost(onkost: Onkosten) {
