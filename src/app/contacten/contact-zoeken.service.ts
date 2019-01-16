@@ -15,8 +15,11 @@ export class ContactZoekenService implements OnInit {
   zoektermUrl = 'http://localhost:8080/api/contacten?bedrijf=';
   telUrl = 'http://localhost:8080/api/telefoonnummer';
   emailUrl = 'http://localhost:8080/api/email';
-  headers_object;
-  httpOptions;
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:' +
+      '9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08')});
+  httpOptions = {
+    headers: this.headers_object
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +32,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showContact(id: number) {
-    return this.http.get<Contact>(this.idUrl + id);
+    return this.http.get<Contact>(this.idUrl + id, this.httpOptions);
   }
 
   getTelefoon(id: number) {
@@ -48,7 +51,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showTelefoon() {
-    return this.http.get<Telefoon[]>(this.telUrl);
+    return this.http.get<Telefoon[]>(this.telUrl, this.httpOptions);
   }
 
   getEmail(id: number) {
@@ -66,7 +69,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showEmail() {
-    return this.http.get<Email[]>(this.emailUrl);
+    return this.http.get<Email[]>(this.emailUrl, this.httpOptions);
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
@@ -88,28 +91,22 @@ export class ContactZoekenService implements OnInit {
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    const user = localStorage.getItem('currentUser');
-    const password = localStorage.getItem('password');
-    console.log('user: ' + user + '\npassword: ' + password);
-    console.log(password);
-
-    const headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-        '2B0B822CD15D6C15B0F00A08')});
-
-    const httpOptions = {
-      headers: headers_object
-    };
-    console.log(httpOptions.headers.get('Authorization'));
-    return this.http.get<any[]>(this.zoektermUrl + zoekterm, httpOptions);
+    // const user = localStorage.getItem('currentUser');
+    // const password = localStorage.getItem('password');
+    // console.log('user: ' + user + '\npassword: ' + password);
+    // console.log(password);
+    //
+    // const headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+    //     '2B0B822CD15D6C15B0F00A08')});
+    //
+    // const httpOptions = {
+    //   headers: headers_object
+    // };
+    console.log(this.httpOptions.headers.get('Authorization'));
+    return this.http.get<any[]>(this.zoektermUrl + zoekterm, this.httpOptions);
   }
 
   ngOnInit(): void {
-    this.headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-        '2B0B822CD15D6C15B0F00A08')});
-
-    this.httpOptions = {
-      headers: this.headers_object
-    };
     console.log(localStorage.getItem('currentUser'));
   }
 }
