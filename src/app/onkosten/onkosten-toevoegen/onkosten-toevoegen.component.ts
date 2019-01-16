@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-onkosten-toevoegen',
   templateUrl: '../onkosten-shared/onkosten-form.component.html',
-  styleUrls: ['./onkosten-toevoegen.component.css']
+  styleUrls: ['../onkosten-shared/onkosten-form.component.css']
 })
 export class OnkostenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
@@ -19,11 +19,23 @@ export class OnkostenToevoegenComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const onkost = this.onkostenService.formToOnkost(form);
-    this.onkostenService.postOnkost(onkost)
-      .subscribe();
-    form.onReset();
-  }
+    if (confirm('Weet u het zeker?')) {
+      const onkost = this.onkostenService.formToOnkost(form);
+      this.onkostenService.postOnkost(onkost)
+        .subscribe(
+          () => {
+            alert('Onkosten toegevoegd');
+          }
+        );
+      form.onReset();
+      this.onkostenService.getOnkosten();
+      }
+    }
 
+  clearFields(form: NgForm) {
+    if (confirm('Weet u het zeker?')) {
+      form.onReset();
+    }
+  }
 
 }

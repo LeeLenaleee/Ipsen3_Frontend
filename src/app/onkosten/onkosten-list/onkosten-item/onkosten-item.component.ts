@@ -15,9 +15,4 @@ export class OnkostenItemComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  selectOnkosten() {
-    this.onkostenService.selectOnkosten(this.onkosten);
-  }
-
 }
