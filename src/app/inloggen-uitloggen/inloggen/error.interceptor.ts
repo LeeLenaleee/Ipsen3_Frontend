@@ -15,8 +15,8 @@ export class ErrorInterceptor implements HttpInterceptor {
       if (err.status === 401 || err.status === 500) {
         // auto logout if 401 response returned from api
         this.authenticationService.logout();
-        // mooier I guess als error blijft
-        if (this.router.url !== '/login') { setTimeout( () => {location.reload(true); }, 0); }
+        // reload voor als ie in een child klasse een error krijgt zodat child klasse weg gaat en hij alsnog naar de login page gaat
+        if (this.router.url !== '/login') { location.reload(true);  }
       }
 
       console.log(err);
