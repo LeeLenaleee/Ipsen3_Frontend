@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Contact} from '../contact.model';
 import {NgForm} from '@angular/forms';
 import {ContactZoekenService} from '../contact-zoeken.service';
@@ -13,6 +13,11 @@ export class ContactToevoegenService {
   contactUrl = 'http://localhost:8080/api/contacten/';
   telefoonUrl = 'http://localhost:8080/api/telefoonnummer';
   emailUrl = 'http://localhost:8080/api/email';
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+      '2B0B822CD15D6C15B0F00A08')});
+  httpOptions = {
+    headers: this.headers_object
+  };
 
   constructor(private http: HttpClient, private zoekenService: ContactZoekenService) { }
 
@@ -56,17 +61,17 @@ export class ContactToevoegenService {
   }
 
   postContact(contact: Contact) {
-    return this.http.post<Contact>(this.contactUrl, contact);
+    return this.http.post<Contact>(this.contactUrl, contact, this.httpOptions);
   }
 
   postTelefoon(nummer: string, contact: Contact) {
     const telefoon = new Telefoon(null, nummer, contact);
-    return this.http.post<Telefoon>(this.telefoonUrl, telefoon);
+    return this.http.post<Telefoon>(this.telefoonUrl, telefoon, this.httpOptions);
   }
 
   postEmail(mail: string, contact: Contact) {
     const email = new Email(null, mail, contact);
-    return this.http.post<Email>(this.emailUrl, email);
+    return this.http.post<Email>(this.emailUrl, email, this.httpOptions);
   }
 
   formToContact(form: NgForm) {

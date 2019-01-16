@@ -1,0 +1,62 @@
+@font-face {
+  font-family: Unlock;
+  src: url("../../assets/fonts/Unlock-Regular.ttf") format('truetype');
+  font-size: 1.3em;
+}
+
+.center{
+  width: 20%;
+  margin-left: 40%;
+  font-family: Unlock,Arial, Helvetica, sans-serif;
+}
+#button{
+  color: black;
+  background-color: #FFC312;
+  margin-top: 20px;
+}
+#button:hover{
+  background-color: white	;
+}
+.vertical-center{
+  padding-top: 13%;
+}
+
+#albert{
+  width: 220px;
+  height: auto;
+  margin-left: 72%;
+  margin-top: -390px;
+}
+#albertFlip{
+  width: 220px;
+  height: auto;
+  margin-left: 10%;
+  margin-top: -350px;
+}
+
+@media screen and (max-width: 1000px) {
+  #albertFlip{
+    /*display: none; */
+    padding-top: 400px;
+    width:90px;
+    height: auto;
+  }
+
+  #albert{
+    /*padding-right: 100px;*/
+    /*position: relative;*/
+    padding-top: 230px;
+    width:90px;
+    height: auto;
+  }
+
+  .vertical-center{
+    padding-top: 8%;
+  }
+
+  .center{
+    width: 50%;
+    margin-left: 25%;
+  }
+
+}

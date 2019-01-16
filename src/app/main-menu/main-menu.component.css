@@ -1,25 +1,32 @@
-.heading {
-  width: 400px;
-  height: 100px;
-  display: block;
-  margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto
+@font-face {
+  font-family: Unlock;
+  src: url("../../assets/fonts/Unlock-Regular.ttf") format('truetype');
 }
 
-.albert {
+.heading {
+  height: 100px;
+  margin-top: 80px;
+}
+
+
+img {
   width: 400px;
   height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
+}
 
+@media (max-width: 767px) {
+  img {
+    width: 90%;
+  }
 }
 
 h1 {
   color: white;
   font-size: 45px;
-  font-family: Marker Felt, fantasy;
+  font-family: Unlock, sans-serif;
   text-align: center;
 }
