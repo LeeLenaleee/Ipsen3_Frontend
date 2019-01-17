@@ -52,9 +52,9 @@ export class OnkostenDetailComponent implements OnInit {
         .subscribe(
           () => {
             alert('Onkosten gewijzigd');
+            this.onkostenService.getOnkosten();
           }
         );
-      this.onkostenService.getOnkosten();
     }
   }
 

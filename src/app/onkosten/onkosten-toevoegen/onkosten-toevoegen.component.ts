@@ -25,10 +25,10 @@ export class OnkostenToevoegenComponent implements OnInit {
         .subscribe(
           () => {
             alert('Onkosten toegevoegd');
+            this.onkostenService.getOnkosten();
           }
         );
       form.onReset();
-      this.onkostenService.getOnkosten();
       }
     }
 
