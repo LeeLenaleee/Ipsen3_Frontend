@@ -45,11 +45,17 @@ export class OnkostenDetailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const onkost = this.onkostenService.formToOnkost(form);
+    if (confirm('Weet u het zeker?')) {
+      const onkost = this.onkostenService.formToOnkost(form);
 
-    this.onkostenService.putOnkost(onkost, this.onkost.id)
-      .subscribe(
-      );
+      this.onkostenService.putOnkost(onkost, this.onkost.id)
+        .subscribe(
+          () => {
+            alert('Onkosten gewijzigd');
+          }
+        );
+      this.onkostenService.getOnkosten();
+    }
   }
 
 }
