@@ -1,11 +1,12 @@
 export class FactuurModel {
-  datum: string;
-  afleverDatum: string;
-  factuurOmschrijving: string;
-  brutoKosten: number;
-  btwPercentage: number;
-  btwKosten: number;
-  nettoKosten: number;
+  public id: number;
+  public datum: string;
+  public afleverDatum: string;
+  public factuurOmschrijving: string;
+  public brutoKosten: number;
+  public btwPercentage: number;
+  public btwKosten: number;
+  public nettoKosten: number;
 
   constructor(datum, afleverDatum, factuurOmschrijving, brutoKosten, btwPercentage, btwKosten, nettoKosten) {
     this.datum = datum;
