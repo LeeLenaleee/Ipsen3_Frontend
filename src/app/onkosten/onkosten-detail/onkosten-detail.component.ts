@@ -7,7 +7,7 @@ import {OnkostenService} from '../onkosten.service';
 @Component({
   selector: 'app-onkosten-detail',
   templateUrl: '../onkosten-shared/onkosten-form.component.html',
-  styleUrls: ['./onkosten-detail.component.css']
+  styleUrls: ['../onkosten-shared/onkosten-form.component.css']
 })
 export class OnkostenDetailComponent implements OnInit {
   onkost: Onkosten;
@@ -31,25 +31,31 @@ export class OnkostenDetailComponent implements OnInit {
   }
 
   setValues(onkosten: Onkosten) {
-    this.form.form.patchValue({
-      bedrijf: onkosten.onkostenBedrijf,
-      datum: onkosten.onkostenDatum,
-      kostenpost: onkosten.onkostenKostenpost,
-      omschrijving: onkosten.onkostenOmschrijving,
-      brutokost: onkosten.onkostenBrutoKosten,
-      btwprocent: onkosten.onkostenBtwPercentage,
-      btwkost: onkosten.onkostenBtwKosten,
-      nettokost: onkosten.onkostenNettoKosten
+    setTimeout( () => {   this.form.form.patchValue({
+        bedrijf: onkosten.onkostenBedrijf,
+        datum: onkosten.onkostenDatum,
+        kostenpost: onkosten.onkostenKostenpost,
+        omschrijving: onkosten.onkostenOmschrijving,
+        brutokost: onkosten.onkostenBrutoKosten,
+        btwprocent: onkosten.onkostenBtwPercentage,
+        btwkost: onkosten.onkostenBtwKosten,
+        nettokost: onkosten.onkostenNettoKosten
       }
-    );
+    ); }, 1);
   }
 
   onSubmit(form: NgForm) {
-    const onkost = this.onkostenService.formToOnkost(form);
+    if (confirm('Weet u het zeker?')) {
+      const onkost = this.onkostenService.formToOnkost(form);
 
-    this.onkostenService.putOnkost(onkost, this.onkost.id)
-      .subscribe(
-      );
+      this.onkostenService.putOnkost(onkost, this.onkost.id)
+        .subscribe(
+          () => {
+            alert('Onkosten gewijzigd');
+            this.onkostenService.getOnkosten();
+          }
+        );
+    }
   }
 
 }

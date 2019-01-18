@@ -8,9 +8,9 @@ import {OnkostenToevoegenComponent} from './onkosten-toevoegen/onkosten-toevoege
 
 const onkostenRoutes: Routes = [
   { path: 'onkosten', component: OnkostenComponent, canActivate: [AuthGuard], children: [
+      { path: '', component: OnkostenToevoegenComponent },
       { path: ':id', component: OnkostenDetailComponent,
         resolve: { onkost: OnkostenResolver }},
-      { path: '', component: OnkostenToevoegenComponent }
     ] },
 ];
 
