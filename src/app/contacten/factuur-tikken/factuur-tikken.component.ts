@@ -52,6 +52,21 @@ export class FactuurTikkenComponent implements OnInit {
     );
   }
 
+  wijzig() {
+    const factuurModel = new FactuurModel(this.datum.nativeElement.value, this.aflvrDatum.nativeElement.value,
+      this.omschrijving.nativeElement.value, this.brutoKosten.nativeElement.value, this.btwPercentage.nativeElement.value,
+      this.btwKosten.nativeElement.value, this.nettoKosten.nativeElement.value);
+    console.log(factuurModel.id);
+    this.http.put<FactuurModel>('http://localhost:8080/api/factuur/13', factuurModel);
+  }
+
+  maakFactuur () {
+    const factuurModel = new FactuurModel(this.datum.nativeElement.value, this.aflvrDatum.nativeElement.value,
+      this.omschrijving.nativeElement.value, this.brutoKosten.nativeElement.value, this.btwPercentage.nativeElement.value,
+      this.btwKosten.nativeElement.value, this.nettoKosten.nativeElement.value);
+    return factuurModel;
+  }
+
   download() {
     // niewe window openen zodat de download triggerd
     window.open('http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value +
