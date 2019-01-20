@@ -19,8 +19,8 @@ export class FactuurTikkenComponent implements OnInit {
   @ViewChild('btwKosten') btwKosten: ElementRef;
   @ViewChild('nettoKosten') nettoKosten: ElementRef;
   @ViewChild('id') id: ElementRef;
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-      '2B0B822CD15D6C15B0F00A08')});
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+      localStorage.getItem('password'))});
   httpOptions = {
     headers: this.headers_object
   };
@@ -39,6 +39,8 @@ export class FactuurTikkenComponent implements OnInit {
           this.brutoKosten.nativeElement.value = factuur.brutoKosten; this.btwPercentage.nativeElement.value = factuur.btwPercentage;
           this.btwKosten.nativeElement.value = factuur.btwKosten; this.nettoKosten.nativeElement.value = factuur.nettoKosten;
           this.factNummer.nativeElement.value = factuur.id;
+      }, error => {
+        console.log(error);
       }
     );
   }
@@ -57,32 +59,28 @@ export class FactuurTikkenComponent implements OnInit {
   }
 
   wijzig() {
-    const factuurModel = new FactuurModel(this.datum.nativeElement.value, this.aflvrDatum.nativeElement.value,
+    const factuurModel = new FactuurModel(this.toServerDateTransform(this.datum.nativeElement.value),
+      this.toServerDateTransform(this.aflvrDatum.nativeElement.value),
       this.omschrijving.nativeElement.value, this.brutoKosten.nativeElement.value, this.btwPercentage.nativeElement.value,
       this.btwKosten.nativeElement.value, this.nettoKosten.nativeElement.value);
-    console.log(factuurModel.id);
-    this.http.put<FactuurModel>('http://localhost:8080/api/factuur/13', factuurModel);
-  }
-
-  maakFactuur () {
-    const factuurModel = new FactuurModel(this.datum.nativeElement.value, this.aflvrDatum.nativeElement.value,
-      this.omschrijving.nativeElement.value, this.brutoKosten.nativeElement.value, this.btwPercentage.nativeElement.value,
-      this.btwKosten.nativeElement.value, this.nettoKosten.nativeElement.value);
-    return factuurModel;
+    console.log(factuurModel.afleverDatum);
+    factuurModel.id = this.id.nativeElement.value;
+    this.http.put<FactuurModel>('http://localhost:8080/api/factuur/19', factuurModel, this.httpOptions).subscribe(
+      () => {
+        alert('Factuur gewijzigd');
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   download() {
-    // niewe window openen zodat de download triggerd
-    /*window.open('http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value +
-      '&naam=' + 'FactuurNummer: ' + this.factNummer.nativeElement.value);*/
-    const x = this.http.get<FactuurModel>('http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value +
-      '&naam=' + 'FactuurNummer: ' + this.factNummer.nativeElement.value, this.httpOptions);
-    const y = 'http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value;
+    const downloadString = 'http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
         '2B0B822CD15D6C15B0F00A08')});
-    fetch(y, { headers })
+    fetch(downloadString, { headers })
       .then(response => response.blob())
       .then(blobby => {
         const objectUrl = window.URL.createObjectURL(blobby);

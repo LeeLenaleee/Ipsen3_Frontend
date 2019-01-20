@@ -15,8 +15,8 @@ export class ContactZoekenService implements OnInit {
   zoektermUrl = 'http://localhost:8080/api/contacten?bedrijf=';
   telUrl = 'http://localhost:8080/api/telefoonnummer';
   emailUrl = 'http://localhost:8080/api/email';
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:' +
-      '9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08')});
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+      localStorage.getItem('password'))});
   httpOptions = {
     headers: this.headers_object
   };

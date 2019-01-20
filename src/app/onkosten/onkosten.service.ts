@@ -11,8 +11,8 @@ export class OnkostenService {
   subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
   onkostenGezocht = new EventEmitter<Onkosten[]>();
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-      '2B0B822CD15D6C15B0F00A08')});
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+      localStorage.getItem('password'))});
   httpOptions = {
     headers: this.headers_object
   };
