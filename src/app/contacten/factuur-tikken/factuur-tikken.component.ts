@@ -77,11 +77,21 @@ export class FactuurTikkenComponent implements OnInit {
       '&naam=' + 'FactuurNummer: ' + this.factNummer.nativeElement.value);*/
     const x = this.http.get<FactuurModel>('http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value +
       '&naam=' + 'FactuurNummer: ' + this.factNummer.nativeElement.value, this.httpOptions);
-    const url = window.URL.createObjectURL(x);
-    window.open(url);
-    // if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-    //   alert( 'Please disable your Pop-up blocker and try again.');
-    // }
+    const y = 'http://localhost:8080/api/factuur/download?id=' + this.factNummer.nativeElement.value;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
+        '2B0B822CD15D6C15B0F00A08')});
+    fetch(y, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'FactuurNummer:' + this.factNummer.nativeElement.value;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
   }
 
   toServerDateTransform(date) {
