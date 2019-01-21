@@ -4,20 +4,37 @@ img {
 }
 
 .albert-navbar {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  width: 100%;
   background-color: #12afaf;
-  font-family: Unlock,Arial, Helvetica, sans-serif;
+  height: 8%;
+}
+@media (max-width: 767px) {
+  .albert-navbar {
+    display: block;
+    justify-content: center;
+  }
+}
+ul {
+  margin: auto;
 }
 
 li {
-  font-size: 20px;
+  list-style: none;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.nav-link {
-  color: black;
+li a{
+  font-size: 20px;
+  color: #000;
 }
 
 ul li a:hover {
   color: #fff;
+  text-decoration: none;
 }
 
 ul.logout-ul li.logout-li a:hover{
@@ -25,7 +42,12 @@ ul.logout-ul li.logout-li a:hover{
 }
 
 li.active-class > a {
-  color: #fff !important;
+  color: #fff;
 }
 
+.logout-ul {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
 

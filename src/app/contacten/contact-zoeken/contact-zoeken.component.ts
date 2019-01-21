@@ -1,5 +1,6 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {Contact} from '../contact.model';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ContactZoekenService} from '../contact-zoeken.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact-zoeken',
@@ -7,45 +8,44 @@ import {Contact} from '../contact.model';
   styleUrls: ['./contact-zoeken.component.css']
 })
 export class ContactZoekenComponent implements OnInit {
-  @Output() bedrijfGezocht = new EventEmitter<Contact>();
   @ViewChild('bedrijfInput') bedrijfNaam: ElementRef;
-  mogelijkeBedrijven: {id: number, naam: string}[];
+  mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
+  gezochtePersonen: {id: number, bedrijf: string, naam: string}[] = [];
 
-  constructor() { }
-
+  constructor(private service: ContactZoekenService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.krijgMogelijkeBedrijven();
+    this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
+    this.mogelijkeBedrijven = this.service.mogelijkeBedrijven;
+  }
+
+  onKeyDown() {
+    this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
   }
 
   onZoekBedrijf() {
     const naam = this.bedrijfNaam.nativeElement.value;
-    let naamIndex = null; // = this.mogelijkeBedrijven.indexOf(naam);
+    // this.service.getContact(id);
+    let naamIndex = null;
 
+    this.gezochtePersonen = [];
     for (const bedrijf of this.mogelijkeBedrijven) {
-      if (bedrijf.naam === naam) {
-        naamIndex = this.mogelijkeBedrijven.indexOf(bedrijf);
+      if (bedrijf.bedrijf === naam) {
+        this.gezochtePersonen.push(bedrijf);
+        if (naamIndex === null) {
+          naamIndex = this.mogelijkeBedrijven.indexOf(bedrijf);
+        }
       }
     }
     if (naamIndex === null) {
-      // TODO foutmelding geven
-      console.log('dit bedrijf bestaat niet')
+      alert('Dit bedrijf bestaat niet');
       return;
     }
     const id = this.mogelijkeBedrijven[naamIndex].id;
-    console.log(id);
-
-    // TODO uit database zoeken
-    const contact = new Contact(1, 'voor', 'achter', 'bedrijf',
-      'straat', 'postcode', 'woonplaats', 'nederland', [12345678, 87654321, 34567890],
-      ['iemand@iets.wat', 'haha@fheod.nl'], 'relatie', 'website.nl');
-
-    this.bedrijfGezocht.emit(contact);
+    // this.service.getTelefoon(id);
+    // this.service.getEmail(id);
+    this.router.navigate(['/contacten', id, 'wijzigen']);
+    this.bedrijfNaam.nativeElement.value = '';
   }
-
-  krijgMogelijkeBedrijven() {
-    // TODO uit de backhand alle bedrijfnamen + id halen
-    this.mogelijkeBedrijven = [{id: 0, naam: 'Abedrijf'}, {id: 1, naam: 'Bbedrijf'}, {id: 2, naam: 'Cbedrijf'}];
-  }
-
 }
