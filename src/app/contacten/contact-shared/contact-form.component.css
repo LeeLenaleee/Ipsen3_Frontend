@@ -1,3 +1,7 @@
+:root {
+  --hoogte: 60px;
+}
+
 form {
   /*background-color: #EFEFD5;*/
   color: white;
@@ -12,9 +16,22 @@ input.ng-invalid.ng-touched {
   border-left: 2px solid red;
 }
 
+span {
+  width:200px;
+  height: 40px;
+}
+
+.input-group-prepend {
+  margin: 4px;
+}
+
+input, select {
+  height: 40px;
+}
+
 button.rood, button.groen {
-  width: 1.5em;
-  height: 1.5em;
+  width: 60px;
+  height: 40px;
   margin: 2px;
   padding: 0px;
 }

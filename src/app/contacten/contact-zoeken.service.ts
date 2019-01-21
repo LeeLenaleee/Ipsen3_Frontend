@@ -1,8 +1,8 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
-import {Contact} from './contact.model';
+import {Contact} from '../models/contact.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Telefoon} from './contact-telefoonnummer.model';
-import {Email} from './contact-email.model';
+import {Telefoon} from '../models/contact-telefoonnummer.model';
+import {Email} from '../models/contact-email.model';
 
 @Injectable()
 export class ContactZoekenService implements OnInit {
@@ -91,18 +91,6 @@ export class ContactZoekenService implements OnInit {
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    // const user = localStorage.getItem('currentUser');
-    // const password = localStorage.getItem('password');
-    // console.log('user: ' + user + '\npassword: ' + password);
-    // console.log(password);
-    //
-    // const headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-    //     '2B0B822CD15D6C15B0F00A08')});
-    //
-    // const httpOptions = {
-    //   headers: headers_object
-    // };
-    console.log(this.httpOptions.headers.get('Authorization'));
     return this.http.get<any[]>(this.zoektermUrl + zoekterm, this.httpOptions);
   }
 

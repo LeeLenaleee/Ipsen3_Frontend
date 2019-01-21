@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {Contact} from '../contact.model';
+import {Contact} from '../../models/contact.model';
 import {ContactWijzigenService} from './contact-wijzigen.service';
 import {ContactZoekenService} from '../contact-zoeken.service';
 import {ActivatedRoute, Router} from '@angular/router';
