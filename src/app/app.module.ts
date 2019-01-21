@@ -39,6 +39,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
 import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
+import { InstellingenService } from './instellingen/instellingen.Service';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { ContactenListComponent } from './contacten/contact-zoeken/contacten-lis
     AlertService,
     AuthenticationService,
     OnkostenService,
+    InstellingenService,
     OnkostenResolver,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

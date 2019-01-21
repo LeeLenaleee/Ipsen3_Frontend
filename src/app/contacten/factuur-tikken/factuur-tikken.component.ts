@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Http, ResponseContentType} from '@angular/http';
+//import {Http, ResponseContentType} from '@angular/http';
 import 'rxjs-compat/add/operator/map';
 
 @Component({
@@ -9,7 +9,7 @@ import 'rxjs-compat/add/operator/map';
 })
 export class FactuurTikkenComponent implements OnInit {
 
-  constructor(private http: Http) { }
+ // constructor(private http: Http) { }
 
   ngOnInit() {
   }

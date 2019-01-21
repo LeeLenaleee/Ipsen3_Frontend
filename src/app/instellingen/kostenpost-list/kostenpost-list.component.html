@@ -1,3 +1,23 @@
-<p>
-  kostenpost-list works!
-</p>
+<!-- <h2 class="center">Kostenpost</h2>
+<button [disabled]="foo" class = "btn btn-light">Voeg kostenpost toe</button>
+
+<form [formGroup]="kostenpostForm">
+  <div class="formGroup">
+    <label for="kostenpost" class="center form-control">Kostenpost</label>
+    <input type="text" formControlName="kostenpost" class="form-control center" placeholder="kostenpost">
+  </div>
+</form> -->
+
+<hr>
+<h2>HELLO FSOCIETY</h2>
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <app-kostenpost-item
+        *ngFor="let kostenpost of kostenposten; let i = index"
+        [kostenposten]="kostenpost"
+        [index]="i + 1"
+      ></app-kostenpost-item>
+    </div>
+  </div>
+</div>
