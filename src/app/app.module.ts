@@ -28,9 +28,10 @@ import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor'
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
-import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
 import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
+import {OfferteZoekenComponent} from './contacten/offerte-tikken/offerte-zoeken/offerte-zoeken.component';
+import {OfferteListComponent} from './contacten/offerte-tikken/offerte-list/offerte-list.component';
 
 
 @NgModule({
@@ -54,6 +55,8 @@ import {ContactenModule} from './contacten/contacten.module';
     ErrorPageComponent,
     PageNotFoundComponent,
     AlertComponent,
+    OfferteZoekenComponent,
+    OfferteListComponent
   ],
   imports: [
     BrowserModule,

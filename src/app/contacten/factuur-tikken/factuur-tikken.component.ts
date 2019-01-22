@@ -58,6 +58,16 @@ export class FactuurTikkenComponent implements OnInit {
     );
   }
 
+  delete() {
+    this.http.delete('http://localhost:8080/api/factuur/' + this.id.nativeElement.value, this.httpOptions).subscribe(
+      () => {
+        alert('Factuur is verwijderd');
+      }, error => {
+        console.log(error);
+    }
+    );
+  }
+
   wijzig() {
     const factuurModel = new FactuurModel(this.toServerDateTransform(this.datum.nativeElement.value),
       this.toServerDateTransform(this.aflvrDatum.nativeElement.value),
