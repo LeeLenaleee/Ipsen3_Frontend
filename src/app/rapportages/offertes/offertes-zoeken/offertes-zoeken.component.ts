@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Onkosten} from '../../../onkosten/onkosten.model';
 import {OffertesService} from '../offertes.service';
 import {OfferteModel} from '../../../models/offerte.model';
 
@@ -18,11 +17,15 @@ export class OffertesZoekenComponent implements OnInit {
   }
 
   searchOmschrijving() {
-    this.offerteService.getOfferteByCorrespondentieNummer(this.correspondentie.nativeElement.value)
-      .subscribe(
-        (offerte: OfferteModel[]) => {
-          this.offerteService.offerteEmitter.emit(offerte);
-        });
+    if (this.correspondentie.nativeElement.value !== '') {
+      this.offerteService.getOfferteByCorrespondentieNummer(this.correspondentie.nativeElement.value)
+        .subscribe(
+          (offerte: OfferteModel[]) => {
+            this.offerteService.offerteEmitter.emit(offerte);
+          });
+    } else {
+      this.offerteService.getOffertes();
+    }
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {OfferteModel} from '../../../models/offerte.model';
-import {Onkosten} from '../../../onkosten/onkosten.model';
 import {OffertesService} from '../offertes.service';
 
 @Component({

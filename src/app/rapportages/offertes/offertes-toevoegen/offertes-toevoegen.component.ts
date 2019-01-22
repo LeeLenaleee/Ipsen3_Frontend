@@ -10,16 +10,19 @@ import {NgForm} from '@angular/forms';
 })
 export class OffertesToevoegenComponent implements OnInit {
 
+  buttonTextOne = 'Voeg toe';
+  buttonTextTwo = 'Leeg velden';
+
   constructor(private offerteService: OffertesService,
               private httpClient: HttpClient) { }
 
   onSubmit(form: NgForm) {
     if (confirm('Weet u het zeker?')) {
       const offerteModel = this.offerteService.formToOfferte(form);
-      this.offerteService.postOnkost(offerteModel)
+      this.offerteService.postOfferte(offerteModel)
         .subscribe(
           () => {
-            alert('Onkosten toegevoegd');
+            alert('Offerte toegevoegd');
             this.offerteService.getOffertes();
           }
         );

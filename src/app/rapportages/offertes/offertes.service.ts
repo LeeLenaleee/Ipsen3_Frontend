@@ -41,7 +41,12 @@ export class OffertesService {
     return offerte;
   }
 
-  postOnkost(offerteModel: OfferteModel) {
-    return this.httpClient.post<Onkosten>('http://localhost:8080/api/offerte', offerteModel, this.httpOptions);
+  postOfferte(offerteModel: OfferteModel) {
+    return this.httpClient.post<OfferteModel>('http://localhost:8080/api/offerte', offerteModel, this.httpOptions);
   }
+
+  putOfferte(offerte: OfferteModel, id: number) {
+    return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, offerte, this.httpOptions);
+  }
+
 }

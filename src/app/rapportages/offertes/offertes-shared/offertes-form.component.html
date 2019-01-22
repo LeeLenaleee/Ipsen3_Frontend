@@ -9,7 +9,7 @@
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="Naam klant"
+                  placeholder="Naam Klant"
                   ngModel
                   name="naamKlant"
                   required>
@@ -25,7 +25,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Datum</span>
         </div>
-        <input    type="date"
+        <input    type="text"
                   class="form-control"
                   placeholder="DD-MM-JJJJ"
                   ngModel
@@ -37,13 +37,13 @@
     <div class="col-6" select-class>
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Correspondentienummer</span>
+          <span class="input-group-text">Uren</span>
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="correspondentienummer"
+                  placeholder="Uren"
                   ngModel
-                  name="correspondentienummer"
+                  name="uren"
                   required>
       </div>
     </div>
@@ -53,13 +53,13 @@
     <div class="col-12">
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Uren</span>
+          <span class="input-group-text">Cor. Nummer</span>
         </div>
         <input    type="number"
                   class="form-control"
-                  placeholder="uren"
+                  placeholder="Correspondentienummer"
                   ngModel
-                  name="uren"
+                  name="correspondentienummer"
                   required>
       </div>
     </div>
@@ -132,7 +132,7 @@
       <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
     </div>
     <div class="col-4">
-      <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/onkosten">Nieuw</button>
+      <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
     </div>
     <div class="col-4">
       <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
