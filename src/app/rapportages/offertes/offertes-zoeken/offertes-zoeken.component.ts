@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Onkosten} from '../../../onkosten/onkosten.model';
+import {OffertesService} from '../offertes.service';
+import {OfferteModel} from '../../../models/offerte.model';
 
 @Component({
   selector: 'app-offertes-zoeken',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffertesZoekenComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('inputOmschrijving') correspondentie: ElementRef;
+
+  constructor(private offerteService: OffertesService) { }
 
   ngOnInit() {
+  }
+
+  searchOmschrijving() {
+    this.offerteService.getOfferteByCorrespondentieNummer(this.correspondentie.nativeElement.value)
+      .subscribe(
+        (offerte: OfferteModel[]) => {
+          this.offerteService.offerteEmitter.emit(offerte);
+        });
   }
 
 }
