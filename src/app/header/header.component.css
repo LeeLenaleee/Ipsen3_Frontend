@@ -22,3 +22,27 @@ li a:hover {
 li.active-class > a {
   color: #fff !important;
 }
+
+ul {
+  background-color: #12afaf;
+}
+
+.dropdown-menu {
+  margin: auto;
+}
+
+.dropdown-menu .sub-menu {
+  visibility: hidden;
+}
+
+.dropdown-menu li:hover .sub-menu {
+  visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+  display:inline-block;
+  margin-left: 100px;
+}
+
+
+
