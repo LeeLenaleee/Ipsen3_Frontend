@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OnkostenComponent} from './onkosten/onkosten.component';
-import {ContactenComponent} from './contacten/contacten.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
