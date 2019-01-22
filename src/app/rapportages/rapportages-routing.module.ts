@@ -10,9 +10,9 @@ import {OffertesToevoegenComponent} from './offertes/offertes-toevoegen/offertes
 
 const rapportagesRoutes: Routes = [
   {path: 'rapportages', component: RapportagesComponent, canActivate: [AuthGuard] },
-      { path: 'brieven', component: BrievenComponent },
-      { path: 'facturen', component: FacturenComponent },
-      { path: 'offertes', component: OffertesComponent, children: [
+      { path: 'brieven', component: BrievenComponent, canActivate: [AuthGuard] },
+      { path: 'facturen', component: FacturenComponent, canActivate: [AuthGuard] },
+      { path: 'offertes', component: OffertesComponent, canActivate: [AuthGuard], children: [
           { path: '', component: OffertesToevoegenComponent },
           { path: ':id', component: OffertesDetailComponent},
         ] },

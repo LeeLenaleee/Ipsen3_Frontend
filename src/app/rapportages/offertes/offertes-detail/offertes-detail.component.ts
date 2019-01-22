@@ -23,20 +23,21 @@ export class OffertesDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         () => {
-          this.offerte = this.route.snapshot.data.onkost;
+          this.offerte = this.route.snapshot.data.offerte;
           this.setValues(this.offerte);
         }
       );
   }
 
   setValues(offerte: OfferteModel) {
+    console.log(offerte.naamklant);
     setTimeout( () => {   this.form.form.patchValue({
-        naamKlant: offerte.naamklant,
         datum: offerte.datum,
-        uren: offerte.uren,
         correspondentienummer: offerte.correspondentienummer,
-        brutokost: offerte.kostenBruto,
+        naamKlant: offerte.naamklant,
+        uren: offerte.uren,
         btwprocent: offerte.btwPercentage,
+        brutokost: offerte.kostenBruto,
         btwkost: offerte.kostenBTW,
         nettokost: offerte.kostenNetto
       }
@@ -47,7 +48,7 @@ export class OffertesDetailComponent implements OnInit {
     if (confirm('Weet u het zeker?')) {
       const offerte = this.offerteService.formToOfferte(form);
 
-      this.offerteService.postOfferte(offerte)
+      this.offerteService.putOfferte(offerte, this.offerte.id)
         .subscribe(
           () => {
             alert('Offerte gewijzigd');

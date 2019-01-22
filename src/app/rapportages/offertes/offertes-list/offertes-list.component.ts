@@ -20,7 +20,6 @@ export class OffertesListComponent implements OnInit {
           this.offertes = offertes;
         }
       );
-    console.log(this.offertes);
   }
 
 }

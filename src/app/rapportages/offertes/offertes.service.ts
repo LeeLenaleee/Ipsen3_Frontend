@@ -8,6 +8,7 @@ import {Onkosten} from '../../onkosten/onkosten.model';
 export class OffertesService {
 
   offerteEmitter = new EventEmitter<OfferteModel[]>();
+  offerteSelected = new EventEmitter<Onkosten>();
 
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
@@ -47,6 +48,10 @@ export class OffertesService {
 
   putOfferte(offerte: OfferteModel, id: number) {
     return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, offerte, this.httpOptions);
+  }
+
+  getOfferte(index: number) {
+    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , this.httpOptions);
   }
 
 }
