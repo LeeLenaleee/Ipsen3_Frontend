@@ -6,15 +6,11 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
 import {OnkostenResolver} from './shared/onkosten.resolver';
-import {FactuurTikkenComponent} from './contacten/factuur-tikken/factuur-tikken.component';
-import {OfferteTikkenComponent} from './contacten/offerte-tikken/offerte-tikken.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainMenuComponent, canActivate: [AuthGuard] },
   { path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'factuur', component: FactuurTikkenComponent, canActivate: [AuthGuard] },
-  { path: 'offerte', component: OfferteTikkenComponent, canActivate: [AuthGuard]},
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
 ];

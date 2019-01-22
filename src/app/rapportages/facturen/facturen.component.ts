@@ -1,15 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { DatePipe } from '@angular/common';
-import 'rxjs-compat/add/operator/map';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {FactuurModel} from '../../models/factuur.model';
+import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-factuur-tikken',
-  templateUrl: './factuur-tikken.component.html',
-  styleUrls: ['./factuur-tikken.component.css']
+  selector: 'app-facturen',
+  templateUrl: './facturen.component.html',
+  styleUrls: ['./facturen.component.css']
 })
-export class FactuurTikkenComponent implements OnInit {
+export class FacturenComponent implements OnInit {
   @ViewChild('datum') datum: ElementRef;
   @ViewChild('factNummer') factNummer: ElementRef;
   @ViewChild('aflvrDatum') aflvrDatum: ElementRef;
@@ -33,12 +32,12 @@ export class FactuurTikkenComponent implements OnInit {
   zoek() {
     this.http.get<FactuurModel>('http://localhost:8080/api/factuur/' + this.id.nativeElement.value, this.httpOptions).subscribe(
       (factuur: FactuurModel) => {
-          this.datum.nativeElement.value = this.fromServerDateTransForm(factuur.datum);
-          this.aflvrDatum.nativeElement.value = this.fromServerDateTransForm(factuur.afleverDatum);
-          this.omschrijving.nativeElement.value = factuur.factuurOmschrijving;
-          this.brutoKosten.nativeElement.value = factuur.brutoKosten; this.btwPercentage.nativeElement.value = factuur.btwPercentage;
-          this.btwKosten.nativeElement.value = factuur.btwKosten; this.nettoKosten.nativeElement.value = factuur.nettoKosten;
-          this.factNummer.nativeElement.value = factuur.id;
+        this.datum.nativeElement.value = this.fromServerDateTransForm(factuur.datum);
+        this.aflvrDatum.nativeElement.value = this.fromServerDateTransForm(factuur.afleverDatum);
+        this.omschrijving.nativeElement.value = factuur.factuurOmschrijving;
+        this.brutoKosten.nativeElement.value = factuur.brutoKosten; this.btwPercentage.nativeElement.value = factuur.btwPercentage;
+        this.btwKosten.nativeElement.value = factuur.btwKosten; this.nettoKosten.nativeElement.value = factuur.nettoKosten;
+        this.factNummer.nativeElement.value = factuur.id;
       }, error => {
         console.log(error);
       }
@@ -64,7 +63,7 @@ export class FactuurTikkenComponent implements OnInit {
         alert('Factuur is verwijderd');
       }, error => {
         console.log(error);
-    }
+      }
     );
   }
 
