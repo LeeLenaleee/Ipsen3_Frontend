@@ -1,7 +1,9 @@
 <form style="padding: 8px" (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
-     <label for="inputFirstname">Voornaam*</label>
+     <!--<label for="inputFirstname">Voornaam*</label>-->
+      <div class="input-group-prepend">
+      <span class="input-group-text">Voornaam</span>
      <input type="text"
             class="form-control"
             id="inputFirstname"
@@ -10,8 +12,11 @@
             name="voornaam"
             required>
    </div>
+    </div>
     <div class="form-group col-md-6">
-     <label for="inputLastname">Achternaam*</label>
+     <!--<label for="inputLastname">Achternaam*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Achternaam</span>
      <input type="text"
             class="form-control"
             id="inputLastname"
@@ -19,14 +24,17 @@
             ngModel
             name="achternaam"
             required>
+      </div>
    </div>
   </div>
 
+  <!--<hr>-->
+
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputTelephone">Telefoon nummer*</label>
-      <button class="groen btn" tabindex="-1" type="button" (click)="telErbij()">+</button>
-      <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
+      <!--<label for="inputTelephone">Telefoon nummer*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Telefoon nummer</span>
       <input type="number"
              class="form-control"
              id="inputTelephone"
@@ -34,12 +42,15 @@
              ngModel
              name="telefoon1"
              required>
+        <button class="groen btn" tabindex="-1" type="button" (click)="telErbij()">+</button>
+        <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
+      </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputEmail">Email adres*</label>
-      <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
-      <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
-      <input type="email"
+      <!--<label for="inputEmail">Email adres*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Email adres</span>
+        <input type="email"
              class="form-control"
              id="inputEmail"
              placeholder="voorbeeld@voorbeeld.nl"
@@ -47,75 +58,96 @@
              name="email1"
              email
              required>
+        <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
+        <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
+      </div>
     </div>
   </div>
     <div class="form-row" *ngIf="aantalTel > 1 || aantalEmail > 1">
       <div class="form-group col-md-6">
+        <div class="input-group-prepend" *ngIf="aantalTel > 1">
+          <span class="input-group-text">Telefoon nummer</span>
         <input type="number"
                class="form-control"
                id="inputTelephone2"
                placeholder="0612345678"
                ngModel
-               name="telefoon2"
-               *ngIf="aantalTel > 1">
+               name="telefoon2">
+        </div>
       </div>
       <div class="form-group col-md-6">
+        <div class="input-group-prepend" *ngIf="aantalEmail > 1">
+          <span class="input-group-text">Email adres</span>
         <input type="email"
                class="form-control"
                id="inputEmail2"
                placeholder="voorbeeld@voorbeeld.nl"
                ngModel
                name="email2"
-               email
-               *ngIf="aantalEmail > 1">
+               email>
+        </div>
       </div>
   </div>
   <div class="form-row" *ngIf="aantalTel > 2 || aantalEmail > 2">
     <div class="form-group col-md-6">
-      <input type="number"
-             class="form-control"
-             id="inputTelephone3"
-             placeholder="0612345678"
-             ngModel
-             name="telefoon3"
-             *ngIf="aantalTel > 2">
+      <div class="input-group-prepend" *ngIf="aantalTel > 2">
+        <span class="input-group-text">Telefoon nummer</span>
+          <input type="number"
+                 class="form-control"
+                 id="inputTelephone3"
+                 placeholder="0612345678"
+                 ngModel
+                 name="telefoon3">
+      </div>
     </div>
     <div class="form-group col-md-6">
+      <div class="input-group-prepend" *ngIf="aantalEmail > 2">
+        <span class="input-group-text">Email adres</span>
       <input type="email"
              class="form-control"
              id="inputEmail3"
              placeholder="voorbeeld@voorbeeld.nl"
              ngModel
              name="email3"
-             email
-             *ngIf="aantalEmail > 2">
+             email>
+      </div>
     </div>
   </div>
 
+  <!--<hr>-->
+
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCompany">Bedrijf*</label>
+      <!--<label for="inputCompany">Bedrijf*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Bedrijf</span>
       <input type="text"
              class="form-control"
              id="inputCompany"
              placeholder="Ing, Jumbo, HSLeiden"
              ngModel
              name="bedrijf">
+      </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputWebsite">Website</label>
+      <!--<label for="inputWebsite">Website</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Website</span>
       <input type="text"
              class="form-control"
              id="inputWebsite"
              placeholder="Google.nl"
              ngModel
              name="website">
+      </div>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Woonplaats*</label>
+      <!--<label for="inputCity">Woonplaats*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Woonplaats</span>
       <input type="text"
              class="form-control"
              id="inputCity"
@@ -123,21 +155,27 @@
              ngModel
              name="woonplaats"
              required>
+      </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputRelation">Relatie*</label>
+      <!--<label for="inputRelation">Relatie*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Relatie</span>
       <select id="inputRelation"
               class="form-control"
               [(ngModel)]="selectedRelatie"
               name="relatie">
         <option *ngFor="let relatie of relatieOpties">{{ relatie }}</option>
     </select>
+      </div>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <label for="inputStreet">Straatnaam*</label>
+      <!--<label for="inputStreet">Straatnaam*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Straatnaam</span>
       <input type="text"
              class="form-control"
              id="inputStreet"
@@ -145,9 +183,12 @@
              ngModel
              name="straatnaam"
              required>
+      </div>
     </div>
       <div class="form-group col-md-4">
-       <label for="inputNumber">Huisnummer*</label>
+       <!--<label for="inputNumber">Huisnummer*</label>-->
+        <div class="input-group-prepend">
+          <span class="input-group-text">Huisnummer</span>
        <input type="text"
               class="form-control"
               id="inputNumber"
@@ -155,11 +196,14 @@
               ngModel
               name="huisnummer"
               required>
+        </div>
      </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-4">
-     <label for="inputZip">Postcode*</label>
+     <!--<label for="inputZip">Postcode*</label>-->
+    <div class="input-group-prepend">
+      <span class="input-group-text">Postcode</span>
       <input type="text"
              class="form-control"
              id="inputZip"
@@ -168,8 +212,11 @@
              name="postcode"
              required>
     </div>
+    </div>
     <div class="form-group col-md-8">
-      <label for="inputLand">Land*</label>
+      <!--<label for="inputLand">Land*</label>-->
+      <div class="input-group-prepend">
+        <span class="input-group-text">Land</span>
       <input type="text"
              class="form-control"
              id="inputLand"
@@ -178,6 +225,7 @@
              [(ngModel)]="land"
              name="land"
              required>
+      </div>
     </div>
   </div>
   <button class="btn btn-primary"

@@ -51,6 +51,7 @@ export class ContactToevoegenComponent implements OnInit {
 
   onSubmit() {
     this.service.voegContactToe(this.form);
+    alert('Contact toegevoegd!');
   }
 
   onButton() {
