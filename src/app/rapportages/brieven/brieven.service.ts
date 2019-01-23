@@ -49,7 +49,20 @@ export class BrievenService {
     return this.httpClient.put<Brieven>('http://localhost:8080/api/brief/' + id, brief, this.httpOptions);
   }
 
+
+  getBriefByPersoon(geadreseerde: string) {
+    return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
+      this.httpOptions);
+    console.log('return this.httpClient.get<Brieven[]>(\'http://localhost:8080/api/brief/zoek?geadreseerde=\' + geadreseerde ,\n' +
+      '      this.httpOptions);');
+  }
+
+  toServerDateTransform(date) {
+    const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
+    return dateSendingToServer;
+
   deleteBrief(id: number) {
     return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
+
   }
 }
