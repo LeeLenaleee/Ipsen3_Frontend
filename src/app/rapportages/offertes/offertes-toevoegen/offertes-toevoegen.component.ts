@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {OffertesService} from '../offertes.service';
 import {NgForm} from '@angular/forms';
@@ -9,9 +9,9 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['../offertes-shared/offertes-form.component.css']
 })
 export class OffertesToevoegenComponent implements OnInit {
-
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
+  @ViewChild('f') form: NgForm;
 
   constructor(private offerteService: OffertesService,
               private httpClient: HttpClient) { }
@@ -30,9 +30,9 @@ export class OffertesToevoegenComponent implements OnInit {
     }
   }
 
-  clearFields(form: NgForm) {
+  clearAndDelete() {
     if (confirm('Weet u het zeker?')) {
-      form.onReset();
+      this.form.onReset();
     }
   }
 

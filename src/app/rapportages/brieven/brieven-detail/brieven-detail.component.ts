@@ -34,7 +34,7 @@ export class BrievenDetailComponent implements OnInit {
 
   setValues(brief: Brieven) {
     setTimeout( () => {   this.form.form.patchValue({
-        datum: this.fromServerDateTransForm(brief.datum),
+        datum: brief.datum,
         correspondentie: brief.correspondentie,
         betreft: brief.betreft,
         adressering: brief.adressering,
@@ -57,9 +57,16 @@ export class BrievenDetailComponent implements OnInit {
     }
   }
 
-  fromServerDateTransForm(date) {
-    const parts = date.split('-');
-    const x = parts[2] + '-' + parts[1] + '-' + parts[0];
-    return x;
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.brievenService.deleteBrief(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.brievenService.getBrieven();
+            alert('Brief verwijderd');
+            this.router.navigate(['/brieven']);
+          }
+        );
+    }
   }
 }

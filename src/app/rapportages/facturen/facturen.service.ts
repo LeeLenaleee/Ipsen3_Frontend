@@ -61,4 +61,9 @@ export class FacturenService {
     return dateSendingToServer;
   }
 
+  deleteFactuur(id: number) {
+    return this.httpClient.delete<FactuurModel>('http://localhost:8080/api/factuur/' + id, this.httpOptions);
+  }
+
+
 }

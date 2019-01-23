@@ -64,4 +64,16 @@ export class OnkostenDetailComponent implements OnInit {
     return x;
   }
 
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.onkostenService.deleteOnkost(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.onkostenService.getOnkosten();
+            alert('Onkosten verwijderd');
+            this.router.navigate(['/onkosten']);
+          }
+        );
+    }
+  }
 }
