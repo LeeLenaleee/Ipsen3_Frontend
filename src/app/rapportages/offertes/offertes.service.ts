@@ -63,4 +63,21 @@ export class OffertesService {
     return this.httpClient.delete<OfferteModel>('http://localhost:8080/api/offerte/' + id, this.httpOptions);
   }
 
+  downLoad(id: number) {
+    const downloadString = 'http://localhost:8080/api/offerte/download?id=' + id;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+        localStorage.getItem('password'))});
+    fetch(downloadString, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'OfferteNummer: ' + id;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
+  }
 }

@@ -135,7 +135,7 @@
       <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
     </div>
     <div class="col-3">
-      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/brieven">Download</button>
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" (click)="downLoad()" type="button" routerLink="/offertes">Download</button>
     </div>
     <div class="col-3">
       <button class="btn" type="button" (click)="clearAndDelete()">{{ buttonTextTwo }}</button>

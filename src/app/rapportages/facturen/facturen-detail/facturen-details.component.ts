@@ -77,4 +77,7 @@ export class FacturenDetailsComponent implements OnInit {
     }
   }
 
+  downLoad() {
+    this.factuurService.downLoad(this.factuur.id);
+  }
 }

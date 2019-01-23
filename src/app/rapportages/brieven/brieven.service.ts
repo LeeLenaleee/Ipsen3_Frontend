@@ -37,7 +37,7 @@ export class BrievenService {
   // }
 
   formToBrief(form: NgForm) {
-    const brief = new Brieven(null, form.value['datum'], form.value['correspondentie'],
+    const brief = new Brieven(null, this.toServerDateTransform(form.value['datum']), form.value['correspondentie'],
       form.value['betreft'], form.value['adressering'], form.value['verhaal']);
     return brief;
   }
@@ -64,5 +64,23 @@ export class BrievenService {
   deleteBrief(id: number) {
     return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
 
+  }
+
+  downLoad(id: number) {
+    const downloadString = 'http://localhost:8080/api/brief/download?id=' + id;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+        localStorage.getItem('password'))});
+    fetch(downloadString, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'BriefId: ' + id;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
   }
 }
