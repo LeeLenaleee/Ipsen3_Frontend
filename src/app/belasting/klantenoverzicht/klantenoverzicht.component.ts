@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Klant} from './klant.model';
+import {BelastingZoekenService} from '../belasting-zoeken-service';
 
 @Component({
   selector: 'app-klantenoverzicht',
   templateUrl: './klantenoverzicht.component.html',
-  styleUrls: ['./klantenoverzicht.component.css']
+  styleUrls: ['./klantenoverzicht.component.css'],
+  providers: [BelastingZoekenService]
 })
 export class KlantenoverzichtComponent implements OnInit {
 
+  @ViewChild('contactInput') contactNaam: ElementRef;
+  contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
+  shownContacten: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
   switchStatus = false;
   input = ' ';
   i: number;
@@ -22,9 +27,36 @@ export class KlantenoverzichtComponent implements OnInit {
   contactList = []; // Een lijst voor de zoekfunctie.
 
   textValue = '';
-  constructor() { }
+  constructor(private service: BelastingZoekenService) { }
 
   ngOnInit() {
+    this.service.showContactMatches(this.contactNaam.nativeElement.value);
+    this.contactMatches = this.service.contactMatches;
+  }
+
+  onKeyDown() {
+    this.service.showContactMatches(this.contactNaam.nativeElement.value);
+  }
+
+  onZoekBedrijf() {
+    const naam = this.contactNaam.nativeElement.value;
+    // this.service.getContact(id);
+    let naamIndex = null;
+
+    this.shownContacten = [];
+    for (const bedrijf of this.contactMatches) {
+      if (bedrijf.bedrijf === naam) {
+        this.shownContacten.push(bedrijf);
+        if (naamIndex === null) {
+          naamIndex = this.contactMatches.indexOf(bedrijf);
+        }
+      }
+    }
+    if (naamIndex === null) {
+      alert('Dit bedrijf bestaat niet');
+      return;
+    }
+    this.contactNaam.nativeElement.value = '';
   }
 
   /**

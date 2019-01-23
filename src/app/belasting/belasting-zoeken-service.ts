@@ -1,12 +1,14 @@
-import {OnInit} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Factuur} from './factuur.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Contact} from '../contacten/contact.model';
 
+
+@Injectable()
 export class BelastingZoekenService implements OnInit {
   factuur: Factuur;
   contact: Contact;
-  contactMatches: {id: number, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
+  contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
   factuurMatches: {id: number, beschrijving: string, beginDatum: string, eindDatum: string}[] = [];
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa('test@test.com:' +
@@ -56,9 +58,11 @@ export class BelastingZoekenService implements OnInit {
         (contacten: Contact[]) => {
           for (const contact of contacten) {
             this.contactMatches.push({id: contact.id,
-              naam: contact.voornaam + contact.achternaam,
+              bedrijf: contact.bedrijf,
+              naam: contact.voornaam + ' ' + contact.achternaam,
               heeftBetaald: 'Ja',
               factuurDatum: '2018'});
+            console.log(this.contactMatches);
           }
         },
         (error) => console.log('error: ' + error) // als de string niet voorkomt
