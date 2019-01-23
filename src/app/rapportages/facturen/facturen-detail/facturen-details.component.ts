@@ -32,8 +32,6 @@ export class FacturenDetailsComponent implements OnInit {
   }
 
   setValues(factuur: FactuurModel) {
-    console.log(factuur.factuurOmschrijving);
-    console.log('a');
     setTimeout( () => {   this.form.form.patchValue({
         datum: this.fromServerDateTransForm(factuur.datum),
         datumAflever: this.fromServerDateTransForm(factuur.afleverDatum),

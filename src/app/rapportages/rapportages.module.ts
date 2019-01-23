@@ -43,7 +43,7 @@ import {FacturenService} from './facturen/facturen.service';
     FacturenToevoegenComponent,
     FacturenListComponent,
     FactuurItemComponent,
-    FacturenZoekenComponent
+    FacturenZoekenComponent,
     BrievenDetailComponent,
     BrievenListComponent,
     BrievenItemComponent,
@@ -59,7 +59,7 @@ import {FacturenService} from './facturen/facturen.service';
     OffertesService,
     OfferteResolver,
     BrievenService,
-    BrievenResolver
+    BrievenResolver,
     FactuurResolver,
     FacturenService
   ]

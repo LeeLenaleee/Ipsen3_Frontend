@@ -30,7 +30,6 @@ export class OffertesDetailComponent implements OnInit {
   }
 
   setValues(offerte: OfferteModel) {
-    console.log(offerte.naamklant);
     setTimeout( () => {   this.form.form.patchValue({
         datum: this.fromServerDateTransForm(offerte.datum),
         correspondentienummer: offerte.correspondentienummer,

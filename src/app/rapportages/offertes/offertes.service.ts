@@ -2,14 +2,13 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
-import {Onkosten} from '../../onkosten/onkosten.model';
 import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class OffertesService {
 
   offerteEmitter = new EventEmitter<OfferteModel[]>();
-  offerteSelected = new EventEmitter<Onkosten>();
+  offerteSelected = new EventEmitter<OfferteModel>();
 
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +

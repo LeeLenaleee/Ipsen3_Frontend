@@ -27,8 +27,8 @@ export class ContactZoekenService implements OnInit {
     this.showContact(id).subscribe(
       (contact: Contact) => {
       this.bedrijfGezocht.emit(contact);
-      },
-      (error) => console.log(error));
+      }
+      );
   }
 
   showContact(id: number) {
@@ -84,8 +84,7 @@ export class ContactZoekenService implements OnInit {
               bedrijf: contact.contactBedrijf,
               naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
           }
-          },
-        (error) => console.log('error: ' + error) // als de letter zit mogelijk niet in de dingen
+          }
       );
   }
 
@@ -94,6 +93,5 @@ export class ContactZoekenService implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('currentUser'));
   }
 }
