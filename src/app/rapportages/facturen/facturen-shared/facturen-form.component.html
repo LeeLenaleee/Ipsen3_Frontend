@@ -1,0 +1,132 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Datum</span>
+        </div>
+        <input    type="date"
+                  class="form-control"
+                  placeholder= "2019-01-01"
+                  ngModel
+                  name="datum"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Aflever Datum</span>
+        </div>
+        <input    type="date"
+                  class="form-control"
+                  placeholder= "2019-01-01"
+                  ngModel
+                  name="datumAflever"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Factuur Omschrijving</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="Factuur Omschrijving"
+                  ngModel
+                  name="factuurOmschrijving"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bruto €</span>
+        </div>
+        <input type="number"
+               class="form-control"
+               placeholder="€--,--"
+               ngModel
+               name="brutokost"
+               required>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">BTW %</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="0.00%"
+                  ngModel
+                  name="btwprocent"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">BTW €</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="€--,--"
+                  ngModel
+                  name="btwkost"
+                  required>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Netto €</span>
+        </div>
+        <input      type="number"
+                    class="form-control"
+                    placeholder="€--,--"
+                    ngModel
+                    name="nettokost"
+                    required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-3">
+      <button class="btn" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/facturen">Nieuw</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/brieven">Download</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" type="button" (click)="clearAndDelete()">{{ buttonTextTwo }}</button>
+    </div>
+  </div>
+
+</form>
+

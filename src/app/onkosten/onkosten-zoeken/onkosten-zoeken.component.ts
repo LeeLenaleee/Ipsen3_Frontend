@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {OnkostenService} from '../onkosten.service';
-import {Onkosten} from '../onkosten.model';
+import {Onkosten} from '../../models/onkosten.model';
 
 @Component({
   selector: 'app-onkosten-zoeken',

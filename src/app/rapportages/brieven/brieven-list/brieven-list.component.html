@@ -1,0 +1,13 @@
+<hr>
+
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <app-brieven-item
+        *ngFor="let brief of brieven; let i = index"
+        [brieven]="brief"
+        [index]="i + 1"
+      ></app-brieven-item>
+    </div>
+  </div>
+</div>

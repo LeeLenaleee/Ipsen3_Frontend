@@ -25,7 +25,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Datum</span>
         </div>
-        <input    type="text"
+        <input    type="date"
                   class="form-control"
                   placeholder="DD-MM-JJJJ"
                   ngModel
@@ -129,13 +129,13 @@
 
   <div class="row">
     <div class="col-4">
-      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
+      <button class="btn" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
     </div>
       <div class="col-4">
-        <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/onkosten">Nieuw</button>
+        <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/onkosten">Nieuw</button>
       </div>
       <div class="col-4">
-        <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
+        <button class="btn" type="button" (click)="clearAndDelete()">{{ buttonTextTwo }}</button>
       </div>
   </div>
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Onkosten} from '../../onkosten.model';
+import {Onkosten} from '../../../models/onkosten.model';
 import {OnkostenService} from '../../onkosten.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Onkosten} from '../onkosten.model';
+import {Onkosten} from '../../models/onkosten.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
@@ -33,7 +33,7 @@ export class OnkostenDetailComponent implements OnInit {
   setValues(onkosten: Onkosten) {
     setTimeout( () => {   this.form.form.patchValue({
         bedrijf: onkosten.onkostenBedrijf,
-        datum: onkosten.onkostenDatum,
+        datum: this.fromServerDateTransForm(onkosten.onkostenDatum),
         kostenpost: onkosten.onkostenKostenpost,
         omschrijving: onkosten.onkostenOmschrijving,
         brutokost: onkosten.onkostenBrutoKosten,
@@ -58,4 +58,22 @@ export class OnkostenDetailComponent implements OnInit {
     }
   }
 
+  fromServerDateTransForm(date) {
+    const parts = date.split('-');
+    const x = parts[2] + '-' + parts[1] + '-' + parts[0];
+    return x;
+  }
+
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.onkostenService.deleteOnkost(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.onkostenService.getOnkosten();
+            alert('Onkosten verwijderd');
+            this.router.navigate(['/onkosten']);
+          }
+        );
+    }
+  }
 }

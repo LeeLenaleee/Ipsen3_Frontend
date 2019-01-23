@@ -16,7 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
         Authorization: `Basic ${this.auth.getToken()}`
       }
     });
-    console.log(this.auth.getToken());
     return next.handle(request);
   }
 }

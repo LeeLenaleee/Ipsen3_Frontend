@@ -1,0 +1,13 @@
+<hr>
+
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <app-offerte-item
+        *ngFor="let offerte of offertes; let i = index"
+        [offerte]="offerte"
+        [index]="i + 1"
+      ></app-offerte-item>
+    </div>
+  </div>
+</div>

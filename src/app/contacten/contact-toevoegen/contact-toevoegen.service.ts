@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Contact} from '../contact.model';
+import {Contact} from '../../models/contact.model';
 import {NgForm} from '@angular/forms';
 import {ContactZoekenService} from '../contact-zoeken.service';
-import {Telefoon} from '../contact-telefoonnummer.model';
-import {Email} from '../contact-email.model';
+import {Telefoon} from '../../models/contact-telefoonnummer.model';
+import {Email} from '../../models/contact-email.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +39,7 @@ export class ContactToevoegenService {
               this.voegEmailToe(emails, contact, id);
             }
           );
-        },
-      (error) => console.log(error)
+        }
     );
   }
 
@@ -56,8 +55,6 @@ export class ContactToevoegenService {
     for (const email of emails) {
       this.postEmail(email, contact).subscribe();
     }
-    alert('Contact toegevoegd!');
-
   }
 
   postContact(contact: Contact) {

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Onkosten} from './onkosten.model';
+import {Onkosten} from '../models/onkosten.model';
 import {OnkostenService} from './onkosten.service';
 import {OnkostenZoekenComponent} from './onkosten-zoeken/onkosten-zoeken.component';
 import {OnkostenListComponent} from './onkosten-list/onkosten-list.component';
