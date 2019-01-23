@@ -62,5 +62,18 @@ export class OffertesDetailComponent implements OnInit {
     return x;
   }
 
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.offerteService.deleteOfferte(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.offerteService.getOffertes();
+            alert('Offerte verwijderd');
+            this.router.navigate(['/offertes']);
+          }
+        );
+    }
+  }
+
 
 }

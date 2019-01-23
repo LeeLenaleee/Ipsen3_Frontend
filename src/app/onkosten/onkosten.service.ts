@@ -50,9 +50,9 @@ export class OnkostenService {
     return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost, this.httpOptions);
   }
 
-  // deleteOnkost(onkost: Onkosten) {
-  //   this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/', onkost);
-  // }
+  deleteOnkost(id: number) {
+    return this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/' + id, this.httpOptions);
+  }
 
   toServerDateTransform(date) {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');

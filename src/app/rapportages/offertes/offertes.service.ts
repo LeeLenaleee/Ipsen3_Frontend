@@ -59,4 +59,8 @@ export class OffertesService {
     return dateSendingToServer;
   }
 
+  deleteOfferte(id: number) {
+    return this.httpClient.delete<OfferteModel>('http://localhost:8080/api/offerte/' + id, this.httpOptions);
+  }
+
 }

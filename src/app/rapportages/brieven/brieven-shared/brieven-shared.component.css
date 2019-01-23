@@ -21,10 +21,6 @@ input::-webkit-inner-spin-button {
   margin-bottom: 3px;
 }
 
-button {
-  width: 100%;
-}
-
 input.ng-invalid.ng-touched {
   border-right: 2px solid red;
 }
@@ -32,4 +28,18 @@ input.ng-invalid.ng-touched {
 
 .briefInput {
   height: 170px;
+}
+
+button {
+  width: 100%;
+  background-color: orange;
+  border-color: #ad6900;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+button:disabled {
+  background-color: grey;
+  border-color: transparent;
 }
