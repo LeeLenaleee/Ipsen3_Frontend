@@ -5,13 +5,13 @@
     <div class="col-12">
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Bedrijf</span>
+          <span class="input-group-text">Naam Klant</span>
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="Hema"
+                  placeholder="Naam Klant"
                   ngModel
-                  name="bedrijf"
+                  name="naamKlant"
                   required>
       </div>
     </div>
@@ -37,13 +37,13 @@
     <div class="col-6" select-class>
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Kostenpost</span>
+          <span class="input-group-text">Uren</span>
         </div>
-        <input    type="text"
+        <input    type="number"
                   class="form-control"
-                  placeholder="Materiaal"
+                  placeholder="Uren"
                   ngModel
-                  name="kostenpost"
+                  name="uren"
                   required>
       </div>
     </div>
@@ -53,13 +53,13 @@
     <div class="col-12">
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Omschrijving</span>
+          <span class="input-group-text">Cor. Nummer</span>
         </div>
-        <input    type="text"
+        <input    type="number"
                   class="form-control"
-                  placeholder="Rode en blauwe pennen"
+                  placeholder="Correspondentienummer"
                   ngModel
-                  name="omschrijving"
+                  name="correspondentienummer"
                   required>
       </div>
     </div>
@@ -74,11 +74,11 @@
           <span class="input-group-text">Bruto €</span>
         </div>
         <input type="number"
-                  class="form-control"
-                  placeholder="€--,--"
-                  ngModel
-                  name="brutokost"
-                  required>
+               class="form-control"
+               placeholder="€--,--"
+               ngModel
+               name="brutokost"
+               required>
       </div>
     </div>
     <div class="col-6">
@@ -115,12 +115,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Netto €</span>
         </div>
-      <input      type="number"
-                  class="form-control"
-                  placeholder="€--,--"
-                  ngModel
-                  name="nettokost"
-                  required>
+        <input      type="number"
+                    class="form-control"
+                    placeholder="€--,--"
+                    ngModel
+                    name="nettokost"
+                    required>
       </div>
     </div>
   </div>
@@ -131,12 +131,12 @@
     <div class="col-4">
       <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
     </div>
-      <div class="col-4">
-        <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/onkosten">Nieuw</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
-      </div>
+    <div class="col-4">
+      <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
+    </div>
   </div>
 
 </form>

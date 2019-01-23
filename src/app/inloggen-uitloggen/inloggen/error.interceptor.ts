@@ -19,8 +19,14 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (this.router.url !== '/login') { location.reload(true);  }
       }
 
+      if (err.status === 404) {
+        // auto logout if 401 response returned from api
+        // reload voor als ie in een child klasse een error krijgt zodat child klasse weg gaat en hij alsnog naar de login page gaat
+        if (this.router.url !== '/login') { location.reload(true);  }
+      }
+
       console.log(err);
-      const error = 'Er is iets mis gegaan bij het inloggen probeer het opnieuw' || err.statusText;
+      const error = 'Er is iets mis gegaan bij het inloggen, probeer het opnieuw' || err.statusText;
       return throwError(error);
     }));
   }

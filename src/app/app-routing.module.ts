@@ -1,16 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OnkostenComponent} from './onkosten/onkosten.component';
-import {ContactenComponent} from './contacten/contacten.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './inloggen-uitloggen/inloggen/auth.guard';
-import {ContactWijzigenComponent} from './contacten/contact-wijzigen/contact-wijzigen.component';
-import {ContactToevoegenComponent} from './contacten/contact-toevoegen/contact-toevoegen.component';
-import {OnkostenDetailComponent} from './onkosten/onkosten-detail/onkosten-detail.component';
-import {OnkostenToevoegenComponent} from './onkosten/onkosten-toevoegen/onkosten-toevoegen.component';
 import {OnkostenResolver} from './shared/onkosten.resolver';
 
 const appRoutes: Routes = [

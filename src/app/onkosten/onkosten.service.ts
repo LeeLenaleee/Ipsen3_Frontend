@@ -3,6 +3,7 @@ import {Onkosten} from './onkosten.model';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class OnkostenService {
@@ -10,9 +11,8 @@ export class OnkostenService {
   onkostenEmitter = new EventEmitter<Onkosten[]>();
   subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
-  onkostenGezocht = new EventEmitter<Onkosten[]>();
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa('test@test.com:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B' +
-      '2B0B822CD15D6C15B0F00A08')});
+  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+      localStorage.getItem('password'))});
   httpOptions = {
     headers: this.headers_object
   };
@@ -37,7 +37,7 @@ export class OnkostenService {
   }
 
   formToOnkost(form: NgForm) {
-    const onkost = new Onkosten(null, form.value['bedrijf'], form.value['datum'],
+    const onkost = new Onkosten(null, form.value['bedrijf'], this.toServerDateTransform(form.value['datum']),
       form.value['kostenpost'], form.value['omschrijving'], form.value['brutokost'],
       form.value['btwprocent'], form.value['btwkost'], form.value['nettokost']);
     return onkost;
@@ -57,5 +57,10 @@ export class OnkostenService {
 
   selectOnkosten(data) {
     this.subject.next(data);
+  }
+
+  toServerDateTransform(date) {
+    const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
+    return dateSendingToServer;
   }
 }

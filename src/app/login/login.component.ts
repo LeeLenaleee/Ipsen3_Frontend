@@ -45,10 +45,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    // 3 regels hieronder voor test om header en footer te showen na login
-    /*console.log(localStorage.getItem('currentUser'));
-    localStorage.setItem('currentUser', 'test');
-    console.log(localStorage.getItem('currentUser'));*/
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())

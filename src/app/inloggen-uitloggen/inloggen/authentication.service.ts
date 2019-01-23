@@ -23,6 +23,7 @@ export class AuthenticationService {
           // store user details in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('password', password2);
+          localStorage.setItem('email', email);
         }
         return user;
       }));
