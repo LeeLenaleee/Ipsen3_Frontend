@@ -8,7 +8,7 @@ export class FactuurModel {
   public btwKosten: number;
   public nettoKosten: number;
 
-  constructor(id,datum, afleverDatum, factuurOmschrijving, brutoKosten, btwPercentage, btwKosten, nettoKosten) {
+  constructor(id, datum, afleverDatum, factuurOmschrijving, brutoKosten, btwPercentage, btwKosten, nettoKosten) {
     this.id = id;
     this.datum = datum;
     this.afleverDatum = afleverDatum;

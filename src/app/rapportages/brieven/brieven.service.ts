@@ -3,6 +3,8 @@ import {Onkosten} from '../../models/onkosten.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Brieven} from '../../models/brieven.model';
 import {NgForm} from '@angular/forms';
+import {FactuurModel} from '../../models/factuur.model';
+import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class BrievenService {
@@ -36,7 +38,7 @@ export class BrievenService {
   // }
 
   formToBrief(form: NgForm) {
-    const brief = new Brieven(null, form.value['datum'], form.value['correspondentie'],
+    const brief = new Brieven(null, this.toServerDateTransform(form.value['datum']), form.value['correspondentie'],
       form.value['betreft'], form.value['adressering'], form.value['verhaal']);
     return brief;
   }
@@ -47,5 +49,15 @@ export class BrievenService {
 
   putBrief(brief: Brieven, id: number) {
     return this.httpClient.put<Brieven>('http://localhost:8080/api/brief/' + id, brief, this.httpOptions);
+  }
+
+  getBriefByPersoon(omschrijving: string) {
+    return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + omschrijving ,
+      this.httpOptions);
+  }
+
+  toServerDateTransform(date) {
+    const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
+    return dateSendingToServer;
   }
 }
