@@ -2,7 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
-import {Onkosten} from '../../onkosten/onkosten.model';
+import {Onkosten} from '../../models/onkosten.model';
 
 @Injectable()
 export class OffertesService {

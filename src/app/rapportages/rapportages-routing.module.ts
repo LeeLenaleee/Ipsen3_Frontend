@@ -8,10 +8,18 @@ import {OffertesComponent} from './offertes/offertes.component';
 import {OffertesDetailComponent} from './offertes/offertes-detail/offertes-detail.component';
 import {OffertesToevoegenComponent} from './offertes/offertes-toevoegen/offertes-toevoegen.component';
 import {OfferteResolver} from '../shared/offerte.resolver';
+import {BrievenToevoegenComponent} from './brieven/brieven-toevoegen/brieven-toevoegen.component';
+import {BrievenDetailComponent} from './brieven/brieven-detail/brieven-detail.component';
+import {resolve} from 'q';
+import {BrievenResolver} from '../shared/brieven.resolver';
 
 const rapportagesRoutes: Routes = [
   {path: 'rapportages', component: RapportagesComponent, canActivate: [AuthGuard] },
-      { path: 'brieven', component: BrievenComponent, canActivate: [AuthGuard] },
+      { path: 'brieven', component: BrievenComponent, canActivate: [AuthGuard], children: [
+          { path: '', component: BrievenToevoegenComponent },
+          { path: ':id', component: BrievenDetailComponent,
+          resolve: { brief: BrievenResolver }},
+] },
       { path: 'facturen', component: FacturenComponent, canActivate: [AuthGuard] },
       { path: 'offertes', component: OffertesComponent, canActivate: [AuthGuard], children: [
           { path: '', component: OffertesToevoegenComponent },

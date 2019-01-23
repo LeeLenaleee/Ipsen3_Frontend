@@ -14,6 +14,13 @@ import {OffertesService} from './offertes/offertes.service';
 import { OffertesDetailComponent } from './offertes/offertes-detail/offertes-detail.component';
 import { OffertesToevoegenComponent } from './offertes/offertes-toevoegen/offertes-toevoegen.component';
 import {OfferteResolver} from '../shared/offerte.resolver';
+import { BrievenDetailComponent } from './brieven/brieven-detail/brieven-detail.component';
+import { BrievenListComponent } from './brieven/brieven-list/brieven-list.component';
+import { BrievenItemComponent } from './brieven/brieven-list/brieven-item/brieven-item.component';
+import { BrievenToevoegenComponent } from './brieven/brieven-toevoegen/brieven-toevoegen.component';
+import { BrievenZoekenComponent } from './brieven/brieven-zoeken/brieven-zoeken.component';
+import {BrievenService} from './brieven/brieven.service';
+import {BrievenResolver} from '../shared/brieven.resolver';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,11 @@ import {OfferteResolver} from '../shared/offerte.resolver';
     OfferteItemComponent,
     OffertesDetailComponent,
     OffertesToevoegenComponent,
+    BrievenDetailComponent,
+    BrievenListComponent,
+    BrievenItemComponent,
+    BrievenToevoegenComponent,
+    BrievenZoekenComponent,
   ],
   imports: [
     RapportagesRoutingModule,
@@ -35,7 +47,9 @@ import {OfferteResolver} from '../shared/offerte.resolver';
   ],
   providers: [
     OffertesService,
-    OfferteResolver
+    OfferteResolver,
+    BrievenService,
+    BrievenResolver
   ]
 })
 export class RapportagesModule {}

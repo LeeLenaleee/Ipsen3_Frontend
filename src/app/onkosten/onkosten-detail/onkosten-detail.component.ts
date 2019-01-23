@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Onkosten} from '../onkosten.model';
+import {Onkosten} from '../../models/onkosten.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
@@ -25,7 +25,6 @@ export class OnkostenDetailComponent implements OnInit {
       .subscribe(
         () => {
           this.onkost = this.route.snapshot.data.onkost;
-          console.log(this.onkost.onkostenBedrijf);
           this.setValues(this.onkost);
         }
       );
