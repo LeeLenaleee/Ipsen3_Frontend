@@ -1,3 +1,7 @@
+#overflowRemove{
+  overflow-x: hidden;
+}
+
 #contactlijst td, th {
   border: 1px solid black;
   padding: 10px;

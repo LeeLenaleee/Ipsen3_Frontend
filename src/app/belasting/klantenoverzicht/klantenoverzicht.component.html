@@ -1,9 +1,10 @@
+<div id="overflowRemove">
 <div class="row">
   <div class="col-4">
     <input
       type="text"
       id="search"
-      (keyup)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
+      (keyup)="zoekContacten($event)"
       placeholder="Zoek op contacten..."
       #contactInput>
   </div>
@@ -24,8 +25,7 @@
         <tr *ngFor="let klant of shownContacten">
           <td>{{klant.id}}</td>
           <td>{{klant.bedrijf}}</td>
-          <td *ngIf="klant.heeftBetaald">Ja</td>
-          <td *ngIf="!klant.heeftBetaald">Nee</td>
+          <td>{{klant.heeftBetaald}}</td>
           <td>{{klant.factuurDatum}}</td>
         </tr>
       </table>
@@ -42,4 +42,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

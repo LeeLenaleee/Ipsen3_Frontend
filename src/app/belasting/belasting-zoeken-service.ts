@@ -9,7 +9,7 @@ export class BelastingZoekenService implements OnInit {
   factuur: Factuur;
   contact: Contact;
   contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
-  factuurMatches: {id: number, beschrijving: string, beginDatum: string, eindDatum: string}[] = [];
+  factuurMatches: {id: number, beschrijving: string, beginDatum: string, eindDatum: string, bruto: number, netto: number}[] = [];
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa('test@test.com:' +
       '9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08')
@@ -17,14 +17,12 @@ export class BelastingZoekenService implements OnInit {
   httpOptions = {
     headers: this.headers_object
   };
-  factuurZoekterm = 'http://localhost:8080/api/factuur?factuur='; // TODO AANPASSEN
-  contactZoekterm = 'http://localhost:8080/api/contacten?bedrijf=';
-
-
+  factuurZoekterm = 'http://localhost:8080/api/factuur/omschrijving?omschrijving=';
+  contactZoekterm = 'http://localhost:8080/api/contacten/bedrijf?bedrijf=';
 
   constructor(private http: HttpClient) { }
 
-  showFactuurMatches(zoekterm: string) {
+  updateFactuurMatches(zoekterm: string) {
     if (zoekterm === null) {
       zoekterm = '';
     }
@@ -36,7 +34,9 @@ export class BelastingZoekenService implements OnInit {
             this.factuurMatches.push({id: factuur.id,
               beschrijving: factuur.beschrijving,
               beginDatum: factuur.beginDatum,
-              eindDatum: factuur.eindDatum});
+              eindDatum: factuur.eindDatum,
+              bruto: factuur.bruto,
+              netto: factuur.netto});
           }
         },
         (error) => console.log('error: ' + error)
@@ -48,7 +48,7 @@ export class BelastingZoekenService implements OnInit {
     return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
   }
 
-  showContactMatches(zoekterm: string) {
+  updateContactMatches(zoekterm: string) {
     if (zoekterm === null) {
       zoekterm = '';
     }
@@ -60,9 +60,8 @@ export class BelastingZoekenService implements OnInit {
             this.contactMatches.push({id: contact.id,
               bedrijf: contact['contactBedrijf'],
               naam: contact['contactVoornaam'] + ' ' + contact['contactAchternaam'],
-              heeftBetaald: 'Ja',
+              heeftBetaald: 'Nee',
               factuurDatum: '2018'});
-            console.log(this.contactMatches);
           }
         },
         (error) => console.log('error: ' + error)
