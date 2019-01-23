@@ -34,7 +34,7 @@ export class OnkostenDetailComponent implements OnInit {
   setValues(onkosten: Onkosten) {
     setTimeout( () => {   this.form.form.patchValue({
         bedrijf: onkosten.onkostenBedrijf,
-        datum: onkosten.onkostenDatum,
+        datum: this.fromServerDateTransForm(onkosten.onkostenDatum),
         kostenpost: onkosten.onkostenKostenpost,
         omschrijving: onkosten.onkostenOmschrijving,
         brutokost: onkosten.onkostenBrutoKosten,
@@ -57,6 +57,12 @@ export class OnkostenDetailComponent implements OnInit {
           }
         );
     }
+  }
+
+  fromServerDateTransForm(date) {
+    const parts = date.split('-');
+    const x = parts[2] + '-' + parts[1] + '-' + parts[0];
+    return x;
   }
 
 }

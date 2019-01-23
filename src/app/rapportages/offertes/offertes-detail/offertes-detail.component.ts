@@ -32,7 +32,7 @@ export class OffertesDetailComponent implements OnInit {
   setValues(offerte: OfferteModel) {
     console.log(offerte.naamklant);
     setTimeout( () => {   this.form.form.patchValue({
-        datum: offerte.datum,
+        datum: this.fromServerDateTransForm(offerte.datum),
         correspondentienummer: offerte.correspondentienummer,
         naamKlant: offerte.naamklant,
         uren: offerte.uren,
@@ -40,14 +40,6 @@ export class OffertesDetailComponent implements OnInit {
         brutokost: offerte.kostenBruto,
         btwkost: offerte.kostenBTW,
         nettokost: offerte.kostenNetto
-      /*datum: '1',
-      correspondentienummer: 201,
-      naamKlant: 'pjeter',
-      uren: 8,
-      btwprocent: 2,
-      brutokost: 3,
-      btwkost: 4,
-      nettokost: 5*/
       }
     ); }, 1);
   }
@@ -65,5 +57,11 @@ export class OffertesDetailComponent implements OnInit {
         );
     }
   }
+  fromServerDateTransForm(date) {
+    const parts = date.split('-');
+    const x = parts[2] + '-' + parts[1] + '-' + parts[0];
+    return x;
+  }
+
 
 }

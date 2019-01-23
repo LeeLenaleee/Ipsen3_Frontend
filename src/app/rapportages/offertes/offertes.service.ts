@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
 import {Onkosten} from '../../onkosten/onkosten.model';
+import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class OffertesService {
@@ -36,7 +37,7 @@ export class OffertesService {
     }
 
   formToOfferte(form: NgForm) {
-    const offerte = new OfferteModel(null, form.value['datum'], form.value['correspondentienummer'],
+    const offerte = new OfferteModel(null, this.toServerDateTransform(form.value['datum']), form.value['correspondentienummer'],
       form.value['naamKlant'], form.value['uren'], form.value['btwprocent'],
       form.value['brutokost'], form.value['btwkost'], form.value['nettokost']);
     return offerte;
@@ -52,6 +53,11 @@ export class OffertesService {
 
   getOfferte(index: number) {
     return this.httpClient.get<OfferteModel>('http://localhost:8080/api/offerte/' + index , this.httpOptions);
+  }
+
+  toServerDateTransform(date) {
+    const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
+    return dateSendingToServer;
   }
 
 }

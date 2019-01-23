@@ -3,6 +3,7 @@ import {Onkosten} from './onkosten.model';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class OnkostenService {
@@ -36,7 +37,7 @@ export class OnkostenService {
   }
 
   formToOnkost(form: NgForm) {
-    const onkost = new Onkosten(null, form.value['bedrijf'], form.value['datum'],
+    const onkost = new Onkosten(null, form.value['bedrijf'], this.toServerDateTransform(form.value['datum']),
       form.value['kostenpost'], form.value['omschrijving'], form.value['brutokost'],
       form.value['btwprocent'], form.value['btwkost'], form.value['nettokost']);
     return onkost;
@@ -56,5 +57,10 @@ export class OnkostenService {
 
   selectOnkosten(data) {
     this.subject.next(data);
+  }
+
+  toServerDateTransform(date) {
+    const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
+    return dateSendingToServer;
   }
 }
