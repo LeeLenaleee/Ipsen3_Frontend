@@ -47,11 +47,11 @@ export class OffertesService {
   }
 
   putOfferte(offerte: OfferteModel, id: number) {
-    return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, offerte, this.httpOptions);
+    return this.httpClient.put<OfferteModel>('http://localhost:8080/api/offerte/' + id, offerte, this.httpOptions);
   }
 
   getOfferte(index: number) {
-    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , this.httpOptions);
+    return this.httpClient.get<OfferteModel>('http://localhost:8080/api/offerte/' + index , this.httpOptions);
   }
 
 }

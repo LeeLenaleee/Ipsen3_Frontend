@@ -25,6 +25,7 @@ export class OnkostenDetailComponent implements OnInit {
       .subscribe(
         () => {
           this.onkost = this.route.snapshot.data.onkost;
+          console.log(this.onkost.onkostenBedrijf);
           this.setValues(this.onkost);
         }
       );

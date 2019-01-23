@@ -13,6 +13,7 @@ import {OfferteItemComponent} from './offertes/offertes-list/offerte-item/offert
 import {OffertesService} from './offertes/offertes.service';
 import { OffertesDetailComponent } from './offertes/offertes-detail/offertes-detail.component';
 import { OffertesToevoegenComponent } from './offertes/offertes-toevoegen/offertes-toevoegen.component';
+import {OfferteResolver} from '../shared/offerte.resolver';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OffertesToevoegenComponent } from './offertes/offertes-toevoegen/offert
     FormsModule
   ],
   providers: [
-    OffertesService
+    OffertesService,
+    OfferteResolver
   ]
 })
 export class RapportagesModule {}

@@ -40,6 +40,14 @@ export class OffertesDetailComponent implements OnInit {
         brutokost: offerte.kostenBruto,
         btwkost: offerte.kostenBTW,
         nettokost: offerte.kostenNetto
+      /*datum: '1',
+      correspondentienummer: 201,
+      naamKlant: 'pjeter',
+      uren: 8,
+      btwprocent: 2,
+      brutokost: 3,
+      btwkost: 4,
+      nettokost: 5*/
       }
     ); }, 1);
   }
