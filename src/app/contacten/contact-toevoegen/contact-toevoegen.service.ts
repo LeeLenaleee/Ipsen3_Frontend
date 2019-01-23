@@ -56,8 +56,6 @@ export class ContactToevoegenService {
     for (const email of emails) {
       this.postEmail(email, contact).subscribe();
     }
-    alert('Contact toegevoegd!');
-
   }
 
   postContact(contact: Contact) {
