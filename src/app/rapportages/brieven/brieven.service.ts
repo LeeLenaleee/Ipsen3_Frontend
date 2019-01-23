@@ -48,4 +48,8 @@ export class BrievenService {
   putBrief(brief: Brieven, id: number) {
     return this.httpClient.put<Brieven>('http://localhost:8080/api/brief/' + id, brief, this.httpOptions);
   }
+
+  deleteBrief(id: number) {
+    return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
+  }
 }

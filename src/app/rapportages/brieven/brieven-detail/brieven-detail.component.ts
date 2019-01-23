@@ -56,4 +56,17 @@ export class BrievenDetailComponent implements OnInit {
         );
     }
   }
+
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.brievenService.deleteBrief(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.brievenService.getBrieven();
+            alert('Brief verwijderd');
+            this.router.navigate(['/brieven']);
+          }
+        );
+    }
+  }
 }

@@ -128,14 +128,17 @@
   <hr>
 
   <div class="row">
-    <div class="col-4">
-      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
+    <div class="col-3">
+      <button class="btn" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
     </div>
-    <div class="col-4">
-      <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
     </div>
-    <div class="col-4">
-      <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/brieven">Download</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" type="button" (click)="clearAndDelete()">{{ buttonTextTwo }}</button>
     </div>
   </div>
 

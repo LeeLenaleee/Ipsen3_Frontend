@@ -31,6 +31,20 @@ export class FacturenDetailsComponent implements OnInit {
       );
   }
 
+  onSubmit(form: NgForm) {
+    if (confirm('Weet u het zeker?')) {
+      const factuur = this.factuurService.formToFactuur(form);
+
+      this.factuurService.putFactuur(factuur, this.factuur.id)
+        .subscribe(
+          () => {
+            alert('Factuur gewijzigd');
+            this.factuurService.getFacturen();
+          }
+        );
+    }
+  }
+
   setValues(factuur: FactuurModel) {
     setTimeout( () => {   this.form.form.patchValue({
         datum: this.fromServerDateTransForm(factuur.datum),
@@ -48,6 +62,19 @@ export class FacturenDetailsComponent implements OnInit {
     const parts = date.split('-');
     const x = parts[2] + '-' + parts[1] + '-' + parts[0];
     return x;
+  }
+
+  clearAndDelete() {
+    if (confirm('Weet u het zeker?')) {
+      this.factuurService.deleteFactuur(+this.route.snapshot.params['id'])
+        .subscribe(
+          () => {
+            this.factuurService.getFacturen();
+            alert('Factuur verwijderd');
+            this.router.navigate(['/facturen']);
+          }
+        );
+    }
   }
 
 }

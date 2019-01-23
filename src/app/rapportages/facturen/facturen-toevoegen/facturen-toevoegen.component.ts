@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {FacturenService} from '../facturen.service';
@@ -9,9 +9,9 @@ import {FacturenService} from '../facturen.service';
   styleUrls: ['../facturen-shared/facturen-form.component.css']
 })
 export class FacturenToevoegenComponent implements OnInit {
-
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
+  @ViewChild('f') form: NgForm;
 
   constructor(private facturenService: FacturenService,
               private httpClient: HttpClient) { }
@@ -30,9 +30,9 @@ export class FacturenToevoegenComponent implements OnInit {
     }
   }
 
-  clearFields(form: NgForm) {
+  clearFields() {
     if (confirm('Weet u het zeker?')) {
-      form.onReset();
+      this.form.onReset();
     }
   }
 

@@ -2,4 +2,6 @@ button {
   background-color: orange;
   border-color: #ad6900;
   color: white;
+  text-align: center;
+  font-size: 12px;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {OnkostenService} from '../../../onkosten/onkosten.service';
 import {HttpClient} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
@@ -12,6 +12,7 @@ import {BrievenService} from '../brieven.service';
 export class BrievenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
+  @ViewChild('f') form: NgForm;
 
   constructor(private brievenService: BrievenService,
               private httpClient: HttpClient) { }
@@ -33,9 +34,9 @@ export class BrievenToevoegenComponent implements OnInit {
     }
   }
 
-  clearFields(form: NgForm) {
+  clearAndDelete() {
     if (confirm('Weet u het zeker?')) {
-      form.onReset();
+      this.form.onReset();
     }
   }
 }
