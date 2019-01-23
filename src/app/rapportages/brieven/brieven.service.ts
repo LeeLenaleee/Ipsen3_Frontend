@@ -59,6 +59,7 @@ export class BrievenService {
   toServerDateTransform(date) {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
+  }
 
   deleteBrief(id: number) {
     return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
