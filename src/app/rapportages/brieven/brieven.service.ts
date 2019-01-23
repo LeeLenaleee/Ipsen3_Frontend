@@ -3,6 +3,7 @@ import {Onkosten} from '../../models/onkosten.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Brieven} from '../../models/brieven.model';
 import {NgForm} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class BrievenService {
