@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {BrievenService} from '../brieven.service';
+import {Brieven} from '../../../models/brieven.model';
 
 @Component({
   selector: 'app-brieven-zoeken',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrievenZoekenComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('inputOmschrijving') omschrijving: ElementRef;
+
+  constructor(private briefService: BrievenService) { }
 
   ngOnInit() {
+  }
+  searchOmschrijving() {
+    if (this.omschrijving.nativeElement.value !== '') {
+      this.briefService.getBriefByPersoon(this.omschrijving.nativeElement.value)
+        .subscribe(
+          (brief: Brieven[]) => {
+            this.briefService.brievenEmitter.emit(brief);
+          });
+    } else {
+      this.briefService.getBrieven();
+    }
   }
 
 }

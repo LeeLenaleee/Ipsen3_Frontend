@@ -31,7 +31,7 @@ export class FacturenService {
       );
   }
 
-  getOfferteByOmschrijving(omschrijving: string) {
+  getFactuurByOmschrijving(omschrijving: string) {
     return this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur/zoek?omschrijving=' + omschrijving ,
       this.httpOptions);
   }
