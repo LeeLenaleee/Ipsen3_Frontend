@@ -1,0 +1,143 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Naam Klant</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="Naam Klant"
+                  ngModel
+                  name="naamKlant"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Datum</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="DD-MM-JJJJ"
+                  ngModel
+                  name="datum"
+                  required>
+      </div>
+    </div>
+
+    <div class="col-6" select-class>
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Uren</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="Uren"
+                  ngModel
+                  name="uren"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Cor. Nummer</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="Correspondentienummer"
+                  ngModel
+                  name="correspondentienummer"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bruto €</span>
+        </div>
+        <input type="number"
+               class="form-control"
+               placeholder="€--,--"
+               ngModel
+               name="brutokost"
+               required>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">BTW %</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="0.00%"
+                  ngModel
+                  name="btwprocent"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">BTW €</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="€--,--"
+                  ngModel
+                  name="btwkost"
+                  required>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Netto €</span>
+        </div>
+        <input      type="number"
+                    class="form-control"
+                    placeholder="€--,--"
+                    ngModel
+                    name="nettokost"
+                    required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-4">
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-secondary" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/offertes">Nieuw</button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-danger" type="button" (click)="clearFields(f)">{{ buttonTextTwo }}</button>
+    </div>
+  </div>
+
+</form>
+

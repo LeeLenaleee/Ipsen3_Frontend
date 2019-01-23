@@ -10,7 +10,6 @@ export class OnkostenService {
   onkostenEmitter = new EventEmitter<Onkosten[]>();
   subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
-  onkostenGezocht = new EventEmitter<Onkosten[]>();
   headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
       localStorage.getItem('password'))});
   httpOptions = {

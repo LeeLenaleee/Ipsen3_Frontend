@@ -9,6 +9,11 @@ import {OffertesZoekenComponent} from './offertes/offertes-zoeken/offertes-zoeke
 import {RapportagesRoutingModule} from './rapportages-routing.module';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {OfferteItemComponent} from './offertes/offertes-list/offerte-item/offerte-item.component';
+import {OffertesService} from './offertes/offertes.service';
+import { OffertesDetailComponent } from './offertes/offertes-detail/offertes-detail.component';
+import { OffertesToevoegenComponent } from './offertes/offertes-toevoegen/offertes-toevoegen.component';
+import {OfferteResolver} from '../shared/offerte.resolver';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,10 @@ import {FormsModule} from '@angular/forms';
     FacturenDetailsComponent,
     OffertesComponent,
     OffertesListComponent,
-    OffertesZoekenComponent
+    OffertesZoekenComponent,
+    OfferteItemComponent,
+    OffertesDetailComponent,
+    OffertesToevoegenComponent,
   ],
   imports: [
     RapportagesRoutingModule,
@@ -26,7 +34,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   providers: [
-
+    OffertesService,
+    OfferteResolver
   ]
 })
 export class RapportagesModule {}
