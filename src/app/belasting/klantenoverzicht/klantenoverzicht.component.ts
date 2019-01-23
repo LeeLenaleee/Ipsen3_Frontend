@@ -31,32 +31,11 @@ export class KlantenoverzichtComponent implements OnInit {
 
   ngOnInit() {
     this.service.showContactMatches(this.contactNaam.nativeElement.value);
-    this.contactMatches = this.service.contactMatches;
+    this.shownContacten = this.service.contactMatches;
   }
 
   onKeyDown() {
     this.service.showContactMatches(this.contactNaam.nativeElement.value);
-  }
-
-  onZoekBedrijf() {
-    const naam = this.contactNaam.nativeElement.value;
-    // this.service.getContact(id);
-    let naamIndex = null;
-
-    this.shownContacten = [];
-    for (const bedrijf of this.contactMatches) {
-      if (bedrijf.bedrijf === naam) {
-        this.shownContacten.push(bedrijf);
-        if (naamIndex === null) {
-          naamIndex = this.contactMatches.indexOf(bedrijf);
-        }
-      }
-    }
-    if (naamIndex === null) {
-      alert('Dit bedrijf bestaat niet');
-      return;
-    }
-    this.contactNaam.nativeElement.value = '';
   }
 
   /**

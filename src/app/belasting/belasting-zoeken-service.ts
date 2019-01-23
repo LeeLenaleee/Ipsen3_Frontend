@@ -39,7 +39,7 @@ export class BelastingZoekenService implements OnInit {
               eindDatum: factuur.eindDatum});
           }
         },
-        (error) => console.log('error: ' + error) // als de string niet voorkomt
+        (error) => console.log('error: ' + error)
       );
   }
 
@@ -58,14 +58,14 @@ export class BelastingZoekenService implements OnInit {
         (contacten: Contact[]) => {
           for (const contact of contacten) {
             this.contactMatches.push({id: contact.id,
-              bedrijf: contact.bedrijf,
-              naam: contact.voornaam + ' ' + contact.achternaam,
+              bedrijf: contact['contactBedrijf'],
+              naam: contact['contactVoornaam'] + ' ' + contact['contactAchternaam'],
               heeftBetaald: 'Ja',
               factuurDatum: '2018'});
             console.log(this.contactMatches);
           }
         },
-        (error) => console.log('error: ' + error) // als de string niet voorkomt
+        (error) => console.log('error: ' + error)
       );
   }
 

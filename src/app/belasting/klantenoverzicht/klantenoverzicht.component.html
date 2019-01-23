@@ -3,7 +3,7 @@
     <input
       type="text"
       id="search"
-      (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
+      (keyup)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
       placeholder="Zoek op contacten..."
       #contactInput>
   </div>
