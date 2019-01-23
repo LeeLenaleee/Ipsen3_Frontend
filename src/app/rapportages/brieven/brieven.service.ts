@@ -37,7 +37,7 @@ export class BrievenService {
   // }
 
   formToBrief(form: NgForm) {
-    const brief = new Brieven(null, form.value['datum'], form.value['correspondentie'],
+    const brief = new Brieven(null, this.toServerDateTransform(form.value['datum']), form.value['correspondentie'],
       form.value['betreft'], form.value['adressering'], form.value['verhaal']);
     return brief;
   }
