@@ -45,7 +45,16 @@ export class ContactWijzigenComponent implements OnInit {
             this.router.navigate(['/contacten']);
           }
         );
-      // TODO verwijder de emails en tels en dan nieuwe toevoegen
+
+      this.wijzigenService.deleteTelefoons(id);
+      this.wijzigenService.deleteEmails(id);
+
+      const tels: string[] = this.toevoegenService.formToTel(this.form);
+      const emails: string[] = this.toevoegenService.formToEmail(this.form);
+
+      this.toevoegenService.voegTelToe(tels, contact, id);
+      this.toevoegenService.voegEmailToe(emails, contact, id);
+
     }
   }
 
@@ -58,14 +67,14 @@ export class ContactWijzigenComponent implements OnInit {
 
   onDelete() {
     if (confirm('Weet u het zeker?')) {
-      const contact = this.toevoegenService.formToContact(this.form);
-      this.wijzigenService.deleteContact(contact)
-        .subscribe(
-          (response) => {
-            console.log(response);
-          },
-          (error) => console.log(error)
-        );
+      const id = this.route.snapshot.params['id'];
+      this.wijzigenService.deleteContact(id)
+        .subscribe();
+
+      this.wijzigenService.deleteTelefoons(id);
+      this.wijzigenService.deleteEmails(id);
+
+      this.router.navigate(['/contacten']);
     }
   }
 
@@ -85,7 +94,7 @@ export class ContactWijzigenComponent implements OnInit {
             nummers.push(tel);
           }
           if (contact !== null && emails.length === this.aantalEmail) {
-            this.setValues(contact, nummers, emails);
+            // this.setValues(contact, nummers, emails);
           }
         }
       );
@@ -97,7 +106,7 @@ export class ContactWijzigenComponent implements OnInit {
             emails.push(mail);
           }
           if (contact !== null && nummers.length === this.aantalTel) {
-            this.setValues(contact, nummers, emails);
+            // this.setValues(contact, nummers, emails);
           }
         }
       );
@@ -106,9 +115,11 @@ export class ContactWijzigenComponent implements OnInit {
         (cont: Contact) => {
           contact = cont;
           this.router.navigate(['/contacten', cont.id, 'wijzigen']);
-          if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
+          // if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
+          setTimeout(() => {
             this.setValues(contact, nummers, emails);
-          }
+          }, 5);
+          // }
         }
       );
   }

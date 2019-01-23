@@ -45,6 +45,7 @@ export class ContactZoekenService implements OnInit {
             geselecteerdeNummers.push(nummer['telnr']);
           }
         }
+        // TODO checken of er meer dan 3 in zitten en dat de eerste verwijderen
         this.telNrs.emit(geselecteerdeNummers);
       }
     );
