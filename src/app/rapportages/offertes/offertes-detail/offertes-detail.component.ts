@@ -75,5 +75,9 @@ export class OffertesDetailComponent implements OnInit {
     }
   }
 
+  downLoad() {
+    this.offerteService.downLoad(this.offerte.id);
+  }
+
 
 }

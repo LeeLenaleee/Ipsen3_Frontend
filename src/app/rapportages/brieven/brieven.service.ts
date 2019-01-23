@@ -65,4 +65,22 @@ export class BrievenService {
     return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
 
   }
+
+  downLoad(id: number) {
+    const downloadString = 'http://localhost:8080/api/brief/download?id=' + id;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+        localStorage.getItem('password'))});
+    fetch(downloadString, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'BriefId: ' + id;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
+  }
 }

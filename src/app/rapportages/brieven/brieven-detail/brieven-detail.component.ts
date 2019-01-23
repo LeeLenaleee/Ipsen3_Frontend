@@ -75,4 +75,8 @@ export class BrievenDetailComponent implements OnInit {
         );
     }
   }
+
+  downLoad() {
+    this.brievenService.downLoad(this.brief.id);
+  }
 }
