@@ -53,8 +53,6 @@ export class BrievenService {
   getBriefByPersoon(geadreseerde: string) {
     return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
       this.httpOptions);
-    console.log('return this.httpClient.get<Brieven[]>(\'http://localhost:8080/api/brief/zoek?geadreseerde=\' + geadreseerde ,\n' +
-      '      this.httpOptions);');
   }
 
   toServerDateTransform(date) {
