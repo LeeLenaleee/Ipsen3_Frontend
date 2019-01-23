@@ -18,7 +18,7 @@ export class FacturenZoekenComponent implements OnInit {
   }
   searchOmschrijving() {
     if (this.omschrijving.nativeElement.value !== '') {
-      this.factuurService.getOfferteByOmschrijving(this.omschrijving.nativeElement.value)
+      this.factuurService.getFactuurByOmschrijving(this.omschrijving.nativeElement.value)
         .subscribe(
           (factuur: FactuurModel[]) => {
             this.factuurService.factuurEmitter.emit(factuur);

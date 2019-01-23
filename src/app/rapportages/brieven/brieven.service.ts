@@ -51,8 +51,8 @@ export class BrievenService {
     return this.httpClient.put<Brieven>('http://localhost:8080/api/brief/' + id, brief, this.httpOptions);
   }
 
-  getBriefByPersoon(omschrijving: string) {
-    return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + omschrijving ,
+  getBriefByPersoon(geadreseerde: string) {
+    return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
       this.httpOptions);
   }
 
