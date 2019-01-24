@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Klant} from './klant.model';
 import {BelastingZoekenService} from '../belasting-zoeken-service';
 
 @Component({

@@ -3,6 +3,7 @@ import {Factuur} from './factuur.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Contact} from '../contacten/contact.model';
 import {Onkost} from './onkost.model';
+import {Kostenpost} from './kostenpost.model';
 
 
 @Injectable()
@@ -12,6 +13,7 @@ export class BelastingZoekenService implements OnInit {
   contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
   factuurMatches: {id: number, beschrijving: string, beginDatum: string, eindDatum: string, bruto: number, netto: number}[] = [];
   uitgaveMatches: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
+  kostenposten: {naam: string}[] = [];
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa('test@test.com:' +
       '9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08')
@@ -22,6 +24,7 @@ export class BelastingZoekenService implements OnInit {
   factuurZoekterm = 'http://localhost:8080/api/factuur/omschrijving?omschrijving=';
   contactZoekterm = 'http://localhost:8080/api/contacten/bedrijf?bedrijf=';
   uitgaveZoekterm = 'http://localhost:8080/api/onkosten/zoek?omschrijving=';
+  kostenpostZoekterm = 'http://localhost:8080/api/kostenpost';
 
   constructor(private http: HttpClient) { }
 
@@ -85,7 +88,6 @@ export class BelastingZoekenService implements OnInit {
       .subscribe(
         (uitgaven: Onkost[]) => {
           for (const uitgave of uitgaven) {
-            console.log(uitgave);
             this.uitgaveMatches.push({id: uitgave.id,
               beschrijving: uitgave['onkostenOmschrijving'],
               kostenpost: uitgave['onkostenKostenpost'],
@@ -101,6 +103,19 @@ export class BelastingZoekenService implements OnInit {
   getUitgaveMatches(zoekterm: string) {
     console.log(this.httpOptions.headers.get('Authorization'));
     return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
+  }
+
+  getKostenposten() {
+    this.http.get<any[]>(this.kostenpostZoekterm, this.httpOptions)
+      .subscribe(
+        (kostenposten: Kostenpost[]) => {
+          for (const kostenpost of kostenposten) {
+            console.log(kostenpost);
+            this.kostenposten.push({naam: kostenpost['kostenpost']});
+          }
+        },
+        (error) => console.log('error: ' + error)
+      );
   }
 
 
