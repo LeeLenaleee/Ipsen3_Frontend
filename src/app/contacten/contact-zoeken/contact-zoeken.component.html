@@ -4,19 +4,14 @@
              id="bedrijf"
              class="form-control"
              placeholder="Bedrijf"
-             list="bedrijven"
              autocomplete="off"
-             (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
              #bedrijfInput>
-      <datalist id="bedrijven">
-          <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.bedrijf }}">
-      </datalist>
   </div>
   <div class="col-">
     <button class="btn"
             id="zoekButton"
             type="submit"
-            (click)="onZoekBedrijf()">Zoek bedrijf</button>
+            (click)="onKeyDown()">Zoek bedrijf</button>
   </div>
 </div>
 <hr>
