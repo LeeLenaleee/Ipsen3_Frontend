@@ -59,12 +59,14 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Bruto €</span>
         </div>
-        <input type="number"
-               class="form-control"
-               placeholder="€--,--"
-               ngModel
-               name="brutokost"
-               required>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="€--,--"
+          ngModel
+          name="brutokost"
+          (keyup)="calculatePrice()"
+          required>
       </div>
     </div>
     <div class="col-6">
@@ -74,10 +76,16 @@
         </div>
         <input    type="number"
                   class="form-control"
-                  placeholder="0.00%"
                   ngModel
+                  [maxLength]="2"
+                  list="btwProcent"
                   name="btwprocent"
-                  required>
+                  required
+                  [(ngModel)]="percentage">
+        <datalist id="btwProcent">
+          <option name="btwProcentHoog">{{ btwPercentages.btwPercentageHoog }}</option>
+          <option name="btwProcentLaag">{{ btwPercentages.btwPercentageLaag }}</option>
+        </datalist>
       </div>
     </div>
   </div>
