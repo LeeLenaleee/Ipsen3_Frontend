@@ -86,16 +86,18 @@
         <div class="input-group-prepend">
           <span class="input-group-text">BTW %</span>
         </div>
-        <select   name="BTW %"
+        <input   name="BTW %"
                   type="number"
                   class="form-control"
-                  placeholder="0.00%"
                   ngModel
+                  [maxLength]="2"
+                  list="btwProcent"
                   name="btwprocent"
                   required>
-          <option value="21">21 %</option>
-          <option value="9">9 %</option>
-        </select>
+        <datalist id="btwProcent">
+          <option name="btwProcentHoog">{{ btwPercentages.btwPercentageHoog }}</option>
+          <option name="btwProcentLaag">{{ btwPercentages.btwPercentageLaag }}</option>
+        </datalist>
       </div>
     </div>
   </div>
