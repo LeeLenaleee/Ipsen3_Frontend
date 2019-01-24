@@ -21,9 +21,9 @@ export class KwartaalWeergavenComponent implements OnInit {
   ];
 
   onkosten: Onkost[] = [
-    new Onkost('Nieuwe printer', 523, 204, '05-10-2010'),
-    new Onkost('Printer papier', 50, 48, '02-11-2014'),
-    new Onkost('Nieuwe telefoon', 100, 90, '15-05-2017')
+    new Onkost(1, 'Nieuwe printer', 'Printer', '05-10-2010', 2000, 1900),
+    new Onkost(2, 'Printer papier', 'Printer', '02-11-2014', 50, 45),
+    new Onkost(3, 'Nieuwe telefoon', 'Communicatie', '15-05-2017', 100, 96)
   ];
 
   constructor() { }
@@ -40,11 +40,11 @@ export class KwartaalWeergavenComponent implements OnInit {
 
     // Onkosten
     for (let i = 0; i <  this.onkosten.length; i++) {
-      if (this.onkosten[i].eindDatum.slice(6, 10) !== this.jaar.toString()) {
+      if (this.onkosten[i].datum.slice(6, 10) !== this.jaar.toString()) {
         continue;
       }
       for (let j = 0; j < this.kwartaalmaanden.length; j++) {
-        if (this.onkosten[i].eindDatum.slice(3, 5) === this.kwartaalmaanden[j]) {
+        if (this.onkosten[i].datum.slice(3, 5) === this.kwartaalmaanden[j]) {
           this.weergaven.push(this.onkosten[i]);
         }
       }
