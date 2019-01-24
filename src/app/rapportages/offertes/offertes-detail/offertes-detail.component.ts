@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OffertesService} from '../offertes.service';
 import {OfferteModel} from '../../../models/offerte.model';
+import {BerekenService} from '../../../shared/bereken.service';
+import {Btw} from '../../../models/btw.model';
 
 @Component({
   selector: 'app-offertes-detail',
@@ -14,28 +16,38 @@ export class OffertesDetailComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonTextOne = 'Wijzig';
   buttonTextTwo = 'Verwijder';
+  btwPercentages = new Btw(null, null, null);
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private offerteService: OffertesService) { }
+              private offerteService: OffertesService,
+              private berekenService: BerekenService) { }
 
   ngOnInit() {
+    this.berekenService.getBtwPercentages()
+      .subscribe(
+        (btw: Btw) => {
+          this.btwPercentages = btw;
+        }
+      );
     this.route.params
       .subscribe(
         () => {
           this.offerte = this.route.snapshot.data.offerte;
-          this.setValues(this.offerte);
+          this.setValues(this.offerte, this.btwPercentages);
         }
       );
   }
 
-  setValues(offerte: OfferteModel) {
+  setValues(offerte: OfferteModel, btw: Btw) {
     setTimeout( () => {   this.form.form.patchValue({
         datum: this.fromServerDateTransForm(offerte.datum),
         correspondentienummer: offerte.correspondentienummer,
         naamKlant: offerte.naamklant,
         uren: offerte.uren,
         btwprocent: offerte.btwPercentage,
+        btwPercentageHoog: btw.btwPercentageHoog,
+        btwPercentageLaag: btw.btwPercentageLaag,
         brutokost: offerte.kostenBruto,
         btwkost: offerte.kostenBTW,
         nettokost: offerte.kostenNetto
@@ -79,5 +91,7 @@ export class OffertesDetailComponent implements OnInit {
     this.offerteService.downLoad(this.offerte.id);
   }
 
-
+  calculatePrice() {
+    this.berekenService.calculatePrice(this.form);
+  }
 }

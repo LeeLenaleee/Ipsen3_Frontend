@@ -58,8 +58,4 @@ export class OnkostenService {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
   }
-
-  getBtwPercentages() {
-    return this.httpClient.get<Btw>('http://localhost:8080/api/btwpercentage/1' , this.httpOptions);
-  }
 }
