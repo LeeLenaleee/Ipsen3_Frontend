@@ -16,6 +16,7 @@ export class ContactWijzigenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonText = 'Contact Wijzigen';
   buttonText2 = 'Wijzigingen verwijderen';
+  buttonText3 = 'Nieuw contact';
   aantalTel = 3;
   aantalEmail = 3;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
