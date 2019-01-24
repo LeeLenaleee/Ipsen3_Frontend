@@ -12,7 +12,7 @@ export class OnkostenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
   @ViewChild('f') form: NgForm;
-
+  
   constructor(private onkostenService: OnkostenService,
               private httpClient: HttpClient) { }
 
