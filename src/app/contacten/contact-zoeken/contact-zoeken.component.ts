@@ -18,6 +18,7 @@ export class ContactZoekenComponent implements OnInit {
   ngOnInit() {
     this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
     this.mogelijkeBedrijven = this.service.mogelijkeBedrijven;
+    this.gezochtePersonen = this.mogelijkeBedrijven;
   }
 
   onKeyDown() {
