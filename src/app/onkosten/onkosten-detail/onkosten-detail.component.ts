@@ -3,6 +3,7 @@ import {Onkosten} from '../../models/onkosten.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
+import {Btw} from '../../models/btw.model';
 
 @Component({
   selector: 'app-onkosten-detail',
@@ -14,23 +15,29 @@ export class OnkostenDetailComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonTextOne = 'Wijzig';
   buttonTextTwo = 'Verwijder';
+  btwPercentages = new Btw(null, null, null);
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private onkostenService: OnkostenService) { }
 
   ngOnInit() {
-    // kan altijd nog worden omgebouwd naar dat onkosten detail component elke keer opnieuw wordt aangemaakt.
+    this.onkostenService.getBtwPercentages()
+      .subscribe(
+        (btw: Btw) => {
+          this.btwPercentages = btw;
+        }
+      );
     this.route.params
       .subscribe(
         () => {
           this.onkost = this.route.snapshot.data.onkost;
-          this.setValues(this.onkost);
+          this.setValues(this.onkost, this.btwPercentages);
         }
       );
   }
 
-  setValues(onkosten: Onkosten) {
+  setValues(onkosten: Onkosten, btw: Btw) {
     setTimeout( () => {   this.form.form.patchValue({
         bedrijf: onkosten.onkostenBedrijf,
         datum: this.fromServerDateTransForm(onkosten.onkostenDatum),
@@ -38,6 +45,8 @@ export class OnkostenDetailComponent implements OnInit {
         omschrijving: onkosten.onkostenOmschrijving,
         brutokost: onkosten.onkostenBrutoKosten,
         btwprocent: onkosten.onkostenBtwPercentage,
+        btwPercentageHoog: btw.btwPercentageHoog,
+        btwPercentageLaag: btw.btwPercentageLaag,
         btwkost: onkosten.onkostenBtwKosten,
         nettokost: onkosten.onkostenNettoKosten
       }

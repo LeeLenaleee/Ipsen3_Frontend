@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
 import {HttpClient} from '@angular/common/http';
+import {Btw} from '../../models/btw.model';
 
 @Component({
   selector: 'app-onkosten-toevoegen',
@@ -12,11 +13,17 @@ export class OnkostenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
   @ViewChild('f') form: NgForm;
-  
+  btwPercentages = new Btw(null, null, null);
   constructor(private onkostenService: OnkostenService,
               private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.onkostenService.getBtwPercentages()
+      .subscribe(
+        (btw: Btw) => {
+          this.btwPercentages = btw;
+        }
+      );
   }
 
   onSubmit(form: NgForm) {
@@ -38,5 +45,4 @@ export class OnkostenToevoegenComponent implements OnInit {
       this.form.onReset();
     }
   }
-
 }
