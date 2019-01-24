@@ -1,7 +1,6 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Kostenpost } from './kostenpost-list/kostenpost.model';
-import { Onkosten } from '../onkosten/onkosten.model';
 
 @Injectable()
 export class InstellingenService implements OnInit {
@@ -12,7 +11,7 @@ export class InstellingenService implements OnInit {
         };
     idUrl = 'http://localhost:8080/api/kostenpost'
     kostenPostGezocht = new EventEmitter<Kostenpost>();
-    arrayKostenPost = new EventEmitter<Kostenpost[]>();    
+    arrayKostenPost = new EventEmitter<Kostenpost[]>();
     constructor(private httpClient: HttpClient) { }
 
     // getKostenposten(id: number) {
@@ -30,13 +29,13 @@ export class InstellingenService implements OnInit {
     getKostenPosten() {
         return this.httpClient.get<Kostenpost[]>(this.idUrl, this.httpOptions).subscribe(
             (onkosten: Kostenpost[]) => {
-                console.log("getkostenpost woo")
+                console.log("getkostenpost woo");
                 this.arrayKostenPost.emit(onkosten);
             }
-        )
+        );
     }
     ngOnInit(): void {
-        console.log("gheheheh")
+        console.log("gheheheh");
         console.log(localStorage.getItem('currentUser'));
     }
 }
