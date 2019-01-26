@@ -7,7 +7,7 @@ import {ContactZoekenService} from '../../contact-zoeken.service';
   styleUrls: ['./contacten-list.component.css']
 })
 export class ContactenListComponent implements OnInit {
-  @Input() gezochtePersonen: {id: number, bedrijf: string, naam: string}[] = [];
+  @Input() personen: {id: number, bedrijf: string, naam: string}[] = [];
 
   constructor(private service: ContactZoekenService) { }
 

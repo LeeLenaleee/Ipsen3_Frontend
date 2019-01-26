@@ -1,9 +1,25 @@
-<table class="table table-bordered table-hover table-sm text-center">
-  <tbody style="cursor: pointer">
-  <tr *ngFor="let persoon of gezochtePersonen"
-      (click)="kiesPersoon(persoon.id)">
-    <th scope="row">{{ persoon.naam }}</th>
-    <td>{{ persoon.bedrijf }}</td>
-  </tr>
-  </tbody>
-</table>
+<!--<table class="table table-bordered table-hover table-sm text-center">-->
+  <!--<tbody style="cursor: pointer">-->
+  <!--<tr *ngFor="let persoon of gezochtePersonen"-->
+      <!--(click)="kiesPersoon(persoon.id)">-->
+    <!--<th scope="row">{{ persoon.naam }}</th>-->
+    <!--<td>{{ persoon.bedrijf }}</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
+
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <div class="card w-100"
+           [routerLink]="['/contacten', persoon.id, 'wijzigen']"
+           *ngFor="let persoon of personen">
+        <div class="card-body item-select">
+          <h5><b>Bedrijf: </b> <i> {{persoon.bedrijf}} </i></h5>
+          <p><b>Naam: </b> <i>{{persoon.naam}} </i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

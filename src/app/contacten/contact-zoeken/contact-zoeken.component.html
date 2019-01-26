@@ -1,30 +1,23 @@
-<br>
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-9">
       <input type="text"
              id="bedrijf"
              class="form-control"
              placeholder="Bedrijf"
-             list="bedrijven"
              autocomplete="off"
-             (keydown)="$event.key == 'Enter' ? onZoekBedrijf(): onKeyDown()"
              #bedrijfInput>
-      <datalist id="bedrijven">
-          <option *ngFor="let bedrijf of mogelijkeBedrijven" value="{{ bedrijf.bedrijf }}">
-      </datalist>
   </div>
-  <div class="col-md-2">
+  <div class="col-">
     <button class="btn"
             id="zoekButton"
             type="submit"
-            (click)="onZoekBedrijf()">Zoek bedrijf</button>
+            (click)="onKeyDown()">Zoek bedrijf</button>
   </div>
 </div>
-<br>
+<hr>
 <div class="row">
-  <div class="col" *ngIf="gezochtePersonen.length > 1">
-    <app-contacten-list [gezochtePersonen]="gezochtePersonen"></app-contacten-list>
+  <div class="col">
+    <app-contacten-list [personen]="gezochtePersonen"></app-contacten-list>
   </div>
-
 </div>
 

@@ -1,9 +1,9 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Onkosten} from '../models/onkosten.model';
-import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import {Btw} from '../models/btw.model';
 
 @Injectable()
 export class OnkostenService {
@@ -57,5 +57,9 @@ export class OnkostenService {
   toServerDateTransform(date) {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
+  }
+
+  getBtwPercentages() {
+    return this.httpClient.get<Btw>('http://localhost:8080/api/btwpercentage/1' , this.httpOptions);
   }
 }
