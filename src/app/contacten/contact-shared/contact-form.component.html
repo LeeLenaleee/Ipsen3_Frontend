@@ -1,7 +1,6 @@
-<form style="padding: 8px" (ngSubmit)="onSubmit()" #f="ngForm">
+<form (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
-     <!--<label for="inputFirstname">Voornaam*</label>-->
       <div class="input-group-prepend">
       <span class="input-group-text">Voornaam</span>
      <input type="text"
@@ -14,7 +13,6 @@
    </div>
     </div>
     <div class="form-group col-md-6">
-     <!--<label for="inputLastname">Achternaam*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Achternaam</span>
      <input type="text"
@@ -32,13 +30,12 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <!--<label for="inputTelephone">Telefoon nummer*</label>-->
       <div class="input-group-prepend">
-        <span class="input-group-text">Telefoon nummer</span>
+        <span class="input-group-text">Telefoon</span>
       <input type="number"
              class="form-control"
              id="inputTelephone"
-             placeholder="0612345678"
+             placeholder="06-"
              ngModel
              name="telefoon1"
              required>
@@ -47,7 +44,6 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <!--<label for="inputEmail">Email adres*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Email adres</span>
         <input type="email"
@@ -70,7 +66,7 @@
         <input type="number"
                class="form-control"
                id="inputTelephone2"
-               placeholder="0612345678"
+               placeholder="06-"
                ngModel
                name="telefoon2">
         </div>
@@ -95,7 +91,7 @@
           <input type="number"
                  class="form-control"
                  id="inputTelephone3"
-                 placeholder="0612345678"
+                 placeholder="06-"
                  ngModel
                  name="telefoon3">
       </div>
@@ -118,7 +114,6 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <!--<label for="inputCompany">Bedrijf*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Bedrijf</span>
       <input type="text"
@@ -130,7 +125,6 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <!--<label for="inputWebsite">Website</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Website</span>
       <input type="text"
@@ -145,7 +139,6 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <!--<label for="inputCity">Woonplaats*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Woonplaats</span>
       <input type="text"
@@ -158,7 +151,6 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <!--<label for="inputRelation">Relatie*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Relatie</span>
       <select id="inputRelation"
@@ -173,7 +165,6 @@
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <!--<label for="inputStreet">Straatnaam*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Straatnaam</span>
       <input type="text"
@@ -186,7 +177,6 @@
       </div>
     </div>
       <div class="form-group col-md-4">
-       <!--<label for="inputNumber">Huisnummer*</label>-->
         <div class="input-group-prepend">
           <span class="input-group-text">Huisnummer</span>
        <input type="text"
@@ -201,7 +191,6 @@
   </div>
   <div class="form-row">
   <div class="form-group col-md-4">
-     <!--<label for="inputZip">Postcode*</label>-->
     <div class="input-group-prepend">
       <span class="input-group-text">Postcode</span>
       <input type="text"
@@ -214,14 +203,12 @@
     </div>
     </div>
     <div class="form-group col-md-8">
-      <!--<label for="inputLand">Land*</label>-->
       <div class="input-group-prepend">
         <span class="input-group-text">Land</span>
       <input type="text"
              class="form-control"
              id="inputLand"
              placeholder="Nederland"
-             value="Nederland"
              [(ngModel)]="land"
              name="land"
              required>
