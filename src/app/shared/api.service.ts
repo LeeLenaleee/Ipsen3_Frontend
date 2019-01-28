@@ -31,6 +31,12 @@ export class ApiService {
         return this.httpClient.post<T>(uri, model, { headers: headers });
     }
 
+    put<T>(path: string, model: T):  Observable<T> {
+        const uri = this.createURI(path);
+        const headers = this.createHeaders();
+        return this.httpClient.put<T>(uri, model, { headers: headers });
+    }
+
     delete<T>(path: string, id: number): Observable<T> {
       const uri = this.createURI(path) + '/' + id;
       const headers = this.createHeaders();

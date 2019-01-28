@@ -1,14 +1,14 @@
 <hr>
 <div class="row">
     <span class="input-group-text">BTW hoog</span>
-    <input type="number">
+    <input type="number" [(ngModel)]="hoog">
 </div>
 <div class="row">
   <span class="input-group-text">BTW laag</span>
-  <input type="number">
+  <input type="number" [(ngModel)]="laag">
 </div>
 <div class="row">
-  <button class="btn">Verander BTW</button>
+  <button class="btn" (click)="veranderBtw()">Verander BTW</button>
 </div>
 
 <div class="row">

@@ -4,6 +4,7 @@ import { Kostenpost } from '../models/kostenpost.model';
 import { ApiService } from '../shared/api.service';
 import { Observable } from 'rxjs';
 import {Onkosten} from '../models/onkosten.model';
+import {Btw} from '../models/btw.model';
 
 @Injectable()
 export class InstellingenService implements OnInit {
@@ -19,6 +20,14 @@ export class InstellingenService implements OnInit {
 
   deleteKostenpost(id: number) {
     return this.apiService.delete<Onkosten>('/kostenpost', id);
+  }
+
+  getBtw() {
+      return this.apiService.get<Btw>('/btwpercentage/1');
+  }
+
+  putBtw(btw: Btw) {
+      return this.apiService.put<Btw>('/btwpercentage/1', btw);
   }
     
     ngOnInit(): void {
