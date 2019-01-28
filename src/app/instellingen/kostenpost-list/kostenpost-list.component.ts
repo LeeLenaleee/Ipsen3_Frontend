@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { InstellingenService } from '../instellingen.Service';
 import { Kostenpost } from './kostenpost.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-kostenpost-list',
@@ -10,22 +10,26 @@ import { Kostenpost } from './kostenpost.model';
 })
 export class KostenpostListComponent implements OnInit {
   kostenposten: Kostenpost[] = []
-  kostenpostForm: FormGroup;
-  
-  constructor(private formBuilder: FormBuilder, private instellingenService: InstellingenService) { }
+  @ViewChild('f') form: NgForm;
+  kostenpost = 'fjido';
 
-  ngOnInit() {
-    // this.kostenpostForm = this.formBuilder.group({
-    //   kostenpost: ['', Validators.required],
-    // });
-    this.instellingenService.getKostenPosten();
-    this.instellingenService.arrayKostenPost.subscribe(
+  constructor(private instellingenService: InstellingenService) { }
+
+  voegToe() {
+    console.log(this.form);
+    const post = new Kostenpost(null, this.kostenpost);
+    this.instellingenService.postKostenPost(post).subscribe();
+    this.instellingenService.getKostenPosten().subscribe(
       (kostenposten: Kostenpost[]) => {
         this.kostenposten = kostenposten;
-      }, error => {
-        console.log("SOMETHING WENT HORRIBLY, TERRIBLY WRONG");
       }
-    )
+    );
   }
-
+  ngOnInit() {
+    this.instellingenService.getKostenPosten().subscribe(
+      (kostenposten: Kostenpost[]) => {
+        this.kostenposten = kostenposten;
+      }
+    );
+  }
 }

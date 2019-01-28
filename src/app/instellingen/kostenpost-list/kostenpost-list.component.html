@@ -1,15 +1,15 @@
-<!-- <h2 class="center">Kostenpost</h2>
-<button [disabled]="foo" class = "btn btn-light">Voeg kostenpost toe</button>
+<h2 class="center">Kostenpost</h2>
 
-<form [formGroup]="kostenpostForm">
-  <div class="formGroup">
+<form (ngSubmit)="voegToe()" #f="ngForm">
+  <div class="form-group">
     <label for="kostenpost" class="center form-control">Kostenpost</label>
-    <input type="text" formControlName="kostenpost" class="form-control center" placeholder="kostenpost">
+    <input type="text" id="kostenpost" [(ngModel)]="kostenpost" name="kostenpost" class="form-control center" placeholder="kostenpost">
+    <button [disabled]="foo" class = "btn btn-light">Voeg kostenpost toe</button>
   </div>
-</form> -->
+</form>
 
 <hr>
-<h2>HELLO FSOCIETY</h2>
+<h2>KOSTENPOSTEN</h2>
 <div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
   <div class="row">
     <div class="col-12">

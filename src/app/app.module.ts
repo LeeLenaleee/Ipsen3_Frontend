@@ -29,6 +29,7 @@ import { InstellingenService } from './instellingen/instellingen.Service';
 import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
 import {RapportagesModule} from './rapportages/rapportages.module';
+import { ApiService } from './shared/api.service';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import {RapportagesModule} from './rapportages/rapportages.module';
     AlertService,
     AuthenticationService,
     InstellingenService,
+    ApiService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
