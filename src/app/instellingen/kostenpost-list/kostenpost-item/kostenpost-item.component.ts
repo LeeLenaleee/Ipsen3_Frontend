@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Kostenpost } from '../kostenpost.model';
+import { Kostenpost } from '../../../models/kostenpost.model';
 import { InstellingenService } from '../../instellingen.Service';
 
 @Component({
@@ -14,7 +14,6 @@ export class KostenpostItemComponent implements OnInit {
   constructor(private instellingenService: InstellingenService) { }
 
   ngOnInit() {
-    console.log("VOEGONKOSTTOE AANGEROEPEN!")
 
   }
 
