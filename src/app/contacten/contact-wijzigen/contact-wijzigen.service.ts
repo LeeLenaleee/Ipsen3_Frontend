@@ -9,9 +9,9 @@ import {ContactZoekenService} from '../contact-zoeken.service';
   providedIn: 'root'
 })
 export class ContactWijzigenService {
-  contactUrl = 'http://localhost:8080/api/contacten/';
-  telefoonUrl = 'http://localhost:8080/api/telefoonnummer/';
-  emailUrl = 'http://localhost:8080/api/email/';
+  contactUrl = 'http://195.181.246.85:8080/api/contacten/';
+  telefoonUrl = 'http://195.181.246.85:8080/api/telefoonnummer/';
+  emailUrl = 'http://195.181.246.85:8080/api/email/';
   headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
       localStorage.getItem('password'))});
   httpOptions = {
