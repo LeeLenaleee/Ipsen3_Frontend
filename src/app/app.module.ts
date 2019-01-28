@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BelastingComponent } from './belasting/belasting.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
-import { BelastingListComponent } from './belasting/belasting-list/belasting-list.component';
-import { BelastingItemComponent } from './belasting/belasting-list/belasting-item/belasting-item.component';
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
 import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpost-item/kostenpost-item.component';
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
@@ -25,29 +23,20 @@ import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor'
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
-import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
 import { InstellingenService } from './instellingen/instellingen.Service';
-import { ToggleSwitchComponent } from './belasting/toggle-switch/toggle-switch.component';
-import { FacturenSchermComponent } from './belasting/facturen-scherm/facturen-scherm.component';
-import { UitgavenoverzichtComponent } from './belasting/uitgavenoverzicht/uitgavenoverzicht.component';
-import { KwartaalWeergavenComponent } from './belasting/kwartaal-weergaven/kwartaal-weergaven.component';
-import { KlantenoverzichtComponent } from './belasting/klantenoverzicht/klantenoverzicht.component';
-
 import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
 import {RapportagesModule} from './rapportages/rapportages.module';
 import {BerekenService} from './shared/bereken.service';
 import { ApiService } from './shared/api.service';
+import {BelastingModule} from './belasting/belasting.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BelastingComponent,
     InstellingenComponent,
-    BelastingListComponent,
-    BelastingItemComponent,
     KostenpostListComponent,
     KostenpostItemComponent,
     BtwWijzigenComponent,
@@ -58,17 +47,13 @@ import { ApiService } from './shared/api.service';
     ErrorPageComponent,
     PageNotFoundComponent,
     AlertComponent,
-    ToggleSwitchComponent,
-    FacturenSchermComponent,
-    UitgavenoverzichtComponent,
-    KwartaalWeergavenComponent,
-    KlantenoverzichtComponent,
   ],
   imports: [
     BrowserModule,
     OnkostenModule,
     ContactenModule,
     RapportagesModule,
+    BelastingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
