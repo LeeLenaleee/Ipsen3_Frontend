@@ -27,7 +27,7 @@ export class InstellingenService implements OnInit {
   }
 
   putBtw(btw: Btw) {
-      return this.apiService.put<Btw>('/btwpercentage/1', btw);
+      return this.apiService.put<Btw>('/btwpercentage/', 1, btw);
   }
     
     ngOnInit(): void {

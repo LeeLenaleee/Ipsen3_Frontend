@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Onkost} from './onkost.model';
 import {Kostenpost} from './kostenpost.model';
 import {Contact} from '../models/contact.model';
+import { ApiService } from '../shared/api.service';
 
 
 @Injectable()
@@ -26,7 +27,7 @@ export class BelastingService implements OnInit {
   uitgaveZoekterm = 'http://195.181.246.85:8080/api/onkosten/zoek?omschrijving=';
   kostenpostZoekterm = 'http://195.181.246.85:8080/api/kostenpost';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiService: ApiService) { }
 
   updateFactuurMatches(zoekterm: string) {
     if (zoekterm === null) {
@@ -50,7 +51,8 @@ export class BelastingService implements OnInit {
   }
 
   getFactuurMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
+    //return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>("/factuur/zoek?omschrijving=" + zoekterm);
   }
 
   updateContactMatches(zoekterm: string) {
@@ -74,7 +76,8 @@ export class BelastingService implements OnInit {
   }
 
   getContactMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.contactZoekterm + zoekterm, this.httpOptions);
+    //return this.http.get<any[]>(this.contactZoekterm + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>("/contacten/bedrijf?bedrijf=" + zoekterm);
   }
 
   updateUitgaveMatches(zoekterm: string) {
@@ -99,7 +102,8 @@ export class BelastingService implements OnInit {
   }
 
   getUitgaveMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
+    //return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
+    return this.http.get<any[]>("/onkosten/zoek?omschrijving=" + zoekterm);
   }
 
   updateKostenposten() {
