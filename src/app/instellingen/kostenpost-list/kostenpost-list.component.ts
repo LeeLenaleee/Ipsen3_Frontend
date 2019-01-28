@@ -21,6 +21,7 @@ export class KostenpostListComponent implements OnInit {
     this.instellingenService.postKostenPost(post).subscribe();
     this.instellingenService.getKostenPosten().subscribe(
       (kostenposten: Kostenpost[]) => {
+        console.log("THERE SHOULD BE A CHANGE IN THE FREAKING LIST NOW")
         this.kostenposten = kostenposten;
       }
     );
