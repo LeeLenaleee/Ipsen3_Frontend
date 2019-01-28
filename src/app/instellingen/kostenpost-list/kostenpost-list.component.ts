@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InstellingenService } from '../instellingen.Service';
 import { Kostenpost } from '../../models/kostenpost.model';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-kostenpost-list',
@@ -26,7 +25,7 @@ export class KostenpostListComponent implements OnInit {
         );
       }
     );
-
+    this.kostenpost = '';
   }
   ngOnInit() {
     this.instellingenService.getKostenPosten().subscribe(
