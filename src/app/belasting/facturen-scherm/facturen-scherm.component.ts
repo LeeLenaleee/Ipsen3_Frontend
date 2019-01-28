@@ -12,7 +12,7 @@ export class FacturenSchermComponent implements OnInit {
 
   @ViewChild('factuurInput') factuurNaam: ElementRef;
   input = '';
-  shownFacturen: {id: number, beschrijving: string, beginDatum: string, eindDatum: string, bruto: number, netto: number}[] = [];
+  shownFacturen: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
 
   constructor(private service: BelastingZoekenService) { }
 

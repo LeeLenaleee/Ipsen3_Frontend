@@ -9,16 +9,16 @@
   <tr>
     <th>Factuur ID</th>
     <th>Factuur Beschrijving</th>
-    <th>Factuur Begindatum</th>
-    <th>Factuur Einddatum</th>
+    <th>Factuur Datum</th>
+    <th>Factuur Afleverdatum</th>
     <th>Factuur Bruto</th>
     <th>Factuur Netto</th>
   </tr>
   <tr *ngFor="let factuur of shownFacturen">
     <td>{{factuur.id}}</td>
     <td>{{factuur.beschrijving}}</td>
-    <td>{{factuur.beginDatum}}</td>
-    <td>{{factuur.eindDatum}}</td>
+    <td>{{factuur.datum}}</td>
+    <td>{{factuur.afleverDatum}}</td>
     <td>{{factuur.bruto}}</td>
     <td>{{factuur.netto}}</td>
   </tr>

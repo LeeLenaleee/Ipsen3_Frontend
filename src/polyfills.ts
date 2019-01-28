@@ -28,7 +28,7 @@
 // import 'core-js/es6/math';
 // import 'core-js/es6/string';
 // import 'core-js/es6/date';
-// import 'core-js/es6/weergaven';
+// import 'core-js/es6/kwartaalItems';
 // import 'core-js/es6/regexp';
 // import 'core-js/es6/map';
 // import 'core-js/es6/weak-map';
@@ -39,7 +39,7 @@
  * Googlebot uses a renderer based on Chrome 41.
  * https://developers.google.com/search/docs/guides/rendering
  **/
-// import 'core-js/es6/weergaven';
+// import 'core-js/es6/kwartaalItems';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.

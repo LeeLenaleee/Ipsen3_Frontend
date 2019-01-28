@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-sm-1">
     <!--<input class="form-control" id="jaarInvoer" placeholder="Jaar" type="number" maxlength="4">-->
-    <input class="form-control" id="jaarInvoer" [(ngModel)]="jaar"
+    <input class="form-control" id="jaarInvoer"
            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
            type="number"
            maxlength = "4"
-           (input)="zoekItems($event)"
+           (input)="veranderJaar($event)"
     />
   </div>
   <div class="col-sm-1">
-    <select (input)="zetKwartaalMaanden($event)">
+    <select (input)="veranderKwartaal($event)">
       <option>Kwartaal 1</option>
       <option>Kwartaal 2</option>
       <option>Kwartaal 3</option>
@@ -25,7 +25,7 @@
         <th>Balans</th>
         <th>Datum</th>
       </tr>
-      <tr *ngFor="let weergave of weergaven">
+      <tr *ngFor="let weergave of shownWeergaven">
         <td>{{weergave.beschrijving}}</td>
         <td>{{weergave.netto}}</td>
         <td>{{weergave.datum}}</td>

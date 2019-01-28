@@ -8,62 +8,86 @@ import {BelastingZoekenService} from '../belasting-zoeken-service';
   providers: [BelastingZoekenService]
 })
 export class KwartaalWeergavenComponent implements OnInit {
-  jaar = (new Date()).getFullYear();
-  kwartaal = 'Kwartaal 1';
-  kwartaalmaanden = [];
-  weergaven: any[] = [];
-  shownFacturen: {beschrijving: string, datum: string, netto: number}[] = [];
-  shownUitgaven: {beschrijving: string, datum: string, netto: number}[] = [];
-
+  inputJaar = (new Date()).getFullYear().toString();
+  kwartaalMaanden = [];
+  kwartaalItems: {beschrijving: string, datum: string, netto: string}[] = [];
+  shownWeergaven: {beschrijving: string, datum: string, netto: string}[] = [];
   constructor(private service: BelastingZoekenService) { }
 
   ngOnInit() {
+    this.updateItems();
+  }
+
+  updateItems() {
+
+    let maand: string;
+    let jaar: string;
+
+    this.shownWeergaven = [];
+    this.kwartaalItems = [];
+
     this.service.updateUitgaveMatches('');
     this.service.updateFactuurMatches('');
+
+    setTimeout(() => {
+        for (let i = 0; i < this.service.factuurMatches.length; i++) {
+          this.kwartaalItems.push({
+            beschrijving: this.service.factuurMatches[i].beschrijving,
+            datum: this.service.factuurMatches[i].afleverDatum,
+            netto: '+ ' + this.service.factuurMatches[i].netto.toString()
+          });
+        }
+
+        for (let i = 0; i < this.service.uitgaveMatches.length; i++) {
+          this.kwartaalItems.push({
+            beschrijving: this.service.uitgaveMatches[i].beschrijving,
+            datum: this.service.uitgaveMatches[i].datum,
+            netto: '- ' + this.service.uitgaveMatches[i].netto.toString()
+          });
+        }
+
+        for (let i = 0; i < this.kwartaalItems.length; i++) {
+
+          maand = this.kwartaalItems[i].datum.slice(3, 5);
+          jaar = this.kwartaalItems[i].datum.slice(6, 10);
+
+          if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
+            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
+            this.shownWeergaven.push(this.kwartaalItems[i]);
+          }
+        }
+
+      },
+      100);
   }
 
-  updateItems(input: string) {
-
-    this.service.updateUitgaveMatches('');
-    this.service.updateFactuurMatches('');
-
-    this.shownUitgaven = [];
-    this.shownFacturen = [];
-
-    // TODO : Waarom is FactuurMatches in de service leeg?!
-    console.log('WTF: ' + this.service.factuurMatches[0]);
-
-    for (let i = 0; i < this.service.factuurMatches.length; i++) {
-      this.shownFacturen.push({
-        beschrijving: this.service.factuurMatches[0].beschrijving,
-        datum: this.service.factuurMatches[0].eindDatum,
-        netto: this.service.factuurMatches[0].netto
-      });
-    }
-
-    console.log(this.shownFacturen);
-
-    for (let i = 0; i < this.service.uitgaveMatches.length; i++) {
-      this.shownUitgaven.push({
-        beschrijving: this.service.uitgaveMatches[i].beschrijving,
-        datum: this.service.uitgaveMatches[i].datum,
-        netto: this.service.uitgaveMatches[i].netto});
-    }
+  veranderJaar(event: any) {
+    this.inputJaar = (<HTMLInputElement>event.target).value;
+    this.filter();
   }
 
-  zoekItems(event: any) {
-    this.weergaven = [];
-    const input = (<HTMLInputElement>event.target).value.toUpperCase();
-    this.updateItems(input);
-    console.log(this.shownFacturen);
-    for (const uitgave of this.shownUitgaven) {
-      console.log(uitgave);
-      this.weergaven.push(uitgave);
+  veranderKwartaal(event: any) {
+    const kwartaal = (<HTMLInputElement>event.target).value;
+    switch (kwartaal) {
+      case 'Kwartaal 1':  this.kwartaalMaanden = ['01', '02', '03'];
+        break;
+      case 'Kwartaal 2':  this.kwartaalMaanden = ['04', '05', '06'];
+        break;
+      case 'Kwartaal 3':  this.kwartaalMaanden = ['07', '08', '09'];
+        break;
+      case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
+        break;
     }
-    for (const factuur of this.shownFacturen) {
-      this.weergaven.push(factuur);
-    }
+    this.filter();
   }
 
+  filter() {
 
+    let jaar: string;
+    let maand: string;
+
+    this.shownWeergaven = [];
+    this.updateItems();
+
+  }
 }

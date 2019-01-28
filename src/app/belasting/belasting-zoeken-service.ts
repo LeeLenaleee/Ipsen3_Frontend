@@ -11,7 +11,7 @@ export class BelastingZoekenService implements OnInit {
   factuur: Factuur;
   contact: Contact;
   contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
-  factuurMatches: {id: number, beschrijving: string, beginDatum: string, eindDatum: string, bruto: number, netto: number}[] = [];
+  factuurMatches: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
   uitgaveMatches: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
   kostenposten: {naam: string}[] = [];
   headers_object = new HttpHeaders({
@@ -38,11 +38,11 @@ export class BelastingZoekenService implements OnInit {
         (facturen: Factuur[]) => {
           for (const factuur of facturen) {
             this.factuurMatches.push({id: factuur.id,
-              beschrijving: factuur.beschrijving,
-              beginDatum: factuur.beginDatum,
-              eindDatum: factuur.eindDatum,
-              bruto: factuur.bruto,
-              netto: factuur.netto});
+              beschrijving: factuur['factuurOmschrijving'],
+              datum: factuur['datum'],
+              afleverDatum: factuur['afleverDatum'],
+              bruto: factuur['brutoKosten'],
+              netto: factuur['nettoKosten']});
           }
         },
         (error) => console.log('error: ' + error)
@@ -50,8 +50,6 @@ export class BelastingZoekenService implements OnInit {
   }
 
   getFactuurMatches(zoekterm: string) {
-    console.log(this.httpOptions.headers.get('Authorization'));
-    console.log(zoekterm);
     return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
   }
 
@@ -76,7 +74,6 @@ export class BelastingZoekenService implements OnInit {
   }
 
   getContactMatches(zoekterm: string) {
-    console.log(this.httpOptions.headers.get('Authorization'));
     return this.http.get<any[]>(this.contactZoekterm + zoekterm, this.httpOptions);
   }
 
@@ -102,7 +99,6 @@ export class BelastingZoekenService implements OnInit {
   }
 
   getUitgaveMatches(zoekterm: string) {
-    console.log(this.httpOptions.headers.get('Authorization'));
     return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
   }
 
@@ -120,7 +116,6 @@ export class BelastingZoekenService implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('currentUser'));
   }
 
 
