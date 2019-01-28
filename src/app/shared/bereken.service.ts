@@ -12,7 +12,7 @@ export class BerekenService {
   httpOptions = {
     headers: this.headers_object
   };
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) {}
 
   calculatePrice(form: NgForm) {
     const brutokost = form.value['brutokost'];
@@ -29,6 +29,6 @@ export class BerekenService {
   }
 
   getBtwPercentages() {
-    return this.httpClient.get<Btw>('http://localhost:8080/api/btwpercentage/1' , this.httpOptions);
+    return this.httpClient.get<Btw>('http://195.181.246.85:8080/api/btwpercentage/1' , this.httpOptions);
   }
 }

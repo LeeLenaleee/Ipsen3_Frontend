@@ -22,7 +22,7 @@ export class OffertesService {
   }
 
   getOffertes() {
-    this.httpClient.get<OfferteModel[]>('http://localhost:8080/api/offerte', this.httpOptions)
+    this.httpClient.get<OfferteModel[]>('http://195.181.246.85:8080/api/offerte', this.httpOptions)
       .subscribe(
         (offerteModels: OfferteModel[]) => {
           this.offerteEmitter.emit(offerteModels);
@@ -31,7 +31,7 @@ export class OffertesService {
   }
 
   getOfferteByCorrespondentieNummer(correspondentieNummer: number) {
-      return this.httpClient.get<OfferteModel[]>('http://localhost:8080/api/offerte/zoek?correspondentie=' + correspondentieNummer ,
+      return this.httpClient.get<OfferteModel[]>('http://195.181.246.85:8080/api/offerte/zoek?correspondentie=' + correspondentieNummer ,
         this.httpOptions);
     }
 
@@ -43,15 +43,15 @@ export class OffertesService {
   }
 
   postOfferte(offerteModel: OfferteModel) {
-    return this.httpClient.post<OfferteModel>('http://localhost:8080/api/offerte', offerteModel, this.httpOptions);
+    return this.httpClient.post<OfferteModel>('http://195.181.246.85:8080/api/offerte', offerteModel, this.httpOptions);
   }
 
   putOfferte(offerte: OfferteModel, id: number) {
-    return this.httpClient.put<OfferteModel>('http://localhost:8080/api/offerte/' + id, offerte, this.httpOptions);
+    return this.httpClient.put<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + id, offerte, this.httpOptions);
   }
 
   getOfferte(index: number) {
-    return this.httpClient.get<OfferteModel>('http://localhost:8080/api/offerte/' + index , this.httpOptions);
+    return this.httpClient.get<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + index , this.httpOptions);
   }
 
   toServerDateTransform(date) {
@@ -60,11 +60,11 @@ export class OffertesService {
   }
 
   deleteOfferte(id: number) {
-    return this.httpClient.delete<OfferteModel>('http://localhost:8080/api/offerte/' + id, this.httpOptions);
+    return this.httpClient.delete<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + id, this.httpOptions);
   }
 
   downLoad(id: number) {
-    const downloadString = 'http://localhost:8080/api/offerte/download?id=' + id;
+    const downloadString = 'http://195.181.246.85:8080/api/offerte/download?id=' + id;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
