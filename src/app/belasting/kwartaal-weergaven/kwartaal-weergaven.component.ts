@@ -12,8 +12,6 @@ export class KwartaalWeergavenComponent implements OnInit {
   kwartaal = 'Kwartaal 1';
   kwartaalmaanden = [];
   weergaven: any[] = [];
-  allUitgaven: any[] = [];
-  allFacturen: any[] = [];
   shownFacturen: {beschrijving: string, datum: string, netto: number}[] = [];
   shownUitgaven: {beschrijving: string, datum: string, netto: number}[] = [];
 
@@ -21,24 +19,30 @@ export class KwartaalWeergavenComponent implements OnInit {
 
   ngOnInit() {
     this.service.updateUitgaveMatches('');
-    this.allUitgaven = this.service.uitgaveMatches;
     this.service.updateFactuurMatches('');
-    this.allFacturen = this.service.factuurMatches;
   }
 
   updateItems(input: string) {
-    this.service.updateFactuurMatches('');
+
     this.service.updateUitgaveMatches('');
+    this.service.updateFactuurMatches('');
 
     this.shownUitgaven = [];
     this.shownFacturen = [];
 
-    for (let i = 0; i < this.allFacturen.length; i++) {
+    // TODO : Waarom is FactuurMatches in de service leeg?!
+    console.log('WTF: ' + this.service.factuurMatches[0]);
+
+    for (let i = 0; i < this.service.factuurMatches.length; i++) {
       this.shownFacturen.push({
-        beschrijving: this.service.factuurMatches[i].beschrijving,
-        datum: this.service.factuurMatches[i].eindDatum,
-        netto: this.service.factuurMatches[i].netto});
+        beschrijving: this.service.factuurMatches[0].beschrijving,
+        datum: this.service.factuurMatches[0].eindDatum,
+        netto: this.service.factuurMatches[0].netto
+      });
     }
+
+    console.log(this.shownFacturen);
+
     for (let i = 0; i < this.service.uitgaveMatches.length; i++) {
       this.shownUitgaven.push({
         beschrijving: this.service.uitgaveMatches[i].beschrijving,

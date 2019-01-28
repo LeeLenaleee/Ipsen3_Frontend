@@ -37,7 +37,6 @@ export class BelastingZoekenService implements OnInit {
       .subscribe(
         (facturen: Factuur[]) => {
           for (const factuur of facturen) {
-            console.log(factuur);
             this.factuurMatches.push({id: factuur.id,
               beschrijving: factuur.beschrijving,
               beginDatum: factuur.beginDatum,
@@ -48,7 +47,6 @@ export class BelastingZoekenService implements OnInit {
         },
         (error) => console.log('error: ' + error)
       );
-    console.log('Update complete. size: ' + this.factuurMatches.length);
   }
 
   getFactuurMatches(zoekterm: string) {
