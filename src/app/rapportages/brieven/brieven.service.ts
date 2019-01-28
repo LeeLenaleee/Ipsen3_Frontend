@@ -19,7 +19,7 @@ export class BrievenService {
   constructor(private httpClient: HttpClient) {}
 
   getBrieven() {
-    this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief', this.httpOptions)
+    this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief', this.httpOptions)
       .subscribe(
         (brieven: Brieven[]) => {
           this.brievenEmitter.emit(brieven);
@@ -28,12 +28,12 @@ export class BrievenService {
   }
 
   getBrief(index: number) {
-    return this.httpClient.get<Brieven>('http://localhost:8080/api/brief/' + index , this.httpOptions);
+    return this.httpClient.get<Brieven>('http://195.181.246.85:8080/api/brief/' + index , this.httpOptions);
   }
 
   // zoek request
   // getOnkostenByOmschrijving(omschrijving: string) {
-  //   return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten/zoek?omschrijving=' + omschrijving , this.httpOptions);
+  //   return this.httpClient.get<Onkosten[]>('http://195.181.246.85:8080/api/onkosten/zoek?omschrijving=' + omschrijving , this.httpOptions);
   // }
 
   formToBrief(form: NgForm) {
@@ -43,16 +43,16 @@ export class BrievenService {
   }
 
   postBrief(brief: Brieven) {
-    return this.httpClient.post<Brieven>('http://localhost:8080/api/brief', brief, this.httpOptions);
+    return this.httpClient.post<Brieven>('http://195.181.246.85:8080/api/brief', brief, this.httpOptions);
   }
 
   putBrief(brief: Brieven, id: number) {
-    return this.httpClient.put<Brieven>('http://localhost:8080/api/brief/' + id, brief, this.httpOptions);
+    return this.httpClient.put<Brieven>('http://195.181.246.85:8080/api/brief/' + id, brief, this.httpOptions);
   }
 
 
   getBriefByPersoon(geadreseerde: string) {
-    return this.httpClient.get<Brieven[]>('http://localhost:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
+    return this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
       this.httpOptions);
   }
 
@@ -62,7 +62,7 @@ export class BrievenService {
   }
 
   deleteBrief(id: number) {
-    return this.httpClient.delete<Brieven>('http://localhost:8080/api/brief/' + id, this.httpOptions);
+    return this.httpClient.delete<Brieven>('http://195.181.246.85:8080/api/brief/' + id, this.httpOptions);
 
   }
 
