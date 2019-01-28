@@ -1,11 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {BelastingZoekenService} from '../belasting-zoeken-service';
+import {BelastingService} from '../belasting.service';
 
 @Component({
   selector: 'app-klantenoverzicht',
   templateUrl: './klantenoverzicht.component.html',
   styleUrls: ['./klantenoverzicht.component.css'],
-  providers: [BelastingZoekenService]
+  providers: [BelastingService]
 })
 export class KlantenoverzichtComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class KlantenoverzichtComponent implements OnInit {
   contactList = []; // Een lijst voor de zoekfunctie.
 
   textValue = '';
-  constructor(private service: BelastingZoekenService) { }
+  constructor(private service: BelastingService) { }
 
   ngOnInit() {
     this.service.updateContactMatches(this.contactNaam.nativeElement.value);

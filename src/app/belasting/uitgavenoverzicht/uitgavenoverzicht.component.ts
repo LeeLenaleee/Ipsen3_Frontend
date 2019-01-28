@@ -1,11 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {BelastingZoekenService} from '../belasting-zoeken-service';
+import {BelastingService} from '../belasting.service';
 
 @Component({
   selector: 'app-uitgavenoverzicht',
   templateUrl: './uitgavenoverzicht.component.html',
   styleUrls: ['./uitgavenoverzicht.component.css'],
-  providers: [BelastingZoekenService]
+  providers: [BelastingService]
 })
 export class UitgavenoverzichtComponent implements OnInit {
   @ViewChild('uitgaveInput') uitgaveNaam: ElementRef;
@@ -18,7 +18,7 @@ export class UitgavenoverzichtComponent implements OnInit {
   kwartaalMaanden = ['01', '02', '03'];
   shownUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
 
-  constructor(private service: BelastingZoekenService) { }
+  constructor(private service: BelastingService) { }
 
   ngOnInit() {
     this.service.updateUitgaveMatches(this.uitgaveNaam.nativeElement.value);

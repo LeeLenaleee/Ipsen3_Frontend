@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Factuur} from '../factuur.model';
-import {BelastingZoekenService} from '../belasting-zoeken-service';
+import {BelastingService} from '../belasting.service';
 
 @Component({
   selector: 'app-facturen-scherm',
   templateUrl: './facturen-scherm.component.html',
   styleUrls: ['./facturen-scherm.component.css'],
-  providers: [BelastingZoekenService]
+  providers: [BelastingService]
 })
 export class FacturenSchermComponent implements OnInit {
 
@@ -14,7 +14,7 @@ export class FacturenSchermComponent implements OnInit {
   input = '';
   shownFacturen: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
 
-  constructor(private service: BelastingZoekenService) { }
+  constructor(private service: BelastingService) { }
 
   ngOnInit() {
     this.service.updateFactuurMatches(this.factuurNaam.nativeElement.value);

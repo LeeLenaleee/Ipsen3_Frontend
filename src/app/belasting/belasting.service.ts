@@ -7,7 +7,7 @@ import {Contact} from '../models/contact.model';
 
 
 @Injectable()
-export class BelastingZoekenService implements OnInit {
+export class BelastingService implements OnInit {
   factuur: Factuur;
   contact: Contact;
   contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];

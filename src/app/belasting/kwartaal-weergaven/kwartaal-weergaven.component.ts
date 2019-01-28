@@ -1,18 +1,18 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {BelastingZoekenService} from '../belasting-zoeken-service';
+import {BelastingService} from '../belasting.service';
 
 @Component({
   selector: 'app-kwartaal-weergaven',
   templateUrl: './kwartaal-weergaven.component.html',
   styleUrls: ['./kwartaal-weergaven.component.css'],
-  providers: [BelastingZoekenService]
+  providers: [BelastingService]
 })
 export class KwartaalWeergavenComponent implements OnInit {
   inputJaar = (new Date()).getFullYear().toString();
   kwartaalMaanden = ['01', '02', '03'];
   kwartaalItems: {beschrijving: string, datum: string, netto: string}[] = [];
   shownWeergaven: {beschrijving: string, datum: string, netto: string}[] = [];
-  constructor(private service: BelastingZoekenService) { }
+  constructor(private service: BelastingService) { }
 
   ngOnInit() {
     this.updateItems();
