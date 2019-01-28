@@ -30,6 +30,7 @@ import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
 import {RapportagesModule} from './rapportages/rapportages.module';
 import {BerekenService} from './shared/bereken.service';
+import { ApiService } from './shared/api.service';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import {BerekenService} from './shared/bereken.service';
     AlertService,
     AuthenticationService,
     InstellingenService,
+    ApiService,
     BerekenService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

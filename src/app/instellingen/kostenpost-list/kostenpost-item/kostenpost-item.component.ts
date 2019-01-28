@@ -14,6 +14,8 @@ export class KostenpostItemComponent implements OnInit {
   constructor(private instellingenService: InstellingenService) { }
 
   ngOnInit() {
+    console.log("VOEGONKOSTTOE AANGEROEPEN!")
+
   }
 
 }
