@@ -32,3 +32,9 @@ button {
 input.ng-invalid.ng-touched {
   border-right: 2px solid red;
 }
+
+.groen, .rood {
+  margin: 1px;
+  padding: 0;
+  width: 30px;
+}
