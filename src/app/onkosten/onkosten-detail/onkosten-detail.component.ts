@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
 import {Btw} from '../../models/btw.model';
+import {BerekenService} from '../../shared/bereken.service';
 
 @Component({
   selector: 'app-onkosten-detail',
@@ -19,10 +20,11 @@ export class OnkostenDetailComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private onkostenService: OnkostenService) { }
+              private onkostenService: OnkostenService,
+              private berekenService: BerekenService) { }
 
   ngOnInit() {
-    this.onkostenService.getBtwPercentages()
+    this.berekenService.getBtwPercentages()
       .subscribe(
         (btw: Btw) => {
           this.btwPercentages = btw;
@@ -84,5 +86,9 @@ export class OnkostenDetailComponent implements OnInit {
           }
         );
     }
+  }
+
+  calculatePrice() {
+    this.berekenService.calculatePrice(this.form);
   }
 }

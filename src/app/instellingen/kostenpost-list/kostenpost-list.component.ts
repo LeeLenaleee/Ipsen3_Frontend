@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InstellingenService } from '../instellingen.Service';
-import { Kostenpost } from './kostenpost.model';
+import { Kostenpost } from '../../models/kostenpost.model';
 
 @Component({
   selector: 'app-kostenpost-list',
@@ -9,23 +8,34 @@ import { Kostenpost } from './kostenpost.model';
   styleUrls: ['./kostenpost-list.component.css']
 })
 export class KostenpostListComponent implements OnInit {
-  kostenposten: Kostenpost[] = []
-  kostenpostForm: FormGroup;
-  
-  constructor(private formBuilder: FormBuilder, private instellingenService: InstellingenService) { }
+  kostenposten: Kostenpost[] = [];
+  kostenpost = '';
 
+  constructor(private instellingenService: InstellingenService) { }
+
+  voegToe() {
+    const post = new Kostenpost(null, this.kostenpost);
+    this.instellingenService.postKostenPost(post).subscribe(
+      () => {
+        alert('Kostenpost toegevoegd');
+        this.instellingenService.getKostenPosten().subscribe(
+          (kostenposten: Kostenpost[]) => {
+            this.kostenposten = kostenposten;
+          }
+        );
+      }
+    );
+    this.kostenpost = '';
+  }
   ngOnInit() {
-    // this.kostenpostForm = this.formBuilder.group({
-    //   kostenpost: ['', Validators.required],
-    // });
-    this.instellingenService.getKostenPosten();
-    this.instellingenService.arrayKostenPost.subscribe(
+    this.instellingenService.getKostenPosten().subscribe(
       (kostenposten: Kostenpost[]) => {
         this.kostenposten = kostenposten;
-      }, error => {
-        console.log("SOMETHING WENT HORRIBLY, TERRIBLY WRONG");
       }
-    )
+    );
   }
 
+  setKostenposten(list: Kostenpost[]) {
+    this.kostenposten = list;
+  }
 }

@@ -1,5 +1,10 @@
-<div class="card" [routerLink]="kostenposten.id">
-  <div>
-    <p><b>Omschrijving: </b> <i> {{kostenposten.kostenpost}}</i></p>
+<div class="card">
+  <div class="row">
+    <div class="col">
+      <p><b>Omschrijving: </b> <i> {{kostenposten.kostenpost}}</i></p>
+    </div>
+    <div class="col-">
+      <button class="btn" (click)="deleteRequest()">Verwijder</button>
+    </div>
   </div>
 </div>

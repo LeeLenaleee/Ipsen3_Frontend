@@ -19,7 +19,7 @@ export class OnkostenService {
   constructor(private httpClient: HttpClient) {}
 
   getOnkosten() {
-    this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten', this.httpOptions)
+    this.httpClient.get<Onkosten[]>('http://195.181.246.85:8080/api/onkosten', this.httpOptions)
       .subscribe(
         (onkosten: Onkosten[]) => {
           this.onkostenEmitter.emit(onkosten);
@@ -28,11 +28,11 @@ export class OnkostenService {
   }
 
   getOnkost(index: number) {
-    return this.httpClient.get<Onkosten>('http://localhost:8080/api/onkosten/' + index , this.httpOptions);
+    return this.httpClient.get<Onkosten>('http://195.181.246.85:8080/api/onkosten/' + index , this.httpOptions);
   }
 
   getOnkostenByOmschrijving(omschrijving: string) {
-    return this.httpClient.get<Onkosten[]>('http://localhost:8080/api/onkosten/zoek?omschrijving=' + omschrijving , this.httpOptions);
+    return this.httpClient.get<Onkosten[]>('http://195.181.246.85:8080/api/onkosten/zoek?omschrijving=' + omschrijving , this.httpOptions);
   }
 
   formToOnkost(form: NgForm) {
@@ -43,23 +43,19 @@ export class OnkostenService {
   }
 
   postOnkost(onkost: Onkosten) {
-    return this.httpClient.post<Onkosten>('http://localhost:8080/api/onkosten', onkost, this.httpOptions);
+    return this.httpClient.post<Onkosten>('http://195.181.246.85:8080/api/onkosten', onkost, this.httpOptions);
   }
 
   putOnkost(onkost: Onkosten, id: number) {
-    return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost, this.httpOptions);
+    return this.httpClient.put<Onkosten>('http://195.181.246.85:8080/api/onkosten/' + id, onkost, this.httpOptions);
   }
 
   deleteOnkost(id: number) {
-    return this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/' + id, this.httpOptions);
+    return this.httpClient.delete<Onkosten>('http://195.181.246.85:8080/api/onkosten/' + id, this.httpOptions);
   }
 
   toServerDateTransform(date) {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
-  }
-
-  getBtwPercentages() {
-    return this.httpClient.get<Btw>('http://localhost:8080/api/btwpercentage/1' , this.httpOptions);
   }
 }

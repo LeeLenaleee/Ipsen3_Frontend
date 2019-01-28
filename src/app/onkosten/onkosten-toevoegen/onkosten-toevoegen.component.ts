@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
 import {HttpClient} from '@angular/common/http';
 import {Btw} from '../../models/btw.model';
+import {BerekenService} from '../../shared/bereken.service';
 
 @Component({
   selector: 'app-onkosten-toevoegen',
@@ -14,14 +15,17 @@ export class OnkostenToevoegenComponent implements OnInit {
   buttonTextTwo = 'Leeg velden';
   @ViewChild('f') form: NgForm;
   btwPercentages = new Btw(null, null, null);
+  percentage = null;
+
   constructor(private onkostenService: OnkostenService,
-              private httpClient: HttpClient) { }
+              private berekenService: BerekenService) { }
 
   ngOnInit() {
-    this.onkostenService.getBtwPercentages()
+    this.berekenService.getBtwPercentages()
       .subscribe(
         (btw: Btw) => {
           this.btwPercentages = btw;
+          this.percentage = this.btwPercentages.btwPercentageHoog;
         }
       );
   }
@@ -44,5 +48,9 @@ export class OnkostenToevoegenComponent implements OnInit {
     if (confirm('Weet u het zeker?')) {
       this.form.onReset();
     }
+  }
+
+  calculatePrice() {
+    this.berekenService.calculatePrice(this.form);
   }
 }

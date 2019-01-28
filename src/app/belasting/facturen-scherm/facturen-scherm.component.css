@@ -1,0 +1,15 @@
+#facturentabel th, td{
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#search {
+  /*noinspection CssUnknownTarget*/
+  background-image: url('src/assets/zoekicoon.png');
+  background-position: 0px -2px;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  padding: 10px 10px 10px 50px;
+  margin: 25px;
+}

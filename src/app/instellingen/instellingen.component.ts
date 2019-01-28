@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { InstellingenService } from './instellingen.Service';
-import { Kostenpost } from './kostenpost-list/kostenpost.model';
+import { Kostenpost } from '../models/kostenpost.model';
 import { KostenpostListComponent } from './kostenpost-list/kostenpost-list.component';
 
 @Component({
@@ -14,7 +14,6 @@ export class InstellingenComponent implements OnInit {
   constructor(private instellingenService: InstellingenService) {}
 
   ngOnInit() {
-    console.log("WEEEE");
     // this.instellingenService.kostenPostGezocht
     //   .subscribe(
     //     (kostenpost: Kostenpost) => {
@@ -25,7 +24,6 @@ export class InstellingenComponent implements OnInit {
     //     }
     // );
 
-    console.log("DONE INITTING")
   }
 
 }

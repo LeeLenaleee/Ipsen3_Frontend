@@ -1,41 +1,35 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Kostenpost } from './kostenpost-list/kostenpost.model';
+import { Kostenpost } from '../models/kostenpost.model';
+import { ApiService } from '../shared/api.service';
+import { Observable } from 'rxjs';
+import {Onkosten} from '../models/onkosten.model';
+import {Btw} from '../models/btw.model';
 
 @Injectable()
 export class InstellingenService implements OnInit {
-    headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-    localStorage.getItem('password'))});
-        httpOptions = {
-        headers: this.headers_object
-        };
-    idUrl = 'http://localhost:8080/api/kostenpost'
-    kostenPostGezocht = new EventEmitter<Kostenpost>();
-    arrayKostenPost = new EventEmitter<Kostenpost[]>();
-    constructor(private httpClient: HttpClient) { }
+    constructor(private apiService: ApiService) {}
 
-    // getKostenposten(id: number) {
-    //     return this.showKostenpost(id).subscribe(
-    //       (kostenpost: Kostenpost) => {
-    //       this.kostenPostGezocht.emit(kostenpost);
-    //       },
-    //       (error) => console.log(error));
-    // }
-
-    // showKostenpost(id: number) {
-    //     return this.httpClient.get<Kostenpost>(this.idUrl + id);
-    // }
-
-    getKostenPosten() {
-        return this.httpClient.get<Kostenpost[]>(this.idUrl, this.httpOptions).subscribe(
-            (onkosten: Kostenpost[]) => {
-                console.log("getkostenpost woo");
-                this.arrayKostenPost.emit(onkosten);
-            }
-        );
+    getKostenPosten(): Observable<Kostenpost[]> {
+        return this.apiService.get<Kostenpost[]>('/kostenpost');
     }
+
+    postKostenPost(kostenpost: Kostenpost): Observable<Kostenpost> {
+        return this.apiService.post<Kostenpost>('/kostenpost', kostenpost);
+    }
+
+  deleteKostenpost(id: number) {
+    return this.apiService.delete<Onkosten>('/kostenpost', id);
+  }
+
+  getBtw() {
+      return this.apiService.get<Btw>('/btwpercentage/1');
+  }
+
+  putBtw(btw: Btw) {
+      return this.apiService.put<Btw>('/btwpercentage/1', btw);
+  }
+    
     ngOnInit(): void {
-        console.log("gheheheh");
-        console.log(localStorage.getItem('currentUser'));
     }
 }
