@@ -9,7 +9,7 @@ import {BelastingZoekenService} from '../belasting-zoeken-service';
 })
 export class KwartaalWeergavenComponent implements OnInit {
   inputJaar = (new Date()).getFullYear().toString();
-  kwartaalMaanden = [];
+  kwartaalMaanden = ['01', '02', '03'];
   kwartaalItems: {beschrijving: string, datum: string, netto: string}[] = [];
   shownWeergaven: {beschrijving: string, datum: string, netto: string}[] = [];
   constructor(private service: BelastingZoekenService) { }
@@ -63,7 +63,7 @@ export class KwartaalWeergavenComponent implements OnInit {
 
   veranderJaar(event: any) {
     this.inputJaar = (<HTMLInputElement>event.target).value;
-    this.filter();
+    this.updateItems();
   }
 
   veranderKwartaal(event: any) {
@@ -78,16 +78,6 @@ export class KwartaalWeergavenComponent implements OnInit {
       case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
         break;
     }
-    this.filter();
-  }
-
-  filter() {
-
-    let jaar: string;
-    let maand: string;
-
-    this.shownWeergaven = [];
     this.updateItems();
-
   }
 }
