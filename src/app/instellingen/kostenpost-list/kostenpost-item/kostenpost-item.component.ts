@@ -1,5 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Kostenpost } from '../kostenpost.model';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Kostenpost } from '../../../models/kostenpost.model';
 import { InstellingenService } from '../../instellingen.Service';
 
 @Component({
@@ -10,12 +10,27 @@ import { InstellingenService } from '../../instellingen.Service';
 export class KostenpostItemComponent implements OnInit {
   @Input() kostenposten: Kostenpost;
   @Input() index: number;
-
+  @Output() kostenpostenList = new EventEmitter<Kostenpost[]>();
   constructor(private instellingenService: InstellingenService) { }
 
   ngOnInit() {
-    console.log("VOEGONKOSTTOE AANGEROEPEN!")
 
+  }
+
+  deleteRequest() {
+    if (confirm('Weet u het zeker?')) {
+      this.instellingenService.deleteKostenpost(this.kostenposten.id)
+        .subscribe(
+          () => {
+            this.instellingenService.getKostenPosten().subscribe(
+              (kostenposten: Kostenpost[]) => {
+                this.kostenpostenList.emit(kostenposten);
+              }
+            );
+            alert('Kostenpost verwijderd');
+          }
+        );
+    }
   }
 
 }

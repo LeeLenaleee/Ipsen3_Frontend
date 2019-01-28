@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InstellingenService } from '../instellingen.Service';
-import { Kostenpost } from './kostenpost.model';
-import { NgForm } from '@angular/forms';
+import { Kostenpost } from '../../models/kostenpost.model';
 
 @Component({
   selector: 'app-kostenpost-list',
@@ -9,22 +8,24 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./kostenpost-list.component.css']
 })
 export class KostenpostListComponent implements OnInit {
-  kostenposten: Kostenpost[] = []
-  @ViewChild('f') form: NgForm;
-  kostenpost = 'fjido';
+  kostenposten: Kostenpost[] = [];
+  kostenpost = '';
 
   constructor(private instellingenService: InstellingenService) { }
 
   voegToe() {
-    console.log(this.form);
     const post = new Kostenpost(null, this.kostenpost);
-    this.instellingenService.postKostenPost(post).subscribe();
-    this.instellingenService.getKostenPosten().subscribe(
-      (kostenposten: Kostenpost[]) => {
-        console.log("THERE SHOULD BE A CHANGE IN THE FREAKING LIST NOW")
-        this.kostenposten = kostenposten;
+    this.instellingenService.postKostenPost(post).subscribe(
+      () => {
+        alert('Kostenpost toegevoegd');
+        this.instellingenService.getKostenPosten().subscribe(
+          (kostenposten: Kostenpost[]) => {
+            this.kostenposten = kostenposten;
+          }
+        );
       }
     );
+    this.kostenpost = '';
   }
   ngOnInit() {
     this.instellingenService.getKostenPosten().subscribe(
@@ -32,5 +33,9 @@ export class KostenpostListComponent implements OnInit {
         this.kostenposten = kostenposten;
       }
     );
+  }
+
+  setKostenposten(list: Kostenpost[]) {
+    this.kostenposten = list;
   }
 }

@@ -18,8 +18,13 @@
           </ul>
         </li>
 
-        <li class="nav-item" routerLinkActive="active-class">
-          <a class="nav-link" routerLink="/belasting"><img src="assets/ico-projecten-of-facturen@2000x.png"> Belasting</a>
+        <li class="dropdown nav-item" routerLinkActive="active-class">
+          <a class="dropdown-toggle nav-link" routerlink=""><img src="assets/ico-projecten-of-facturen@2000x.png">Overzichten</a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="facturen-overzicht">Facturen</a></li>
+            <li><a class="nav-link" routerLink="uitgave-overzicht">Uitgave</a></li>
+            <li><a class="nav-link" routerLink="kwartaal-overzicht">Kwartaal</a></li>
+          </ul>
         </li>
       </ul>
     </div>
