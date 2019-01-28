@@ -11,10 +11,10 @@ export class ContactZoekenService implements OnInit {
   telNrs = new EventEmitter<string[]>();
   emails = new EventEmitter<string[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
-  idUrl = 'http://localhost:8080/api/contacten/';
-  zoektermUrl = 'http://localhost:8080/api/contacten/bedrijf?bedrijf=';
-  telUrl = 'http://localhost:8080/api/telefoonnummer';
-  emailUrl = 'http://localhost:8080/api/email';
+  idUrl = 'http://195.181.246.85:8080/api/contacten/';
+  zoektermUrl = 'http://195.181.246.85:8080/api/contacten/bedrijf?bedrijf=';
+  telUrl = 'http://195.181.246.85:8080/api/telefoonnummer';
+  emailUrl = 'http://195.181.246.85:8080/api/email';
   headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
       localStorage.getItem('password'))});
   httpOptions = {
