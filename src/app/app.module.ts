@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BelastingComponent } from './belasting/belasting.component';
@@ -25,6 +27,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
 import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
 import { InstellingenService } from './instellingen/instellingen.Service';
+import { ToggleSwitchComponent } from './belasting/toggle-switch/toggle-switch.component';
+import { FacturenSchermComponent } from './belasting/facturen-scherm/facturen-scherm.component';
+import { UitgavenoverzichtComponent } from './belasting/uitgavenoverzicht/uitgavenoverzicht.component';
+import { KwartaalWeergavenComponent } from './belasting/kwartaal-weergaven/kwartaal-weergaven.component';
+import { KlantenoverzichtComponent } from './belasting/klantenoverzicht/klantenoverzicht.component';
 
 import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
@@ -51,6 +58,11 @@ import { ApiService } from './shared/api.service';
     ErrorPageComponent,
     PageNotFoundComponent,
     AlertComponent,
+    ToggleSwitchComponent,
+    FacturenSchermComponent,
+    UitgavenoverzichtComponent,
+    KwartaalWeergavenComponent,
+    KlantenoverzichtComponent,
   ],
   imports: [
     BrowserModule,
