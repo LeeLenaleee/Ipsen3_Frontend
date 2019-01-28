@@ -29,7 +29,7 @@
   <!--<hr>-->
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-12">
       <div class="input-group-prepend">
         <span class="input-group-text">Telefoon</span>
       <input type="number"
@@ -43,26 +43,11 @@
         <button class="rood btn" tabindex="-1" type="button" (click)="telEraf()">-</button>
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Email adres</span>
-        <input type="email"
-             class="form-control"
-             id="inputEmail"
-             placeholder="voorbeeld@voorbeeld.nl"
-             ngModel
-             name="email1"
-             email
-             required>
-        <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
-        <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
-      </div>
-    </div>
   </div>
     <div class="form-row" *ngIf="aantalTel > 1 || aantalEmail > 1">
       <div class="form-group col-md-6">
         <div class="input-group-prepend" *ngIf="aantalTel > 1">
-          <span class="input-group-text">Telefoon nummer</span>
+          <span class="input-group-text">Telefoon</span>
         <input type="number"
                class="form-control"
                id="inputTelephone2"
@@ -72,40 +57,32 @@
         </div>
       </div>
       <div class="form-group col-md-6">
-        <div class="input-group-prepend" *ngIf="aantalEmail > 1">
-          <span class="input-group-text">Email adres</span>
-        <input type="email"
+        <div class="input-group-prepend" *ngIf="aantalTel > 2">
+          <span class="input-group-text">Telefoon</span>
+        <input type="number"
                class="form-control"
-               id="inputEmail2"
-               placeholder="voorbeeld@voorbeeld.nl"
+               id="inputTelephone3"
+               placeholder="06-"
                ngModel
-               name="email2"
-               email>
+               name="telefoon3">
         </div>
       </div>
+
   </div>
-  <div class="form-row" *ngIf="aantalTel > 2 || aantalEmail > 2">
-    <div class="form-group col-md-6">
-      <div class="input-group-prepend" *ngIf="aantalTel > 2">
-        <span class="input-group-text">Telefoon nummer</span>
-          <input type="number"
-                 class="form-control"
-                 id="inputTelephone3"
-                 placeholder="06-"
-                 ngModel
-                 name="telefoon3">
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="input-group-prepend" *ngIf="aantalEmail > 2">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <div class="input-group-prepend">
         <span class="input-group-text">Email adres</span>
-      <input type="email"
-             class="form-control"
-             id="inputEmail3"
-             placeholder="voorbeeld@voorbeeld.nl"
-             ngModel
-             name="email3"
-             email>
+        <input type="email"
+               class="form-control"
+               id="inputEmail"
+               placeholder="voorbeeld@voorbeeld.nl"
+               ngModel
+               name="email1"
+               email
+               required>
+        <button class="groen btn" tabindex="-1" type="button" (click)="mailErbij()">+</button>
+        <button class="rood btn" tabindex="-1" type="button" (click)="mailEraf()">-</button>
       </div>
     </div>
   </div>
