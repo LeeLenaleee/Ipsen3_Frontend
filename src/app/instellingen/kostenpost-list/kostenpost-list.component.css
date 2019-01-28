@@ -1,6 +1,12 @@
+button {
+  background-color: orange;
+  border-color: #ad6900;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
 
-.center{
-    width: 20%;
-    margin-left: 0%;
-    font-family: Unlock,Arial, Helvetica, sans-serif;
-  }
+button:disabled {
+  background-color: grey;
+  border-color: transparent;
+}
