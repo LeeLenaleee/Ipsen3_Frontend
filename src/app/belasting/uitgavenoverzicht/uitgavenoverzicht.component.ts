@@ -22,7 +22,7 @@ export class UitgavenoverzichtComponent implements OnInit {
 
   ngOnInit() {
     this.service.updateUitgaveMatches(this.uitgaveNaam.nativeElement.value);
-    this.service.getKostenposten();
+    this.service.updateKostenposten();
     this.allUitgaven = this.service.uitgaveMatches;
     this.shownUitgaven = this.service.uitgaveMatches;
     this.kostenposten = this.service.kostenposten;

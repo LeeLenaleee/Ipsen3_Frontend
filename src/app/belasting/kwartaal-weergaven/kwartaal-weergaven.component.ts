@@ -1,83 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-import {Factuur} from '../factuur.model';
-import {Onkost} from '../onkost.model';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {BelastingZoekenService} from '../belasting-zoeken-service';
 
 @Component({
   selector: 'app-kwartaal-weergaven',
   templateUrl: './kwartaal-weergaven.component.html',
-  styleUrls: ['./kwartaal-weergaven.component.css']
+  styleUrls: ['./kwartaal-weergaven.component.css'],
+  providers: [BelastingZoekenService]
 })
 export class KwartaalWeergavenComponent implements OnInit {
-
   jaar = (new Date()).getFullYear();
   kwartaal = 'Kwartaal 1';
   kwartaalmaanden = [];
   weergaven: any[] = [];
+  allUitgaven: any[] = [];
+  allFacturen: any[] = [];
+  shownFacturen: {beschrijving: string, datum: string, netto: number}[] = [];
+  shownUitgaven: {beschrijving: string, datum: string, netto: number}[] = [];
 
-  facturen: Factuur[] = [
-    new Factuur(1, 'HSleiden Infographic', '12-05-2011', '19-11-2012', 380, 325),
-    new Factuur(2, 'HP Infographic', '17-02-2014', '07-10-2014', 580, 520),
-    new Factuur(3, 'Google Infographic', '10-10-2017', '29-05-2018', 780, 700)
-  ];
-
-  onkosten: Onkost[] = [
-    new Onkost(1, 'Nieuwe printer', 'Printer', '05-10-2010', 2000, 1900),
-    new Onkost(2, 'Printer papier', 'Printer', '02-11-2014', 50, 45),
-    new Onkost(3, 'Nieuwe telefoon', 'Communicatie', '15-05-2017', 100, 96)
-  ];
-
-  constructor() { }
+  constructor(private service: BelastingZoekenService) { }
 
   ngOnInit() {
+    this.service.updateUitgaveMatches('');
+    this.allUitgaven = this.service.uitgaveMatches;
+    this.service.updateFactuurMatches('');
+    this.allFacturen = this.service.factuurMatches;
   }
 
-  veranderJaar(event: any) {
-    this.jaar = Number((<HTMLInputElement>event.target).value);
-    this.filterWeergaven();
+  updateItems(input: string) {
+    this.service.updateFactuurMatches('');
+    this.service.updateUitgaveMatches('');
+
+    this.shownUitgaven = [];
+    this.shownFacturen = [];
+
+    for (let i = 0; i < this.allFacturen.length; i++) {
+      this.shownFacturen.push({
+        beschrijving: this.service.factuurMatches[i].beschrijving,
+        datum: this.service.factuurMatches[i].eindDatum,
+        netto: this.service.factuurMatches[i].netto});
+    }
+    for (let i = 0; i < this.service.uitgaveMatches.length; i++) {
+      this.shownUitgaven.push({
+        beschrijving: this.service.uitgaveMatches[i].beschrijving,
+        datum: this.service.uitgaveMatches[i].datum,
+        netto: this.service.uitgaveMatches[i].netto});
+    }
   }
-  filterWeergaven() {
+
+  zoekItems(event: any) {
     this.weergaven = [];
-
-    // Onkosten
-    for (let i = 0; i <  this.onkosten.length; i++) {
-      if (this.onkosten[i].datum.slice(6, 10) !== this.jaar.toString()) {
-        continue;
-      }
-      for (let j = 0; j < this.kwartaalmaanden.length; j++) {
-        if (this.onkosten[i].datum.slice(3, 5) === this.kwartaalmaanden[j]) {
-          this.weergaven.push(this.onkosten[i]);
-        }
-      }
+    const input = (<HTMLInputElement>event.target).value.toUpperCase();
+    this.updateItems(input);
+    console.log(this.shownFacturen);
+    for (const uitgave of this.shownUitgaven) {
+      console.log(uitgave);
+      this.weergaven.push(uitgave);
     }
-
-    // Facturen
-    for (let i = 0; i <  this.facturen.length; i++) {
-      if (this.facturen[i].eindDatum.slice(6, 10) !== this.jaar.toString()) {
-        continue;
-      }
-      for (let j = 0; j < this.kwartaalmaanden.length; j++) {
-        if (this.facturen[i].eindDatum.slice(3, 5) === this.kwartaalmaanden[j]) {
-          this.weergaven.push(this.facturen[i]);
-        }
-      }
+    for (const factuur of this.shownFacturen) {
+      this.weergaven.push(factuur);
     }
-    console.log(this.weergaven);
-  }
-
-  zetKwartaalMaanden(event: any) {
-    this.kwartaal = (<HTMLInputElement>event.target).value;
-    switch (this.kwartaal) {
-      case 'Kwartaal 1':  this.kwartaalmaanden = ['01', '02', '03'];
-                          break;
-      case 'Kwartaal 2':  this.kwartaalmaanden = ['04', '05', '06'];
-                          break;
-      case 'Kwartaal 3':  this.kwartaalmaanden = ['07', '08', '09'];
-                          break;
-      case 'Kwartaal 4':  this.kwartaalmaanden = ['10', '11', '12'];
-                          break;
-      default:            console.log('Dit zou niet moeten kunnen.'); // TODO: Error afhandeling.
-    }
-    this.filterWeergaven();
   }
 
 

@@ -37,6 +37,7 @@ export class BelastingZoekenService implements OnInit {
       .subscribe(
         (facturen: Factuur[]) => {
           for (const factuur of facturen) {
+            console.log(factuur);
             this.factuurMatches.push({id: factuur.id,
               beschrijving: factuur.beschrijving,
               beginDatum: factuur.beginDatum,
@@ -47,10 +48,12 @@ export class BelastingZoekenService implements OnInit {
         },
         (error) => console.log('error: ' + error)
       );
+    console.log('Update complete. size: ' + this.factuurMatches.length);
   }
 
   getFactuurMatches(zoekterm: string) {
     console.log(this.httpOptions.headers.get('Authorization'));
+    console.log(zoekterm);
     return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
   }
 
@@ -105,7 +108,7 @@ export class BelastingZoekenService implements OnInit {
     return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
   }
 
-  getKostenposten() {
+  updateKostenposten() {
     this.http.get<any[]>(this.kostenpostZoekterm, this.httpOptions)
       .subscribe(
         (kostenposten: Kostenpost[]) => {
