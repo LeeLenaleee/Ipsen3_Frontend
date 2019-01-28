@@ -9,28 +9,30 @@ import {BelastingZoekenService} from '../belasting-zoeken-service';
 })
 export class UitgavenoverzichtComponent implements OnInit {
   @ViewChild('uitgaveInput') uitgaveNaam: ElementRef;
-  input = '';
-  shownUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
+  allUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
   kostenpostSwitch = false;
-  jaarSwitch = false;
+  kwartaalSwitch = false;
   kostenposten: {naam: string}[] = [];
   geselecteerdeKostenpost = '';
   inputJaar = '';
-  inputKwartaal = 'kwartaal 1';
+  kwartaalMaanden = ['01', '02', '03'];
+  shownUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
 
   constructor(private service: BelastingZoekenService) { }
 
   ngOnInit() {
     this.service.updateUitgaveMatches(this.uitgaveNaam.nativeElement.value);
     this.service.getKostenposten();
+    this.allUitgaven = this.service.uitgaveMatches;
     this.shownUitgaven = this.service.uitgaveMatches;
     this.kostenposten = this.service.kostenposten;
   }
 
   zoekUitgaven(event: any) {
-    this.input = (<HTMLInputElement>event.target).value.toUpperCase();
-    this.service.updateUitgaveMatches(this.input);
-    this.shownUitgaven = this.service.uitgaveMatches;
+    const input = (<HTMLInputElement>event.target).value.toUpperCase();
+    this.service.updateUitgaveMatches(input);
+    this.allUitgaven = this.service.uitgaveMatches;
+    this.filter();
   }
 
   zetKostenpost(event: any) {
@@ -40,34 +42,91 @@ export class UitgavenoverzichtComponent implements OnInit {
 
   veranderJaar(event: any) {
     this.inputJaar = (<HTMLInputElement>event.target).value;
+    this.filter();
   }
 
   veranderKwartaal(event: any) {
-    this.inputKwartaal = (<HTMLInputElement>event.target).value;
+    const kwartaal = (<HTMLInputElement>event.target).value;
+    switch (kwartaal) {
+      case 'Kwartaal 1':  this.kwartaalMaanden = ['01', '02', '03'];
+                          break;
+      case 'Kwartaal 2':  this.kwartaalMaanden = ['04', '05', '06'];
+                          break;
+      case 'Kwartaal 3':  this.kwartaalMaanden = ['07', '08', '09'];
+                          break;
+      case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
+                          break;
+    }
+    this.filter();
   }
 
   filter() {
-    const uitgavenLijst = document.getElementById('uitgaventabel').getElementsByTagName('td');
+    this.shownUitgaven = [];
     let kostenpost: string;
-    for (let i = 0; i < uitgavenLijst.length; i++) {
-      if (i % 6 === 2) {
-        kostenpost = uitgavenLijst[i].textContent;
-        if (kostenpost !== this.geselecteerdeKostenpost && this.kostenpostSwitch) {
-          uitgavenLijst[i - 2].style.display = 'none';
-          uitgavenLijst[i - 1].style.display = 'none';
-          uitgavenLijst[i].style.display = 'none';
-          uitgavenLijst[i + 1].style.display = 'none';
-          uitgavenLijst[i + 2].style.display = 'none';
-          uitgavenLijst[i + 3].style.display = 'none';
-        } else {
-          uitgavenLijst[i - 2].style.display = '';
-          uitgavenLijst[i - 1].style.display = '';
-          uitgavenLijst[i].style.display = '';
-          uitgavenLijst[i + 1].style.display = '';
-          uitgavenLijst[i + 2].style.display = '';
-          uitgavenLijst[i + 3].style.display = '';
+    let maand: string;
+    let jaar: string;
+
+    for (let i = 0; i < this.allUitgaven.length; i++) {
+      kostenpost = this.allUitgaven[i].kostenpost;
+      maand = this.allUitgaven[i].datum.slice(5, 7);
+      jaar = this.allUitgaven[i].datum.slice(0, 4);
+
+      console.log('debug ' + maand + ' ' + jaar + ' ' + this.inputJaar + ' ' + this.kwartaalMaanden[0]);
+
+      if (this.kwartaalSwitch) {
+        if (this.kostenpostSwitch) { // Both kostenpost & kwartaal
+          if (kostenpost === this.geselecteerdeKostenpost && (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
+            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2]))) {
+            this.shownUitgaven.push(this.allUitgaven[i]);
+          }
+        } else if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] || // Only kwartaal
+          maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
+            this.shownUitgaven.push(this.allUitgaven[i]);
         }
+      } else if (this.kostenpostSwitch) { // Only kostenpost
+        if (kostenpost === this.geselecteerdeKostenpost) {
+          this.shownUitgaven.push(this.allUitgaven[i]);
+        }
+      } else { // Neither kostenpost nor kwartaal
+        this.shownUitgaven.push(this.allUitgaven[i]);
+        console.log('Debug');
       }
     }
   }
+
+
+
+
+  // filter() {
+  //   const uitgavenLijst = document.getElementById('uitgaventabel').getElementsByTagName('td');
+  //   let kostenpost: string;
+  //   let maand: string;
+  //   let jaar: string;
+  //
+  //   for (let i = 0; i < uitgavenLijst.length; i++) {
+  //     if (i % 6 === 2) {
+  //
+  //       kostenpost = uitgavenLijst[i].textContent;
+  //       maand = uitgavenLijst[i + 1].textContent.slice(5, 7);
+  //       jaar = uitgavenLijst[i + 1].textContent.slice(0, 4);
+  //
+  //       if ((kostenpost !== this.geselecteerdeKostenpost && this.kostenpostSwitch) && (maand === this.kwartaalMaanden[0] ||
+  //         maand === this.kwartaalMaanden[1]) || maand === this.kwartaalMaanden[2]) {
+  //         uitgavenLijst[i - 2].style.display = 'none';
+  //         uitgavenLijst[i - 1].style.display = 'none';
+  //         uitgavenLijst[i].style.display = 'none';
+  //         uitgavenLijst[i + 1].style.display = 'none';
+  //         uitgavenLijst[i + 2].style.display = 'none';
+  //         uitgavenLijst[i + 3].style.display = 'none';
+  //       } else {
+  //         uitgavenLijst[i - 2].style.display = '';
+  //         uitgavenLijst[i - 1].style.display = '';
+  //         uitgavenLijst[i].style.display = '';
+  //         uitgavenLijst[i + 1].style.display = '';
+  //         uitgavenLijst[i + 2].style.display = '';
+  //         uitgavenLijst[i + 3].style.display = '';
+  //       }
+  //     }
+  //   }
+  // }
 }

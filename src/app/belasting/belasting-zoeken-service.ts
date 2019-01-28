@@ -21,7 +21,7 @@ export class BelastingZoekenService implements OnInit {
   httpOptions = {
     headers: this.headers_object
   };
-  factuurZoekterm = 'http://localhost:8080/api/factuur/omschrijving?omschrijving=';
+  factuurZoekterm = 'http://localhost:8080/api/factuur/zoek?omschrijving=';
   contactZoekterm = 'http://localhost:8080/api/contacten/bedrijf?bedrijf=';
   uitgaveZoekterm = 'http://localhost:8080/api/onkosten/zoek?omschrijving=';
   kostenpostZoekterm = 'http://localhost:8080/api/kostenpost';
@@ -110,7 +110,6 @@ export class BelastingZoekenService implements OnInit {
       .subscribe(
         (kostenposten: Kostenpost[]) => {
           for (const kostenpost of kostenposten) {
-            console.log(kostenpost);
             this.kostenposten.push({naam: kostenpost['kostenpost']});
           }
         },

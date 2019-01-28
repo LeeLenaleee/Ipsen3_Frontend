@@ -15,7 +15,7 @@
         </select>
   </div>
   <div class="col-1">
-    <app-toggle-switch [(switchStatus)]="jaarSwitch" (input)="filter()"></app-toggle-switch>
+    <app-toggle-switch [(switchStatus)]="kwartaalSwitch" (input)="filter()"></app-toggle-switch>
     <input type="number" title="jaar" (input)="veranderJaar($event)">
     <select (input)="veranderKwartaal($event)">
       <option>Kwartaal 1</option>
