@@ -14,6 +14,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem('email'))
   }
 
 }

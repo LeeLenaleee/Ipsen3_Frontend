@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { Kostenpost } from '../kostenpost.model';
+import { InstellingenService } from '../../instellingen.Service';
 
 @Component({
   selector: 'app-kostenpost-item',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kostenpost-item.component.css']
 })
 export class KostenpostItemComponent implements OnInit {
+  @Input() kostenposten: Kostenpost;
+  @Input() index: number;
 
-  constructor() { }
+  constructor(private instellingenService: InstellingenService) { }
 
   ngOnInit() {
+    console.log("VOEGONKOSTTOE AANGEROEPEN!")
+
   }
 
 }

@@ -1,0 +1,45 @@
+span {
+  width:110px;
+  height: 60px;
+}
+
+input {
+  height: 60px;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.select-class {
+  height: auto !important;
+}
+
+.item-margin {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+input.ng-invalid.ng-touched {
+  border-right: 2px solid red;
+}
+
+
+.briefInput {
+  height: 170px;
+}
+
+button {
+  width: 100%;
+  background-color: orange;
+  border-color: #ad6900;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+button:disabled {
+  background-color: grey;
+  border-color: transparent;
+}

@@ -1,0 +1,106 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Betreft</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="Loek Weijts"
+                  ngModel
+                  name="betreft"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Datum</span>
+        </div>
+        <input    type="date"
+                  class="form-control"
+                  placeholder="DD-MM-JJJJ"
+                  ngModel
+                  name="datum"
+                  required>
+      </div>
+    </div>
+
+    <div class="col-6" select-class>
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Correspondentie</span>
+        </div>
+        <input    type="number"
+                  class="form-control"
+                  placeholder="1"
+                  ngModel
+                  name="correspondentie"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Adressering</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="Contactpersoon"
+                  ngModel
+                  name="adressering"
+                  required
+                  readonly>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Verhaal</span>
+        </div>
+        <textarea type="text"
+                  class="form-control briefInput"
+                  placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley"
+                  ngModel
+                  name="verhaal"
+                  required
+                  readonly>
+        </textarea>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-3">
+      <button class="btn" type="submit" [disabled]="!f.valid">{{ buttonTextOne }}</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" type="button" routerLink="/brieven">Nieuw</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" [disabled]="buttonTextOne === 'Voeg toe'" (click)="downLoad()" type="button" routerLink="/brieven">Download</button>
+    </div>
+    <div class="col-3">
+      <button class="btn" type="button" (click)="clearAndDelete()">{{ buttonTextTwo }}</button>
+    </div>
+  </div>
+
+</form>

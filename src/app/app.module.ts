@@ -23,10 +23,14 @@ import {ErrorInterceptor} from './inloggen-uitloggen/inloggen/error.interceptor'
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertComponent} from './inloggen-uitloggen/inloggen';
+import { ContactenListComponent } from './contacten/contact-zoeken/contacten-list/contacten-list.component';
+import { InstellingenService } from './instellingen/instellingen.Service';
 
 import {OnkostenModule} from './onkosten/onkosten.module';
 import {ContactenModule} from './contacten/contacten.module';
 import {RapportagesModule} from './rapportages/rapportages.module';
+import {BerekenService} from './shared/bereken.service';
+import { ApiService } from './shared/api.service';
 
 
 @NgModule({
@@ -64,9 +68,10 @@ import {RapportagesModule} from './rapportages/rapportages.module';
     AuthGuard,
     AlertService,
     AuthenticationService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-  ],
+    InstellingenService,
+    ApiService,
+    BerekenService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

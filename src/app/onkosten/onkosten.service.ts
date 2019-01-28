@@ -1,15 +1,14 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Onkosten} from './onkosten.model';
-import {Observable, Subject} from 'rxjs';
+import {Onkosten} from '../models/onkosten.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import {Btw} from '../models/btw.model';
 
 @Injectable()
 export class OnkostenService {
 
   onkostenEmitter = new EventEmitter<Onkosten[]>();
-  subject = new Subject<Onkosten[]>();
   onkostenSelected = new EventEmitter<Onkosten>();
   headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
       localStorage.getItem('password'))});
@@ -51,12 +50,8 @@ export class OnkostenService {
     return this.httpClient.put<Onkosten>('http://localhost:8080/api/onkosten/' + id, onkost, this.httpOptions);
   }
 
-  // deleteOnkost(onkost: Onkosten) {
-  //   this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/', onkost);
-  // }
-
-  selectOnkosten(data) {
-    this.subject.next(data);
+  deleteOnkost(id: number) {
+    return this.httpClient.delete<Onkosten>('http://localhost:8080/api/onkosten/' + id, this.httpOptions);
   }
 
   toServerDateTransform(date) {

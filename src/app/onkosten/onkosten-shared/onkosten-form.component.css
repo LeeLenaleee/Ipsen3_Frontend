@@ -23,10 +23,22 @@ input::-webkit-inner-spin-button {
 
 button {
   width: 100%;
+  background-color: orange;
+  border-color: #ad6900;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+button:disabled {
+  background-color: grey;
+  border-color: transparent;
 }
 
 input.ng-invalid.ng-touched {
   border-right: 2px solid red;
 }
 
-
+select {
+  height: 60px;
+}

@@ -39,8 +39,7 @@ export class ContactToevoegenService {
               this.voegEmailToe(emails, contact, id);
             }
           );
-        },
-      (error) => console.log(error)
+        }
     );
   }
 

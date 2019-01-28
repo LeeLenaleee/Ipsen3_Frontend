@@ -25,7 +25,6 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (this.router.url !== '/login') { location.reload(true);  }
       }
 
-      console.log(err);
       const error = 'Er is iets mis gegaan bij het inloggen, probeer het opnieuw' || err.statusText;
       return throwError(error);
     }));

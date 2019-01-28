@@ -31,7 +31,7 @@ export class FacturenService {
       );
   }
 
-  getOfferteByOmschrijving(omschrijving: string) {
+  getFactuurByOmschrijving(omschrijving: string) {
     return this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur/zoek?omschrijving=' + omschrijving ,
       this.httpOptions);
   }
@@ -60,5 +60,28 @@ export class FacturenService {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
   }
+
+  deleteFactuur(id: number) {
+    return this.httpClient.delete<FactuurModel>('http://localhost:8080/api/factuur/' + id, this.httpOptions);
+  }
+
+  downLoad(id: number) {
+    const downloadString = 'http://localhost:8080/api/factuur/download?id=' + id;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+        localStorage.getItem('password'))});
+    fetch(downloadString, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'FactuurNummer: ' + id;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
+  }
+
 
 }

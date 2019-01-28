@@ -1,3 +1,23 @@
-<p>
-  kostenpost-list works!
-</p>
+<h2 class="center">Kostenpost</h2>
+
+<form (ngSubmit)="voegToe()" #f="ngForm">
+  <div class="form-group">
+    <label for="kostenpost" class="center form-control">Kostenpost</label>
+    <input type="text" id="kostenpost" [(ngModel)]="kostenpost" name="kostenpost" class="form-control center" placeholder="kostenpost">
+    <button [disabled]="foo" class = "btn btn-light">Voeg kostenpost toe</button>
+  </div>
+</form>
+
+<hr>
+<h2>KOSTENPOSTEN</h2>
+<div style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="row">
+    <div class="col-12">
+      <app-kostenpost-item
+        *ngFor="let kostenpost of kostenposten; let i = index"
+        [kostenposten]="kostenpost"
+        [index]="i + 1"
+      ></app-kostenpost-item>
+    </div>
+  </div>
+</div>

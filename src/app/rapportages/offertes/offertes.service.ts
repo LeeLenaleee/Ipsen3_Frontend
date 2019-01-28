@@ -2,14 +2,13 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
-import {Onkosten} from '../../onkosten/onkosten.model';
 import {DatePipe} from '@angular/common';
 
 @Injectable()
 export class OffertesService {
 
   offerteEmitter = new EventEmitter<OfferteModel[]>();
-  offerteSelected = new EventEmitter<Onkosten>();
+  offerteSelected = new EventEmitter<OfferteModel>();
 
   headers_object = new HttpHeaders({
     'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
@@ -60,4 +59,25 @@ export class OffertesService {
     return dateSendingToServer;
   }
 
+  deleteOfferte(id: number) {
+    return this.httpClient.delete<OfferteModel>('http://localhost:8080/api/offerte/' + id, this.httpOptions);
+  }
+
+  downLoad(id: number) {
+    const downloadString = 'http://localhost:8080/api/offerte/download?id=' + id;
+
+    const anchor = document.createElement('a');
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
+        localStorage.getItem('password'))});
+    fetch(downloadString, { headers })
+      .then(response => response.blob())
+      .then(blobby => {
+        const objectUrl = window.URL.createObjectURL(blobby);
+
+        anchor.href = objectUrl;
+        anchor.download = 'OfferteNummer: ' + id;
+        anchor.click();
+        window.URL.revokeObjectURL(objectUrl);
+      });
+  }
 }

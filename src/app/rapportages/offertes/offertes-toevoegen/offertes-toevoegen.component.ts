@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {OffertesService} from '../offertes.service';
 import {NgForm} from '@angular/forms';
+import {BerekenService} from '../../../shared/bereken.service';
+import {Btw} from '../../../models/btw.model';
 
 @Component({
   selector: 'app-offertes-toevoegen',
@@ -9,12 +11,25 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['../offertes-shared/offertes-form.component.css']
 })
 export class OffertesToevoegenComponent implements OnInit {
-
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
+  @ViewChild('f') form: NgForm;
+  btwPercentages = new Btw(null, null, null);
+  percentage = null;
 
   constructor(private offerteService: OffertesService,
-              private httpClient: HttpClient) { }
+              private httpClient: HttpClient,
+              private berekenService: BerekenService) { }
+
+  ngOnInit() {
+    this.berekenService.getBtwPercentages()
+      .subscribe(
+        (btw: Btw) => {
+          this.btwPercentages = btw;
+          this.percentage = this.btwPercentages.btwPercentageHoog;
+        }
+      );
+  }
 
   onSubmit(form: NgForm) {
     if (confirm('Weet u het zeker?')) {
@@ -30,13 +45,14 @@ export class OffertesToevoegenComponent implements OnInit {
     }
   }
 
-  clearFields(form: NgForm) {
+  clearAndDelete() {
     if (confirm('Weet u het zeker?')) {
-      form.onReset();
+      this.form.onReset();
     }
   }
 
-  ngOnInit(): void {
+  calculatePrice() {
+    this.berekenService.calculatePrice(this.form);
   }
 
 }
