@@ -5,21 +5,13 @@ import {NgForm} from '@angular/forms';
 import {ContactZoekenService} from '../contact-zoeken.service';
 import {Telefoon} from '../../models/contact-telefoonnummer.model';
 import {Email} from '../../models/contact-email.model';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactToevoegenService {
-  contactUrl = 'http://195.181.246.85:8080/api/contacten/';
-  telefoonUrl = 'http://195.181.246.85:8080/api/telefoonnummer';
-  emailUrl = 'http://195.181.246.85:8080/api/email';
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))});
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private http: HttpClient, private zoekenService: ContactZoekenService) { }
+  constructor(private zoekenService: ContactZoekenService, private apiService: ApiService) { }
 
   voegContactToe(form: NgForm) {
     const contact: Contact = this.formToContact(form);
@@ -58,17 +50,17 @@ export class ContactToevoegenService {
   }
 
   postContact(contact: Contact) {
-    return this.http.post<Contact>(this.contactUrl, contact, this.httpOptions);
+    return this.apiService.post<Contact>('/contacten', contact);
   }
 
   postTelefoon(nummer: string, contact: Contact) {
     const telefoon = new Telefoon(null, nummer, contact);
-    return this.http.post<Telefoon>(this.telefoonUrl, telefoon, this.httpOptions);
+    return this.apiService.post<Telefoon>('/telefoonnummer', telefoon);
   }
 
   postEmail(mail: string, contact: Contact) {
     const email = new Email(null, mail, contact);
-    return this.http.post<Email>(this.emailUrl, email, this.httpOptions);
+    return this.apiService.post<Email>('/email', email);
   }
 
   formToContact(form: NgForm) {

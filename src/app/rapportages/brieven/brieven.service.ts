@@ -12,23 +12,10 @@ export class BrievenService {
 
   brievenEmitter = new EventEmitter<Brieven[]>();
   brievenSelected = new EventEmitter<Brieven>();
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))});
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private httpClient: HttpClient, private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   getBrieven() {
-    // this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief', this.httpOptions)
-    //   .subscribe(
-    //     (brieven: Brieven[]) => {
-    //       this.brievenEmitter.emit(brieven);
-    //     }
-    //   );
-
-      this.apiService.get<Brieven[]>("/brief").subscribe(
+      this.apiService.get<Brieven[]>('/brief').subscribe(
         (brieven: Brieven[]) => {
           this.brievenEmitter.emit(brieven);
         }
@@ -36,8 +23,7 @@ export class BrievenService {
   }
 
   getBrief(index: number) {
-    //return this.httpClient.get<Brieven>('http://195.181.246.85:8080/api/brief/' + index , this.httpOptions);
-    return this.apiService.getById<Brieven>("/brief", index);
+    return this.apiService.getById<Brieven>('/brief', index);
   }
 
   // zoek request
@@ -52,19 +38,15 @@ export class BrievenService {
   }
 
   postBrief(brief: Brieven) {
-    //return this.httpClient.post<Brieven>('http://195.181.246.85:8080/api/brief', brief, this.httpOptions);
-    return this.apiService.post<Brieven>("/brief", brief);
+    return this.apiService.post<Brieven>('/brief', brief);
   }
 
   putBrief(brief: Brieven, id: number) {
-    //return this.httpClient.put<Brieven>('http://195.181.246.85:8080/api/brief/' + id, brief, this.httpOptions);
-    return this.apiService.put<Brieven>("/brief", id, brief);
+    return this.apiService.put<Brieven>('/brief', id, brief);
   }
 
 
   getBriefByPersoon(geadreseerde: string) {
-    // return this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
-    //   this.httpOptions);
     return this.apiService.get<Brieven[]>('/brief/zoek/?geadreseerde=' + geadreseerde);
   }
 
@@ -74,8 +56,7 @@ export class BrievenService {
   }
 
   deleteBrief(id: number) {
-    //return this.httpClient.delete<Brieven>('http://195.181.246.85:8080/api/brief/' + id, this.httpOptions);
-    return this.apiService.delete<Brieven>("/brief", id);
+    return this.apiService.delete<Brieven>('/brief', id);
 
   }
 
