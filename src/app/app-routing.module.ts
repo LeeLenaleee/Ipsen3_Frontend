@@ -17,7 +17,7 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
   providers: [OnkostenResolver]
 })
