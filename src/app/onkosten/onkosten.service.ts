@@ -5,6 +5,8 @@ import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {Btw} from '../models/btw.model';
 import { ApiService } from '../shared/api.service';
+import {Observable} from 'rxjs';
+import {Kostenpost} from '../models/kostenpost.model';
 
 @Injectable()
 export class OnkostenService {
@@ -70,5 +72,9 @@ export class OnkostenService {
   toServerDateTransform(date) {
     const dateSendingToServer = new DatePipe('en-US').transform(date, 'dd-MM-yyyy');
     return dateSendingToServer;
+  }
+
+  getKostenPosten(): Observable<Kostenpost[]> {
+    return this.apiService.get<Kostenpost[]>('/kostenpost');
   }
 }
