@@ -8,6 +8,8 @@ import {BelastingRoutingModule} from './belasting-routing.module';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {BelastingService} from './belasting.service';
+import { UitgaveItemComponent } from './uitgavenoverzicht/uitgave-item/uitgave-item.component';
+import { UitgaveListComponent } from './uitgavenoverzicht/uitgave-list/uitgave-list.component';
 
 @NgModule({
   declarations: [BelastingComponent,
@@ -15,6 +17,8 @@ import {BelastingService} from './belasting.service';
     KwartaalWeergavenComponent,
     ToggleSwitchComponent,
     UitgavenoverzichtComponent,
+    UitgaveItemComponent,
+    UitgaveListComponent,
   ],
   imports: [BelastingRoutingModule,
   CommonModule,

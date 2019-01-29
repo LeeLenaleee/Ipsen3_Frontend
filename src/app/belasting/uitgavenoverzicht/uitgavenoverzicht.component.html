@@ -25,21 +25,26 @@
     </select>
   </div>
 </div>
-<table id="uitgaventabel">
-  <tr>
-    <th>Uitgave ID</th>
-    <th>Uitgave Beschrijving</th>
-    <th>Kostenpost</th>
-    <th>Uitgave Datum</th>
-    <th>Uitgave Bruto kosten</th>
-    <th>Uitgave Netto kosten</th>
-  </tr>
-  <tr *ngFor="let uitgave of shownUitgaven">
-    <td>{{uitgave.id}}</td>
-    <td>{{uitgave.beschrijving}}</td>
-    <td>{{uitgave.kostenpost}}</td>
-    <td>{{uitgave.datum}}</td>
-    <td>{{uitgave.bruto}}</td>
-    <td>{{uitgave.netto}}</td>
-  </tr>
-</table>
+
+<div class="col-6">
+  <app-uitgave-list [uitgaven]="shownUitgaven"></app-uitgave-list>
+</div>
+
+<!--<table id="uitgaventabel">-->
+  <!--<tr>-->
+    <!--<th>Uitgave ID</th>-->
+    <!--<th>Uitgave Beschrijving</th>-->
+    <!--<th>Kostenpost</th>-->
+    <!--<th>Uitgave Datum</th>-->
+    <!--<th>Uitgave Bruto kosten</th>-->
+    <!--<th>Uitgave Netto kosten</th>-->
+  <!--</tr>-->
+  <!--<tr *ngFor="let uitgave of shownUitgaven">-->
+    <!--<td>{{uitgave.id}}</td>-->
+    <!--<td>{{uitgave.beschrijving}}</td>-->
+    <!--<td>{{uitgave.kostenpost}}</td>-->
+    <!--<td>{{uitgave.datum}}</td>-->
+    <!--<td>{{uitgave.bruto}}</td>-->
+    <!--<td>{{uitgave.netto}}</td>-->
+  <!--</tr>-->
+<!--</table>-->
