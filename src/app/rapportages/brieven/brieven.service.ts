@@ -67,7 +67,7 @@ export class BrievenService {
   }
 
   downLoad(id: number) {
-    const downloadString = 'http://localhost:8080/api/brief/download?id=' + id;
+    const downloadString = 'http://195.181.246.85:8080/api/brief/download?id=' + id;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
