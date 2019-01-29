@@ -4,6 +4,7 @@ import {FactuurModel} from '../../models/factuur.model';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Injectable()
 export class FacturenService {
@@ -11,29 +12,19 @@ export class FacturenService {
   factuurEmitter = new EventEmitter<FactuurModel[]>();
   factuurSelected = new EventEmitter<FactuurModel>();
 
-  headers_object = new HttpHeaders({
-    'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))
-  });
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private apiService: ApiService) {
   }
 
   getFacturen() {
-    this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur', this.httpOptions)
-      .subscribe(
-        (factuurModels: FactuurModel[]) => {
-          this.factuurEmitter.emit(factuurModels);
-        }
-      );
+    this.apiService.get<FactuurModel[]>('/factuur').subscribe(
+      (factuurModels: FactuurModel[]) => {
+        this.factuurEmitter.emit(factuurModels)
+      }
+    )
   }
 
   getFactuurByOmschrijving(omschrijving: string) {
-    return this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur/zoek?omschrijving=' + omschrijving ,
-      this.httpOptions);
+      return this.apiService.get<FactuurModel[]>('/factuur/zoek?omschrijving=' + omschrijving);
   }
 
   formToFactuur(form: NgForm) {
@@ -45,15 +36,15 @@ export class FacturenService {
   }
 
   postFactuur(factuurModel: FactuurModel) {
-    return this.httpClient.post<FactuurModel>('http://localhost:8080/api/factuur', factuurModel, this.httpOptions);
+    return this.apiService.post<FactuurModel>('/factuur', factuurModel);
   }
 
   putFactuur(factuurModel: FactuurModel, id: number) {
-    return this.httpClient.put<FactuurModel>('http://localhost:8080/api/factuur/' + id, factuurModel, this.httpOptions);
+    return this.apiService.put<FactuurModel>('/factuur', id, factuurModel);
   }
 
   getFactuur(index: number) {
-    return this.httpClient.get<FactuurModel>('http://localhost:8080/api/factuur/' + index , this.httpOptions);
+    return this.apiService.getById<FactuurModel>('/factuur', index);
   }
 
   toServerDateTransform(date) {
@@ -62,11 +53,11 @@ export class FacturenService {
   }
 
   deleteFactuur(id: number) {
-    return this.httpClient.delete<FactuurModel>('http://localhost:8080/api/factuur/' + id, this.httpOptions);
+    return this.apiService.delete<FactuurModel>('/factuur', id);
   }
 
   downLoad(id: number) {
-    const downloadString = 'http://localhost:8080/api/factuur/download?id=' + id;
+    const downloadString = 'http://195.181.246.85:8080/api/factuur/download?id=' + id;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
@@ -82,6 +73,4 @@ export class FacturenService {
         window.URL.revokeObjectURL(objectUrl);
       });
   }
-
-
 }

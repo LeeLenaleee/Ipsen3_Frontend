@@ -2,17 +2,11 @@ import {Injectable} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Btw} from '../models/btw.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @Injectable()
 export class BerekenService {
-  headers_object = new HttpHeaders({
-    'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))
-  });
-  httpOptions = {
-    headers: this.headers_object
-  };
-  constructor(private httpClient: HttpClient){}
+  constructor(private apiService: ApiService) {}
 
   calculatePrice(form: NgForm) {
     const brutokost = form.value['brutokost'];
@@ -29,6 +23,6 @@ export class BerekenService {
   }
 
   getBtwPercentages() {
-    return this.httpClient.get<Btw>('http://localhost:8080/api/btwpercentage/1' , this.httpOptions);
+    return this.apiService.getById<Btw>('/btwpercentage', 1);
   }
 }

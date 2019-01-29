@@ -20,6 +20,8 @@ export class BrievenToevoegenComponent implements OnInit {
   ngOnInit() {
   }
 
+  downLoad() {}
+
   onSubmit(form: NgForm) {
     if (confirm('Weet u het zeker?')) {
       const brief = this.brievenService.formToBrief(form);

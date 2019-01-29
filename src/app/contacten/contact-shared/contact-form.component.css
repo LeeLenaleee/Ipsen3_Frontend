@@ -3,7 +3,7 @@ span {
   height: 40px;
 }
 
-input {
+input, select {
   height: 40px;
 }
 
@@ -31,4 +31,23 @@ button {
 
 input.ng-invalid.ng-touched {
   border-right: 2px solid red;
+}
+
+button {
+  background-color: orange;
+  border-color: #ad6900;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+button:disabled {
+  background-color: grey;
+  border-color: transparent;
+}
+
+.groen, .rood {
+  margin: 1px;
+  padding: 0;
+  width: 30px;
 }
