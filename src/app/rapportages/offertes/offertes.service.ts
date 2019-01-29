@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {OfferteModel} from '../../models/offerte.model';
 import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Injectable()
 export class OffertesService {
@@ -10,20 +11,11 @@ export class OffertesService {
   offerteEmitter = new EventEmitter<OfferteModel[]>();
   offerteSelected = new EventEmitter<OfferteModel>();
 
-  headers_object = new HttpHeaders({
-    'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))
-  });
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private apiService: ApiService) {
   }
 
   getOffertes() {
-    this.httpClient.get<OfferteModel[]>('http://195.181.246.85:8080/api/offerte', this.httpOptions)
-      .subscribe(
+      this.apiService.get<OfferteModel[]>('/offerte').subscribe(
         (offerteModels: OfferteModel[]) => {
           this.offerteEmitter.emit(offerteModels);
         }
@@ -31,8 +23,8 @@ export class OffertesService {
   }
 
   getOfferteByCorrespondentieNummer(correspondentieNummer: number) {
-      return this.httpClient.get<OfferteModel[]>('http://195.181.246.85:8080/api/offerte/zoek?correspondentie=' + correspondentieNummer ,
-        this.httpOptions);
+      return this.apiService.get<OfferteModel[]>('/offerte/zoek?correspondentie=' + correspondentieNummer);
+
     }
 
   formToOfferte(form: NgForm) {
@@ -43,15 +35,15 @@ export class OffertesService {
   }
 
   postOfferte(offerteModel: OfferteModel) {
-    return this.httpClient.post<OfferteModel>('http://195.181.246.85:8080/api/offerte', offerteModel, this.httpOptions);
+    return this.apiService.post<OfferteModel>('/offerte', offerteModel);
   }
 
   putOfferte(offerte: OfferteModel, id: number) {
-    return this.httpClient.put<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + id, offerte, this.httpOptions);
+    return this.apiService.put<OfferteModel>('/offerte', id, offerte);
   }
 
   getOfferte(index: number) {
-    return this.httpClient.get<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + index , this.httpOptions);
+    return this.apiService.getById<OfferteModel>('/offerte', index);
   }
 
   toServerDateTransform(date) {
@@ -60,7 +52,7 @@ export class OffertesService {
   }
 
   deleteOfferte(id: number) {
-    return this.httpClient.delete<OfferteModel>('http://195.181.246.85:8080/api/offerte/' + id, this.httpOptions);
+    return this.apiService.delete<OfferteModel>('/offerte', id);
   }
 
   downLoad(id: number) {
