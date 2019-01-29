@@ -8,7 +8,7 @@ import {AfterContentChecked, Component, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit, AfterContentChecked {
   constructor() { }
 
-  private header = false;
+  header = false;
 
   ngOnInit() {
   }

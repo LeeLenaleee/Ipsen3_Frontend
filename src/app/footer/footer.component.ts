@@ -8,7 +8,7 @@ import {AfterContentChecked, Component, OnInit} from '@angular/core';
 export class FooterComponent implements OnInit, AfterContentChecked {
 
   constructor() { }
-  private footer = false;
+  footer = false;
   ngOnInit() {
   }
 

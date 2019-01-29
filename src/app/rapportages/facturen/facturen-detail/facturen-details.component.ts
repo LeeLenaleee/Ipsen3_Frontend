@@ -16,6 +16,7 @@ export class FacturenDetailsComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonTextOne = 'Wijzig';
   buttonTextTwo = 'Verwijder';
+  percentage = null;
   btwPercentages = new Btw(null, null, null);
 
   constructor(private router: Router,

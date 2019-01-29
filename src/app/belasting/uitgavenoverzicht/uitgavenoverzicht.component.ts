@@ -66,28 +66,32 @@ export class UitgavenoverzichtComponent implements OnInit {
     let maand: string;
     let jaar: string;
 
-    for (let i = 0; i < this.allUitgaven.length; i++) {
-      kostenpost = this.allUitgaven[i].kostenpost;
-      maand = this.allUitgaven[i].datum.slice(3, 5);
-      jaar = this.allUitgaven[i].datum.slice(6, 10);
+    console.log(this.allUitgaven);
 
-      if (this.kwartaalSwitch) {
-        if (this.kostenpostSwitch) { // Both kostenpost & kwartaal
-          if (kostenpost === this.geselecteerdeKostenpost && (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
-            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2]))) {
+    setTimeout( () => {
+      for (let i = 0; i < this.allUitgaven.length; i++) {
+        kostenpost = this.allUitgaven[i].kostenpost;
+        maand = this.allUitgaven[i].datum.slice(3, 5);
+        jaar = this.allUitgaven[i].datum.slice(6, 10);
+
+        if (this.kwartaalSwitch) {
+          if (this.kostenpostSwitch) { // Both kostenpost & kwartaal
+            if (kostenpost === this.geselecteerdeKostenpost && (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
+              maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2]))) {
+              this.shownUitgaven.push(this.allUitgaven[i]);
+            }
+          } else if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] || // Only kwartaal
+            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
             this.shownUitgaven.push(this.allUitgaven[i]);
           }
-        } else if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] || // Only kwartaal
-          maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
+        } else if (this.kostenpostSwitch) { // Only kostenpost
+          if (kostenpost === this.geselecteerdeKostenpost) {
             this.shownUitgaven.push(this.allUitgaven[i]);
-        }
-      } else if (this.kostenpostSwitch) { // Only kostenpost
-        if (kostenpost === this.geselecteerdeKostenpost) {
+          }
+        } else { // Neither kostenpost nor kwartaal
           this.shownUitgaven.push(this.allUitgaven[i]);
         }
-      } else { // Neither kostenpost nor kwartaal
-        this.shownUitgaven.push(this.allUitgaven[i]);
       }
-    }
+    }, 100);
   }
 }

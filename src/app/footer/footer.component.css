@@ -3,6 +3,10 @@ img {
   width: 30px;
 }
 
+.nav-margin {
+  margin-top: 7%;
+}
+
 .albert-navbar {
   position: fixed;
   display: flex;

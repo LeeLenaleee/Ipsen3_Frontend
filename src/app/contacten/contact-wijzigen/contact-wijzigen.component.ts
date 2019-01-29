@@ -18,6 +18,7 @@ export class ContactWijzigenComponent implements OnInit {
   buttonText2 = 'Verwijder';
   aantalTel = 3;
   aantalEmail = 3;
+  selectedRelatie = null;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
 
   constructor(private wijzigenService: ContactWijzigenService,
