@@ -60,4 +60,22 @@ export class ContactToevoegenComponent implements OnInit {
     }
   }
 
+  onCapitalize(input: string) {
+    if (this.form.value[input] !== '') {
+      let woord = this.form.value[input];
+      const hoofdletter = woord[0].toUpperCase();
+      const rest = woord.slice(1);
+      woord = (hoofdletter + rest);
+
+      this.form.form.patchValue({[input]: woord});
+    }
+  }
+
+  onCapitalizePostcode() {
+    if (this.form.value['postcode'] !== '') {
+      const postcode = this.form.value['postcode'].toUpperCase();
+      this.form.form.patchValue({postcode: postcode});
+
+    }
+  }
 }

@@ -9,6 +9,7 @@
                   class="form-control"
                   placeholder="Voornaam"
                   ngModel
+                  (keyup)="onCapitalize('voornaam')"
                   name="voornaam"
                   required>
       </div>
@@ -23,6 +24,7 @@
                   class="form-control"
                   placeholder="Achternaam"
                   ngModel
+                  (keyup)="onCapitalize('achternaam')"
                   name="achternaam"
                   required>
       </div>
@@ -167,6 +169,7 @@
                   class="form-control"
                   placeholder="njh"
                   ngModel
+                  (keyup)="onCapitalize('woonplaats')"
                   name="woonplaats"
                   required>
       </div>
@@ -198,6 +201,7 @@
                   class="form-control"
                   placeholder="straat"
                   ngModel
+                  (keyup)="onCapitalize('straatnaam')"
                   name="straatnaam"
                   required>
       </div>
@@ -228,6 +232,7 @@
                   class="form-control"
                   placeholder="1234ab"
                   ngModel
+                  (keyup)="onCapitalizePostcode()"
                   name="postcode"
                   required>
       </div>
@@ -242,6 +247,7 @@
                   class="form-control"
                   placeholder="Nederlfdo"
                   ngModel
+                  (keyup)="onCapitalize('land')"
                   name="land"
                   required>
       </div>
