@@ -23,7 +23,7 @@ export class FacturenService {
   }
 
   getFacturen() {
-    this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur', this.httpOptions)
+    this.httpClient.get<FactuurModel[]>('http://195.181.246.85:8080/api/factuur', this.httpOptions)
       .subscribe(
         (factuurModels: FactuurModel[]) => {
           this.factuurEmitter.emit(factuurModels);
@@ -32,7 +32,7 @@ export class FacturenService {
   }
 
   getFactuurByOmschrijving(omschrijving: string) {
-    return this.httpClient.get<FactuurModel[]>('http://localhost:8080/api/factuur/zoek?omschrijving=' + omschrijving ,
+    return this.httpClient.get<FactuurModel[]>('http://195.181.246.85:8080/api/factuur/zoek?omschrijving=' + omschrijving ,
       this.httpOptions);
   }
 
@@ -45,15 +45,15 @@ export class FacturenService {
   }
 
   postFactuur(factuurModel: FactuurModel) {
-    return this.httpClient.post<FactuurModel>('http://localhost:8080/api/factuur', factuurModel, this.httpOptions);
+    return this.httpClient.post<FactuurModel>('http://195.181.246.85:8080/api/factuur', factuurModel, this.httpOptions);
   }
 
   putFactuur(factuurModel: FactuurModel, id: number) {
-    return this.httpClient.put<FactuurModel>('http://localhost:8080/api/factuur/' + id, factuurModel, this.httpOptions);
+    return this.httpClient.put<FactuurModel>('http://195.181.246.85:8080/api/factuur/' + id, factuurModel, this.httpOptions);
   }
 
   getFactuur(index: number) {
-    return this.httpClient.get<FactuurModel>('http://localhost:8080/api/factuur/' + index , this.httpOptions);
+    return this.httpClient.get<FactuurModel>('http://195.181.246.85:8080/api/factuur/' + index , this.httpOptions);
   }
 
   toServerDateTransform(date) {
@@ -62,11 +62,11 @@ export class FacturenService {
   }
 
   deleteFactuur(id: number) {
-    return this.httpClient.delete<FactuurModel>('http://localhost:8080/api/factuur/' + id, this.httpOptions);
+    return this.httpClient.delete<FactuurModel>('http://195.181.246.85:8080/api/factuur/' + id, this.httpOptions);
   }
 
   downLoad(id: number) {
-    const downloadString = 'http://localhost:8080/api/factuur/download?id=' + id;
+    const downloadString = 'http://195.181.246.85:8080/api/factuur/download?id=' + id;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +

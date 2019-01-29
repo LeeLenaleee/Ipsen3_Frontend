@@ -31,6 +31,8 @@ export class OffertesToevoegenComponent implements OnInit {
       );
   }
 
+  downLoad() {}
+
   onSubmit(form: NgForm) {
     if (confirm('Weet u het zeker?')) {
       const offerteModel = this.offerteService.formToOfferte(form);

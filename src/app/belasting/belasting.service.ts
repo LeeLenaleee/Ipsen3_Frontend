@@ -21,10 +21,10 @@ export class BelastingService implements OnInit {
   httpOptions = {
     headers: this.headers_object
   };
-  factuurZoekterm = 'http://localhost:8080/api/factuur/zoek?omschrijving=';
-  contactZoekterm = 'http://localhost:8080/api/contacten/bedrijf?bedrijf=';
-  uitgaveZoekterm = 'http://localhost:8080/api/onkosten/zoek?omschrijving=';
-  kostenpostZoekterm = 'http://localhost:8080/api/kostenpost';
+  factuurZoekterm = 'http://195.181.246.85:8080/api/factuur/zoek?omschrijving=';
+  contactZoekterm = 'http://195.181.246.85:8080/api/contacten/bedrijf?bedrijf=';
+  uitgaveZoekterm = 'http://195.181.246.85:8080/api/onkosten/zoek?omschrijving=';
+  kostenpostZoekterm = 'http://195.181.246.85:8080/api/kostenpost';
 
   constructor(private http: HttpClient) { }
 
