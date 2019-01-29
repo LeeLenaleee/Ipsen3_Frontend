@@ -1,0 +1,13 @@
+<hr>
+
+<p *ngIf="uitgaven.length === 0;">Geen resultaten gevonden.</p>
+<div class="listStyle" *ngIf="uitgaven.length !== 0">
+  <div class="row">
+    <div class="col-12">
+      <app-uitgave-item
+        *ngFor="let uitgave of uitgaven"
+        [uitgave]="uitgave"
+      ></app-uitgave-item>
+    </div>
+  </div>
+</div>
