@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Brieven} from '../../models/brieven.model';
 import {NgForm} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { ApiService } from 'src/app/shared/api.service';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class BrievenService {
@@ -16,19 +18,26 @@ export class BrievenService {
     headers: this.headers_object
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private apiService: ApiService) {}
 
   getBrieven() {
-    this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief', this.httpOptions)
-      .subscribe(
+    // this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief', this.httpOptions)
+    //   .subscribe(
+    //     (brieven: Brieven[]) => {
+    //       this.brievenEmitter.emit(brieven);
+    //     }
+    //   );
+
+      this.apiService.get<Brieven[]>("/brief").subscribe(
         (brieven: Brieven[]) => {
           this.brievenEmitter.emit(brieven);
         }
-      );
+      )
   }
 
   getBrief(index: number) {
-    return this.httpClient.get<Brieven>('http://195.181.246.85:8080/api/brief/' + index , this.httpOptions);
+    //return this.httpClient.get<Brieven>('http://195.181.246.85:8080/api/brief/' + index , this.httpOptions);
+    return this.apiService.getById<Brieven>("/brief", index);
   }
 
   // zoek request
@@ -43,17 +52,20 @@ export class BrievenService {
   }
 
   postBrief(brief: Brieven) {
-    return this.httpClient.post<Brieven>('http://195.181.246.85:8080/api/brief', brief, this.httpOptions);
+    //return this.httpClient.post<Brieven>('http://195.181.246.85:8080/api/brief', brief, this.httpOptions);
+    return this.apiService.post<Brieven>("/brief", brief);
   }
 
   putBrief(brief: Brieven, id: number) {
-    return this.httpClient.put<Brieven>('http://195.181.246.85:8080/api/brief/' + id, brief, this.httpOptions);
+    //return this.httpClient.put<Brieven>('http://195.181.246.85:8080/api/brief/' + id, brief, this.httpOptions);
+    return this.apiService.put<Brieven>("/brief", id, brief);
   }
 
 
   getBriefByPersoon(geadreseerde: string) {
-    return this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
-      this.httpOptions);
+    // return this.httpClient.get<Brieven[]>('http://195.181.246.85:8080/api/brief/zoek?geadreseerde=' + geadreseerde ,
+    //   this.httpOptions);
+    return this.apiService.get<Brieven[]>('/brief/zoek/?geadreseerde=' + geadreseerde);
   }
 
   toServerDateTransform(date) {
@@ -62,12 +74,13 @@ export class BrievenService {
   }
 
   deleteBrief(id: number) {
-    return this.httpClient.delete<Brieven>('http://195.181.246.85:8080/api/brief/' + id, this.httpOptions);
+    //return this.httpClient.delete<Brieven>('http://195.181.246.85:8080/api/brief/' + id, this.httpOptions);
+    return this.apiService.delete<Brieven>("/brief", id);
 
   }
 
   downLoad(id: number) {
-    const downloadString = 'http://localhost:8080/api/brief/download?id=' + id;
+    const downloadString = 'http://195.181.246.85:8080/api/brief/download?id=' + id;
 
     const anchor = document.createElement('a');
     const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +

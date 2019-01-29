@@ -177,12 +177,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Relatie</span>
         </div>
-        <input    type="text"
-                  class="form-control"
-                  placeholder="Materiaal"
-                  ngModel
-                  name="relatie"
-                  required>
+        <select id="inputRelation"
+                class="form-control"
+                [(ngModel)]="selectedRelatie"
+                name="relatie">
+          <option *ngFor="let relatie of relatieOpties">{{ relatie }}</option>
+        </select>
       </div>
     </div>
   </div>
@@ -245,6 +245,27 @@
                   name="land"
                   required>
       </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn"
+              type="submit"
+              [disabled]="!f.valid">{{ buttonText }}</button>
+    </div>
+    <div class="col">
+      <button class="btn"
+              type="button"
+              routerLink="/contacten"
+              [disabled]="buttonText == 'Voeg toe'">Nieuw</button>
+    </div>
+    <div class="col">
+      <button class="btn"
+              type="button"
+              (click)="onButton()">{{ buttonText2 }}</button>
     </div>
   </div>
 </form>

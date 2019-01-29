@@ -82,6 +82,4 @@ export class FacturenService {
         window.URL.revokeObjectURL(objectUrl);
       });
   }
-
-
 }
