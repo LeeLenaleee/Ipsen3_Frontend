@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Onkost} from './onkost.model';
 import {Kostenpost} from './kostenpost.model';
 import {Contact} from '../models/contact.model';
+import { ApiService } from '../shared/api.service';
 
 
 @Injectable()
@@ -14,19 +15,8 @@ export class BelastingService implements OnInit {
   factuurMatches: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
   uitgaveMatches: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
   kostenposten: {naam: string}[] = [];
-  headers_object = new HttpHeaders({
-    'Authorization': 'basic ' + btoa('test@test.com:' +
-      '9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08')
-  });
-  httpOptions = {
-    headers: this.headers_object
-  };
-  factuurZoekterm = 'http://195.181.246.85:8080/api/factuur/zoek?omschrijving=';
-  contactZoekterm = 'http://195.181.246.85:8080/api/contacten/bedrijf?bedrijf=';
-  uitgaveZoekterm = 'http://195.181.246.85:8080/api/onkosten/zoek?omschrijving=';
-  kostenpostZoekterm = 'http://195.181.246.85:8080/api/kostenpost';
-
-  constructor(private http: HttpClient) { }
+  
+  constructor(private apiService: ApiService) { }
 
   updateFactuurMatches(zoekterm: string) {
     if (zoekterm === null) {
@@ -50,7 +40,7 @@ export class BelastingService implements OnInit {
   }
 
   getFactuurMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.factuurZoekterm + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>('/factuur/zoek?omschrijving=' + zoekterm);
   }
 
   updateContactMatches(zoekterm: string) {
@@ -74,7 +64,7 @@ export class BelastingService implements OnInit {
   }
 
   getContactMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.contactZoekterm + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>('/contacten/bedrijf?bedrijf=' + zoekterm);
   }
 
   updateUitgaveMatches(zoekterm: string) {
@@ -99,27 +89,20 @@ export class BelastingService implements OnInit {
   }
 
   getUitgaveMatches(zoekterm: string) {
-    return this.http.get<any[]>(this.uitgaveZoekterm + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>('/onkosten/zoek?omschrijving=' + zoekterm);
   }
 
   updateKostenposten() {
-    this.http.get<any[]>(this.kostenpostZoekterm, this.httpOptions)
-      .subscribe(
-        (kostenposten: Kostenpost[]) => {
-          for (const kostenpost of kostenposten) {
-            this.kostenposten.push({naam: kostenpost['kostenpost']});
-          }
-        },
-        (error) => console.log('error: ' + error)
-      );
+    this.apiService.get<any[]>('/kostenpost').subscribe(
+      (kostenposten: Kostenpost[]) => {
+        for (const kostenpost of kostenposten) {
+          this.kostenposten.push({naam: kostenpost['kostenpost']});
+        }
+      },
+      (error) => console.log('error: ' + error)
+    )
   }
-
-
+  
   ngOnInit(): void {
   }
-
-
 }
-
-
-

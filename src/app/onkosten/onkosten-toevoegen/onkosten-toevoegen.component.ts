@@ -4,6 +4,7 @@ import {OnkostenService} from '../onkosten.service';
 import {HttpClient} from '@angular/common/http';
 import {Btw} from '../../models/btw.model';
 import {BerekenService} from '../../shared/bereken.service';
+import {Kostenpost} from '../../models/kostenpost.model';
 
 @Component({
   selector: 'app-onkosten-toevoegen',
@@ -14,6 +15,8 @@ export class OnkostenToevoegenComponent implements OnInit {
   buttonTextOne = 'Voeg toe';
   buttonTextTwo = 'Leeg velden';
   @ViewChild('f') form: NgForm;
+  kostenposten: String[] = [];
+  selectedKostenpost;
   btwPercentages = new Btw(null, null, null);
   percentage = null;
 
@@ -26,6 +29,16 @@ export class OnkostenToevoegenComponent implements OnInit {
         (btw: Btw) => {
           this.btwPercentages = btw;
           this.percentage = this.btwPercentages.btwPercentageHoog;
+        }
+      );
+
+    this.onkostenService.getKostenPosten()
+      .subscribe(
+        (kostenposten: Kostenpost[]) => {
+          for (const kostenpost of kostenposten) {
+            this.kostenposten.push(kostenpost.kostenpost);
+          }
+          this.selectedKostenpost = kostenposten[0];
         }
       );
   }

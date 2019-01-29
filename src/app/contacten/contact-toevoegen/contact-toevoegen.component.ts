@@ -12,7 +12,7 @@ export class ContactToevoegenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   selectedRelatie = 'Anders';
   land = 'Nederland';
-  buttonText = 'Contact Toevoegen';
+  buttonText = 'Voeg toe';
   buttonText2 = 'Leeg velden';
   aantalTel = 1;
   aantalEmail = 1;

@@ -4,25 +4,18 @@ import {Contact} from '../../models/contact.model';
 import {Telefoon} from '../../models/contact-telefoonnummer.model';
 import {Email} from '../../models/contact-email.model';
 import {ContactZoekenService} from '../contact-zoeken.service';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactWijzigenService {
-  contactUrl = 'http://195.181.246.85:8080/api/contacten/';
-  telefoonUrl = 'http://195.181.246.85:8080/api/telefoonnummer/';
-  emailUrl = 'http://195.181.246.85:8080/api/email/';
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))});
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private http: HttpClient, private zoekenService: ContactZoekenService) {
+  constructor(private zoekenService: ContactZoekenService, private apiService: ApiService) {
   }
 
   putContact(contact: Contact, id: number) {
-    return this.http.put<Contact>(this.contactUrl + id, contact, this.httpOptions);
+    return this.apiService.put<Contact>('/contacten', id, contact);
+
   }
 
   deleteTelefoons(id: number) {
@@ -39,7 +32,7 @@ export class ContactWijzigenService {
   }
 
   deleteTelefoon(id: number) {
-    return this.http.delete<Telefoon>(this.telefoonUrl + id, this.httpOptions);
+    return this.apiService.delete<Telefoon>('/telefoonnummer', id);
   }
 
   deleteEmails(id: number) {
@@ -56,11 +49,11 @@ export class ContactWijzigenService {
   }
 
   deleteEmail(id: number) {
-    return this.http.delete<Email>(this.emailUrl + id, this.httpOptions);
+    return this.apiService.delete<Email>('/email', id);
+
   }
 
   deleteContact(id: number) {
-    return this.http.delete<Contact>(this.contactUrl + id, this.httpOptions);
+    return this.apiService.delete<Contact>('/contacten', id);
   }
-
 }

@@ -3,6 +3,7 @@ import {Contact} from '../models/contact.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Telefoon} from '../models/contact-telefoonnummer.model';
 import {Email} from '../models/contact-email.model';
+import { ApiService } from '../shared/api.service';
 
 @Injectable()
 export class ContactZoekenService implements OnInit {
@@ -11,17 +12,8 @@ export class ContactZoekenService implements OnInit {
   telNrs = new EventEmitter<string[]>();
   emails = new EventEmitter<string[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
-  idUrl = 'http://195.181.246.85:8080/api/contacten/';
-  zoektermUrl = 'http://195.181.246.85:8080/api/contacten/bedrijf?bedrijf=';
-  telUrl = 'http://195.181.246.85:8080/api/telefoonnummer';
-  emailUrl = 'http://195.181.246.85:8080/api/email';
-  headers_object = new HttpHeaders({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-      localStorage.getItem('password'))});
-  httpOptions = {
-    headers: this.headers_object
-  };
-
-  constructor(private http: HttpClient) { }
+  
+  constructor(private apiService: ApiService) { }
 
   getContact(id: number) {
     this.showContact(id).subscribe(
@@ -32,7 +24,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showContact(id: number) {
-    return this.http.get<Contact>(this.idUrl + id, this.httpOptions);
+    return this.apiService.getById<Contact>('/contacten', id);
   }
 
   getTelefoon(id: number) {
@@ -50,7 +42,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showTelefoon() {
-    return this.http.get<Telefoon[]>(this.telUrl, this.httpOptions);
+    return this.apiService.get<Telefoon[]>('/telefoonnummer');
   }
 
   getEmail(id: number) {
@@ -68,7 +60,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showEmail() {
-    return this.http.get<Email[]>(this.emailUrl, this.httpOptions);
+    return this.apiService.get<Email[]>('/email');
   }
 
   krijgMogelijkeBedrijven(zoekterm: string) {
@@ -89,7 +81,7 @@ export class ContactZoekenService implements OnInit {
   }
 
   showMogelijkeBedrijven(zoekterm: string) {
-    return this.http.get<any[]>(this.zoektermUrl + zoekterm, this.httpOptions);
+    return this.apiService.get<any[]>('/contacten/bedrijf?bedrijf=' + zoekterm);
   }
 
   ngOnInit(): void {

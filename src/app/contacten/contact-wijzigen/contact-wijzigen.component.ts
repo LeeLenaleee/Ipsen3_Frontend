@@ -14,11 +14,11 @@ import {ContactToevoegenService} from '../contact-toevoegen/contact-toevoegen.se
 })
 export class ContactWijzigenComponent implements OnInit {
   @ViewChild('f') form: NgForm;
-  buttonText = 'Contact Wijzigen';
-  buttonText2 = 'Wijzigingen verwijderen';
-  buttonText3 = 'Nieuw contact';
+  buttonText = 'Wijzig';
+  buttonText2 = 'Verwijder';
   aantalTel = 3;
   aantalEmail = 3;
+  selectedRelatie = null;
   relatieOpties = ['Anders', 'Familie', 'Kennis', 'Klant', 'Vriend', 'Leverancier'];
 
   constructor(private wijzigenService: ContactWijzigenService,
@@ -61,12 +61,6 @@ export class ContactWijzigenComponent implements OnInit {
 
 
   onButton() {
-    if (confirm('Weet u het zeker?')) {
-      this.getValues();
-    }
-  }
-
-  onDelete() {
     if (confirm('Weet u het zeker?')) {
       const id = this.route.snapshot.params['id'];
       this.wijzigenService.deleteContact(id)
