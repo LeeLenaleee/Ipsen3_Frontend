@@ -45,6 +45,10 @@ export class FacturenToevoegenComponent implements OnInit {
     }
   }
 
+  downLoad() {}
+
+  clearAndDelete() {}
+
   clearFields() {
     if (confirm('Weet u het zeker?')) {
       this.form.onReset();
