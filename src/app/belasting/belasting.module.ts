@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {BelastingService} from './belasting.service';
 import { UitgaveItemComponent } from './uitgavenoverzicht/uitgave-item/uitgave-item.component';
 import { UitgaveListComponent } from './uitgavenoverzicht/uitgave-list/uitgave-list.component';
+import { UitgaveFilterComponent } from './uitgavenoverzicht/uitgave-filter/uitgave-filter.component';
 
 @NgModule({
   declarations: [BelastingComponent,
@@ -19,6 +20,7 @@ import { UitgaveListComponent } from './uitgavenoverzicht/uitgave-list/uitgave-l
     UitgavenoverzichtComponent,
     UitgaveItemComponent,
     UitgaveListComponent,
+    UitgaveFilterComponent,
   ],
   imports: [BelastingRoutingModule,
   CommonModule,

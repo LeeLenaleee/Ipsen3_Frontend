@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {BelastingService} from '../belasting.service';
 
 @Component({
@@ -13,8 +13,9 @@ export class UitgavenoverzichtComponent implements OnInit {
   kostenpostSwitch = false;
   kwartaalSwitch = false;
   kostenposten: {naam: string}[] = [];
-  geselecteerdeKostenpost = '';
+  @Input() geselecteerdeKostenpost = '';
   inputJaar = '';
+  geselecteerdKwartaal = 'Kwartaal 1';
   kwartaalMaanden = ['01', '02', '03'];
   shownUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
 
@@ -45,8 +46,7 @@ export class UitgavenoverzichtComponent implements OnInit {
     this.filter();
   }
 
-  veranderKwartaal(event: any) {
-    const kwartaal = (<HTMLInputElement>event.target).value;
+  veranderKwartaal(kwartaal: string) {
     switch (kwartaal) {
       case 'Kwartaal 1':  this.kwartaalMaanden = ['01', '02', '03'];
                           break;
@@ -57,16 +57,17 @@ export class UitgavenoverzichtComponent implements OnInit {
       case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
                           break;
     }
-    this.filter();
   }
 
   filter() {
+    this.veranderKwartaal(this.geselecteerdKwartaal);
+    console.log(this.inputJaar);
+    console.log(this.geselecteerdKwartaal);
+
     this.shownUitgaven = [];
     let kostenpost: string;
     let maand: string;
     let jaar: string;
-
-    console.log(this.allUitgaven);
 
     setTimeout( () => {
       for (let i = 0; i < this.allUitgaven.length; i++) {

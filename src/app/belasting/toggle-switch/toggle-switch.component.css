@@ -20,7 +20,7 @@
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 30px;
+  /*border-radius: 30px;*/
 }
 
 .toggle:before {
@@ -33,7 +33,7 @@
   bottom: 2px;
   background-color: white;
   transition: 0.4s;
-  border-radius: 30px;
+  /*border-radius: 30px;*/
 }
 
 input:checked + .toggle {

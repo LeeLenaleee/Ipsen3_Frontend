@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BelastingComponent } from './belasting/belasting.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
 import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpost-item/kostenpost-item.component';
