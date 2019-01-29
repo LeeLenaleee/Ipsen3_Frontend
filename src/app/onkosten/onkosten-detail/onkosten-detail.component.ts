@@ -5,7 +5,6 @@ import {NgForm} from '@angular/forms';
 import {OnkostenService} from '../onkosten.service';
 import {Btw} from '../../models/btw.model';
 import {BerekenService} from '../../shared/bereken.service';
-import {Kostenpost} from '../../models/kostenpost.model';
 
 @Component({
   selector: 'app-onkosten-detail',
@@ -17,7 +16,7 @@ export class OnkostenDetailComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   buttonTextOne = 'Wijzig';
   buttonTextTwo = 'Verwijder';
-  kostenposten: String[] = [];
+  percentage = null;
   btwPercentages = new Btw(null, null, null);
 
   constructor(private router: Router,
@@ -32,16 +31,6 @@ export class OnkostenDetailComponent implements OnInit {
           this.btwPercentages = btw;
         }
       );
-
-    this.onkostenService.getKostenPosten()
-      .subscribe(
-        (kostenposten: Kostenpost[]) => {
-          for (const kostenpost of kostenposten) {
-            this.kostenposten.push(kostenpost.kostenpost);
-          }
-        }
-      );
-
     this.route.params
       .subscribe(
         () => {
