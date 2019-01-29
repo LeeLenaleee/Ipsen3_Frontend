@@ -40,6 +40,7 @@
           <span class="input-group-text">Kostenpost</span>
         </div>
         <select class="form-control"
+                [(ngModel)]="selectedKostenpost"
                 name="kostenpost">
           <option *ngFor="let kostenpost of kostenposten">{{ kostenpost }}</option>
         </select>

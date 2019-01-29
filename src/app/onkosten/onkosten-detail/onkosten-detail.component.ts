@@ -19,6 +19,7 @@ export class OnkostenDetailComponent implements OnInit {
   buttonTextTwo = 'Verwijder';
   percentage = null;
   kostenposten: String[] = [];
+  selectedKostenpost;
   btwPercentages = new Btw(null, null, null);
 
   constructor(private router: Router,
