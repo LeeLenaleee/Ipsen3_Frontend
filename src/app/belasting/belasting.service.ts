@@ -32,8 +32,7 @@ export class BelastingService implements OnInit {
               bruto: factuur['brutoKosten'],
               netto: factuur['nettoKosten']});
           }
-        },
-        (error) => console.log('error: ' + error)
+        }
       );
   }
 
@@ -57,8 +56,7 @@ export class BelastingService implements OnInit {
               bruto: uitgave['onkostenBrutoKosten'],
               netto: uitgave['onkostenNettoKosten']});
           }
-        },
-        (error) => console.log('error: ' + error)
+        }
       );
   }
 
@@ -72,8 +70,7 @@ export class BelastingService implements OnInit {
         for (const kostenpost of kostenposten) {
           this.kostenposten.push({naam: kostenpost['kostenpost']});
         }
-      },
-      (error) => console.log('error: ' + error)
+      }
     );
   }
 

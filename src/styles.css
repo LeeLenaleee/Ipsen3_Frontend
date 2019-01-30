@@ -7,4 +7,11 @@ html,body{
   overflow-x: hidden;
 }
 
+hr{
+  border: none;
+  height: 5px;
+  background-color: #12AFAF;
+  width: 100%;
+}
+
 

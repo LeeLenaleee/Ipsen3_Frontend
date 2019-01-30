@@ -62,8 +62,6 @@ export class KwartaalWeergavenComponent implements OnInit {
     let maand: string;
     let jaar: string;
 
-    console.log(this.kwartaalItems);
-
     setTimeout( () => {
       for (let i = 0; i < this.kwartaalItems.length; i++) {
         maand = this.kwartaalItems[i].datum.slice(3, 5);

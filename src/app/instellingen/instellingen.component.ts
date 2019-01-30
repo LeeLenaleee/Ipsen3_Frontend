@@ -11,19 +11,9 @@ import { KostenpostListComponent } from './kostenpost-list/kostenpost-list.compo
 export class InstellingenComponent implements OnInit {
   kostenposten: Kostenpost[];
   @ViewChild(KostenpostListComponent) kostenpostenListComponent: KostenpostListComponent;
-  constructor(private instellingenService: InstellingenService) {}
+  constructor() {}
 
   ngOnInit() {
-    // this.instellingenService.kostenPostGezocht
-    //   .subscribe(
-    //     (kostenpost: Kostenpost) => {
-    //       console.log(kostenpost)
-    //       this.kostenposten.push(kostenpost)
-    //     }, error => {
-    //       console.log(error);
-    //     }
-    // );
-
   }
 
 }

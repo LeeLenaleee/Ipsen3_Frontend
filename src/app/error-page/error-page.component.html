@@ -1,1 +1,4 @@
-<h1>{{ errorMessage }}</h1>
+<h1 *ngIf="errorMessage !== 'Page not found!'">{{ errorMessage }}</h1>
+<img *ngIf="errorMessage === 'Page not found!'" src="../../assets/404-opt.png" alt="404" id="notFoundImg">
+<button routerLink="" type="button">Go back to login</button>
+

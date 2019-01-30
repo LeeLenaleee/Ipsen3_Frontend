@@ -52,8 +52,6 @@ export class FacturenSchermComponent implements OnInit {
     let maand: string;
     let jaar: string;
 
-    console.log(this.allFacturen);
-
     setTimeout( () => {
       for (let i = 0; i < this.allFacturen.length; i++) {
         maand = this.allFacturen[i].datum.slice(3, 5);

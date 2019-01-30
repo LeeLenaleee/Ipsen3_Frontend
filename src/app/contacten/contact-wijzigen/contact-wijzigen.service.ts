@@ -41,8 +41,6 @@ export class ContactWijzigenService {
         (emails: Email[]) => {
           for (const email of emails) {
             if (email['contactId']['id'] == id) {
-              // console.log('Deleting email with id: ' + id);
-              // alert();
               this.deleteEmail(email['id']).subscribe();
             }
           }
