@@ -130,21 +130,7 @@
 
 
   <div class="row">
-    <div class="col-6">
-      <div class="input-group item-margin">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Bedrijf</span>
-        </div>
-        <input    type="text"
-                  class="form-control"
-                  placeholder="fjdio"
-                  ngModel
-                  name="bedrijf"
-                  required>
-      </div>
-    </div>
-
-    <div class="col-6" select-class>
+  <div class="col-12" select-class>
       <div class="input-group item-margin">
         <div class="input-group-prepend">
           <span class="input-group-text">Website</span>
@@ -158,24 +144,22 @@
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col-6">
+    <div class="col-7">
       <div class="input-group item-margin">
         <div class="input-group-prepend">
-          <span class="input-group-text">Woonplaats</span>
+          <span class="input-group-text">Bedrijf</span>
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="njh"
+                  placeholder="Bedrijf"
                   ngModel
-                  (keyup)="onCapitalize('woonplaats')"
-                  name="woonplaats"
+                  name="bedrijf"
                   required>
       </div>
     </div>
 
-    <div class="col-6" select-class>
+    <div class="col-5" select-class>
       <div class="input-group item-margin">
         <div class="input-group-prepend">
           <span class="input-group-text">Relatie</span>
@@ -190,19 +174,58 @@
     </div>
   </div>
 
+  <hr>
 
   <div class="row">
-    <div class="col-7">
+    <div class="col-12">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Woonplaats</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="Plaats"
+                  ngModel
+                  (keyup)="onCapitalize('woonplaats')"
+                  name="woonplaats"
+                  required>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
       <div class="input-group item-margin">
         <div class="input-group-prepend">
           <span class="input-group-text">Straatnaam</span>
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="straat"
+                  placeholder="Straatnaam"
                   ngModel
                   (keyup)="onCapitalize('straatnaam')"
                   name="straatnaam"
+                  required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-7">
+      <div class="input-group item-margin">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Postcode</span>
+        </div>
+        <input    type="text"
+                  class="form-control"
+                  placeholder="1234AB"
+                  ngModel
+                  (keyup)="onCapitalizePostcode()"
+                  name="postcode"
                   required>
       </div>
     </div>
@@ -223,29 +246,16 @@
 
 
   <div class="row">
-    <div class="col-5">
-      <div class="input-group item-margin">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Postcode</span>
-        </div>
-        <input    type="text"
-                  class="form-control"
-                  placeholder="1234ab"
-                  ngModel
-                  (keyup)="onCapitalizePostcode()"
-                  name="postcode"
-                  required>
-      </div>
-    </div>
 
-    <div class="col-7" select-class>
+
+    <div class="col-12" select-class>
       <div class="input-group item-margin">
         <div class="input-group-prepend">
           <span class="input-group-text">Land</span>
         </div>
         <input    type="text"
                   class="form-control"
-                  placeholder="Nederlfdo"
+                  placeholder="Land"
                   ngModel
                   (keyup)="onCapitalize('land')"
                   name="land"
