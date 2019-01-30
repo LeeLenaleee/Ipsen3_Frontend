@@ -1,27 +1,27 @@
-<div class="row">
-  <div class="col-4">
-    <input
-      type="text"
-      id="search"
-      (input)="zoekUitgaven($event)"
-      placeholder="Zoek uitgaven..."
-      #uitgaveInput>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <input
+        type="text"
+        id="search"
+        (input)="zoekUitgaven($event)"
+        placeholder="Zoek uitgaven..."
+        #uitgaveInput>
+    </div>
   </div>
-
-</div>
-
-<div class="row">
-  <div class="col-6">
-    <app-uitgave-list [uitgaven]="shownUitgaven"></app-uitgave-list>
-  </div>
-  <div class="col-6">
-    <app-uitgave-filter
-      [kostenposten]="kostenposten"
-      [(kostenpostSwitchStatus)]="kostenpostSwitch"
-      [(kwartaalSwitchStatus)]="kwartaalSwitch"
-      [(geselecteerdeKostenpost)]="geselecteerdeKostenpost"
-      [(kwartaal)]="geselecteerdKwartaal"
-      [(inputJaar)]="inputJaar"
-      (change)="filter()"></app-uitgave-filter>
+  <div class="row">
+    <div class="col-6">
+      <app-uitgave-list [uitgaven]="shownUitgaven"></app-uitgave-list>
+    </div>
+    <div class="col-6">
+      <app-uitgave-filter
+        [kostenposten]="kostenposten"
+        [(kostenpostSwitchStatus)]="kostenpostSwitch"
+        [(kwartaalSwitchStatus)]="kwartaalSwitch"
+        [(geselecteerdeKostenpost)]="geselecteerdeKostenpost"
+        [(kwartaal)]="geselecteerdKwartaal"
+        [(inputJaar)]="inputJaar"
+        (change)="filter()"></app-uitgave-filter>
+    </div>
   </div>
 </div>

@@ -1,0 +1,13 @@
+<hr>
+
+<p *ngIf="facturen.length === 0;">Geen resultaten gevonden.</p>
+<div class="listStyle" *ngIf="facturen.length !== 0">
+  <div class="row">
+    <div class="col-12">
+      <app-facturen-item
+        *ngFor="let factuur of facturen"
+        [factuur]="factuur"
+      ></app-facturen-item>
+    </div>
+  </div>
+</div>

@@ -1,39 +1,25 @@
-<div class="row">
-  <div class="col-4">
-    <input
-      type="text"
-      id="search"
-      (input)="zoekFacturen($event)"
-      placeholder="Zoek facturen..."
-      #factuurInput>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <input
+        type="text"
+        id="search"
+        (input)="zoekFacturen($event)"
+        placeholder="Zoek facturen..."
+        #factuurInput>
+    </div>
   </div>
-  <div class="col-1">
-    <app-toggle-switch [(switchStatus)]="kwartaalSwitch" (input)="filter()"></app-toggle-switch>
-    <input type="number" title="jaar" (input)="veranderJaar($event)">
-    <select (input)="veranderKwartaal($event)">
-      <option>Kwartaal 1</option>
-      <option>Kwartaal 2</option>
-      <option>Kwartaal 3</option>
-      <option>Kwartaal 4</option>
-    </select>
+
+  <div class="row">
+    <div class="col-6">
+      <app-facturen-list [facturen]="shownFacturen"></app-facturen-list>
+    </div>
+    <div class="col-6">
+      <app-facturen-filter
+        [(kwartaalSwitchStatus)]="kwartaalSwitch"
+        [(kwartaal)]="geselecteerdKwartaal"
+        [(inputJaar)]="inputJaar"
+        (change)="filter()"></app-facturen-filter>
+    </div>
   </div>
 </div>
-
-<table id="facturentabel">
-  <tr>
-    <th>Factuur ID</th>
-    <th>Factuur Beschrijving</th>
-    <th>Factuur Datum</th>
-    <th>Factuur Afleverdatum</th>
-    <th>Factuur Bruto</th>
-    <th>Factuur Netto</th>
-  </tr>
-  <tr *ngFor="let factuur of shownFacturen">
-    <td>{{factuur.id}}</td>
-    <td>{{factuur.beschrijving}}</td>
-    <td>{{factuur.datum}}</td>
-    <td>{{factuur.afleverDatum}}</td>
-    <td>{{factuur.bruto}}</td>
-    <td>{{factuur.netto}}</td>
-  </tr>
-</table>
