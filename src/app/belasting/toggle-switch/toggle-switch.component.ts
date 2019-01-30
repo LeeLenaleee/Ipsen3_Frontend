@@ -7,8 +7,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ToggleSwitchComponent implements OnInit {
 
-  label = '';
-
   @Input() switchStatus;
   @Output() switchStatusChange = new EventEmitter();
 
@@ -25,9 +23,4 @@ export class ToggleSwitchComponent implements OnInit {
     }
     this.switchStatusChange.emit(this.switchStatus);
   }
-
-  setLabel() {
-
-  }
-
 }
