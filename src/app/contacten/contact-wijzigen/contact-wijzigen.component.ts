@@ -70,7 +70,7 @@ export class ContactWijzigenComponent implements OnInit {
         this.wijzigenService.deleteContact(id)
           .subscribe();
         this.zoekenService.krijgMogelijkeBedrijven('');
-      }, 50);
+      }, 30);
 
       this.router.navigate(['/contacten']);
     }
@@ -113,7 +113,7 @@ export class ContactWijzigenComponent implements OnInit {
           this.router.navigate(['/contacten', cont.id, 'wijzigen']);
           setTimeout(() => {
             this.setValues(contact, nummers, emails);
-          }, 5);
+          }, 50);
           // }
         }
       );
