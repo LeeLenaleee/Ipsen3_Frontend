@@ -70,7 +70,7 @@ export class ContactWijzigenComponent implements OnInit {
         this.wijzigenService.deleteContact(id)
           .subscribe();
         this.zoekenService.krijgMogelijkeBedrijven('');
-      }, 10);
+      }, 50);
 
       this.router.navigate(['/contacten']);
     }
