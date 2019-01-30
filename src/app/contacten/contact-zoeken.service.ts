@@ -11,6 +11,7 @@ export class ContactZoekenService implements OnInit {
   bedrijfGezocht = new EventEmitter<Contact>();
   telNrs = new EventEmitter<string[]>();
   emails = new EventEmitter<string[]>();
+  setBedrijven = new EventEmitter<{id: number, bedrijf: string, naam: string}[]>();
   mogelijkeBedrijven: {id: number, bedrijf: string, naam: string}[] = [];
   
   constructor(private apiService: ApiService) { }
@@ -76,6 +77,7 @@ export class ContactZoekenService implements OnInit {
               bedrijf: contact.contactBedrijf,
               naam: contact.contactAchternaam + ', ' + contact.contactVoornaam});
           }
+          this.setBedrijven.emit(this.mogelijkeBedrijven);
           }
       );
   }

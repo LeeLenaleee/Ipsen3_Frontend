@@ -29,6 +29,7 @@ export class ContactToevoegenService {
               id = contacten[contacten.length - 1]['id'];
               this.voegTelToe(telNummers, contact, id);
               this.voegEmailToe(emails, contact, id);
+              this.zoekenService.krijgMogelijkeBedrijven('');
             }
           );
         }

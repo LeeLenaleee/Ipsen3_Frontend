@@ -13,12 +13,15 @@ export class ContactZoekenComponent implements OnInit {
   constructor(private service: ContactZoekenService) { }
 
   ngOnInit() {
+    this.service.setBedrijven.subscribe(
+      (lijst: {id: number, bedrijf: string, naam: string}[]) => {
+        this.gezochtePersonen = lijst;
+    }
+    );
     this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
-    this.gezochtePersonen = this.service.mogelijkeBedrijven;
   }
 
   onKeyDown() {
     this.service.krijgMogelijkeBedrijven(this.bedrijfNaam.nativeElement.value);
-    this.gezochtePersonen = this.service.mogelijkeBedrijven;
   }
 }
