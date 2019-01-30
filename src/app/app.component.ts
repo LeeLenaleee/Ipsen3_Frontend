@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy} from '@angular/core';
+import {AfterContentChecked, Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,8 @@ export class AppComponent implements AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    window.onbeforeunload = function () {
+    window.onunload = window.onbeforeunload = function () {
       localStorage.clear();
     };
   }
-
 }

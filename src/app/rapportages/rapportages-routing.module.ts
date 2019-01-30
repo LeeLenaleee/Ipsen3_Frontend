@@ -10,7 +10,6 @@ import {OffertesToevoegenComponent} from './offertes/offertes-toevoegen/offertes
 import {OfferteResolver} from '../shared/offerte.resolver';
 import {BrievenToevoegenComponent} from './brieven/brieven-toevoegen/brieven-toevoegen.component';
 import {BrievenDetailComponent} from './brieven/brieven-detail/brieven-detail.component';
-import {resolve} from 'q';
 import {BrievenResolver} from '../shared/brieven.resolver';
 import {FacturenDetailsComponent} from './facturen/facturen-detail/facturen-details.component';
 import {FacturenToevoegenComponent} from './facturen/facturen-toevoegen/facturen-toevoegen.component';

@@ -7,7 +7,6 @@ import { InstellingenComponent } from './instellingen/instellingen.component';
 import { KostenpostListComponent } from './instellingen/kostenpost-list/kostenpost-list.component';
 import { KostenpostItemComponent } from './instellingen/kostenpost-list/kostenpost-item/kostenpost-item.component';
 import { BtwWijzigenComponent } from './instellingen/btw-wijzigen/btw-wijzigen.component';
-import { UitloggenComponent } from './inloggen-uitloggen/uitloggen/uitloggen.component';
 import {FooterComponent} from './footer/footer.component';
 import {AppRoutingModule} from './app-routing.module';
 import { MainMenuComponent } from './main-menu/main-menu.component';
@@ -39,7 +38,6 @@ import {BelastingModule} from './belasting/belasting.module';
     KostenpostItemComponent,
     BtwWijzigenComponent,
     LoginComponent,
-    UitloggenComponent,
     FooterComponent,
     MainMenuComponent,
     ErrorPageComponent,
