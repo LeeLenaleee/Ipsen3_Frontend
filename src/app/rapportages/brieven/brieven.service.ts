@@ -72,7 +72,7 @@ export class BrievenService {
         const objectUrl = window.URL.createObjectURL(blobby);
 
         anchor.href = objectUrl;
-        anchor.download = 'BriefId: ' + id;
+        anchor.download = 'BriefId: ' + id + '.pdf';
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);

@@ -67,7 +67,7 @@ export class OffertesService {
         const objectUrl = window.URL.createObjectURL(blobby);
 
         anchor.href = objectUrl;
-        anchor.download = 'OfferteNummer: ' + id;
+        anchor.download = 'OfferteId: ' + id + '.pdf';
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);

@@ -68,7 +68,7 @@ export class FacturenService {
         const objectUrl = window.URL.createObjectURL(blobby);
 
         anchor.href = objectUrl;
-        anchor.download = 'FactuurNummer: ' + id;
+        anchor.download = 'FactuurNummer: ' + id + '.pdf';
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
