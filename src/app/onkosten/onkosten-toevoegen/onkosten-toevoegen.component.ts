@@ -16,6 +16,7 @@ export class OnkostenToevoegenComponent implements OnInit {
   buttonTextTwo = 'Leeg velden';
   @ViewChild('f') form: NgForm;
   kostenposten: String[] = [];
+  selectedKostenpost;
   btwPercentages = new Btw(null, null, null);
   percentage = null;
 
@@ -37,6 +38,7 @@ export class OnkostenToevoegenComponent implements OnInit {
           for (const kostenpost of kostenposten) {
             this.kostenposten.push(kostenpost.kostenpost);
           }
+          this.selectedKostenpost = kostenposten[0];
         }
       );
   }
