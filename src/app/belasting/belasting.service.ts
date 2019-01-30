@@ -10,12 +10,10 @@ import { ApiService } from '../shared/api.service';
 @Injectable()
 export class BelastingService implements OnInit {
   factuur: Factuur;
-  contact: Contact;
-  contactMatches: {id: number, bedrijf: string, naam: string, heeftBetaald: string, factuurDatum: string}[] = [];
   factuurMatches: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
   uitgaveMatches: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
   kostenposten: {naam: string}[] = [];
-  
+
   constructor(private apiService: ApiService) { }
 
   updateFactuurMatches(zoekterm: string) {
@@ -41,30 +39,6 @@ export class BelastingService implements OnInit {
 
   getFactuurMatches(zoekterm: string) {
     return this.apiService.get<any[]>('/factuur/zoek?omschrijving=' + zoekterm);
-  }
-
-  updateContactMatches(zoekterm: string) {
-    if (zoekterm === null) {
-      zoekterm = '';
-    }
-    this.contactMatches = [];
-    this.getContactMatches(zoekterm)
-      .subscribe(
-        (contacten: Contact[]) => {
-          for (const contact of contacten) {
-            this.contactMatches.push({id: contact.id,
-              bedrijf: contact['contactBedrijf'],
-              naam: contact['contactVoornaam'] + ' ' + contact['contactAchternaam'],
-              heeftBetaald: 'Nee',
-              factuurDatum: '2018'});
-          }
-        },
-        (error) => console.log('error: ' + error)
-      );
-  }
-
-  getContactMatches(zoekterm: string) {
-    return this.apiService.get<any[]>('/contacten/bedrijf?bedrijf=' + zoekterm);
   }
 
   updateUitgaveMatches(zoekterm: string) {
@@ -100,9 +74,9 @@ export class BelastingService implements OnInit {
         }
       },
       (error) => console.log('error: ' + error)
-    )
+    );
   }
-  
+
   ngOnInit(): void {
   }
 }

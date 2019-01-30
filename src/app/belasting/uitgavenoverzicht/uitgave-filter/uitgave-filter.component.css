@@ -1,0 +1,19 @@
+.backPanel{
+  padding: 10px;
+  margin: auto;
+  background: #016B6B;
+  border: #005959 solid 3px;
+}
+
+.jaarbox {
+  width: 100px;
+  height: 30px;
+}
+
+.kwartaalselect {
+  height: 30px;
+}
+
+.kostenpostmargin {
+  margin-bottom: 150px;
+}

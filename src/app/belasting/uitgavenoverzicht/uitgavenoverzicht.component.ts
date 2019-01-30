@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {BelastingService} from '../belasting.service';
 
 @Component({
@@ -13,8 +13,9 @@ export class UitgavenoverzichtComponent implements OnInit {
   kostenpostSwitch = false;
   kwartaalSwitch = false;
   kostenposten: {naam: string}[] = [];
-  geselecteerdeKostenpost = '';
+  @Input() geselecteerdeKostenpost = '';
   inputJaar = '';
+  geselecteerdKwartaal = 'Kwartaal 1';
   kwartaalMaanden = ['01', '02', '03'];
   shownUitgaven: {id: number, beschrijving: string, kostenpost: string, datum: string, bruto: number, netto: number}[] = [];
 
@@ -35,18 +36,7 @@ export class UitgavenoverzichtComponent implements OnInit {
     this.filter();
   }
 
-  zetKostenpost(event: any) {
-    this.geselecteerdeKostenpost = (<HTMLInputElement>event.target).value;
-    this.filter();
-  }
-
-  veranderJaar(event: any) {
-    this.inputJaar = (<HTMLInputElement>event.target).value;
-    this.filter();
-  }
-
-  veranderKwartaal(event: any) {
-    const kwartaal = (<HTMLInputElement>event.target).value;
+  veranderKwartaal(kwartaal: string) {
     switch (kwartaal) {
       case 'Kwartaal 1':  this.kwartaalMaanden = ['01', '02', '03'];
                           break;
@@ -57,16 +47,15 @@ export class UitgavenoverzichtComponent implements OnInit {
       case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
                           break;
     }
-    this.filter();
   }
 
   filter() {
+    this.veranderKwartaal(this.geselecteerdKwartaal);
+
     this.shownUitgaven = [];
     let kostenpost: string;
     let maand: string;
     let jaar: string;
-
-    console.log(this.allUitgaven);
 
     setTimeout( () => {
       for (let i = 0; i < this.allUitgaven.length; i++) {
@@ -76,19 +65,20 @@ export class UitgavenoverzichtComponent implements OnInit {
 
         if (this.kwartaalSwitch) {
           if (this.kostenpostSwitch) { // Both kostenpost & kwartaal
-            if (kostenpost === this.geselecteerdeKostenpost && (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
-              maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2]))) {
+            if (kostenpost == this.geselecteerdeKostenpost && (jaar == this.inputJaar && (maand == this.kwartaalMaanden[0] ||
+              maand == this.kwartaalMaanden[1] || maand == this.kwartaalMaanden[2]))) {
               this.shownUitgaven.push(this.allUitgaven[i]);
             }
-          } else if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] || // Only kwartaal
-            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
+          } else if (jaar == this.inputJaar && (maand == this.kwartaalMaanden[0] || // Only kwartaal
+            maand == this.kwartaalMaanden[1] || maand == this.kwartaalMaanden[2])) {
             this.shownUitgaven.push(this.allUitgaven[i]);
           }
         } else if (this.kostenpostSwitch) { // Only kostenpost
-          if (kostenpost === this.geselecteerdeKostenpost) {
+          if (kostenpost == this.geselecteerdeKostenpost) {
             this.shownUitgaven.push(this.allUitgaven[i]);
           }
         } else { // Neither kostenpost nor kwartaal
+
           this.shownUitgaven.push(this.allUitgaven[i]);
         }
       }

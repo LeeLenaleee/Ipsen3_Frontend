@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Factuur} from '../factuur.model';
 import {BelastingService} from '../belasting.service';
 
 @Component({
@@ -14,6 +13,7 @@ export class FacturenSchermComponent implements OnInit {
   inputJaar = '';
   allFacturen: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
   kwartaalMaanden = ['01', '02', '03'];
+  geselecteerdKwartaal = 'Kwartaal 1';
   input = '';
   kwartaalSwitch = false;
   shownFacturen: {id: number, beschrijving: string, datum: string, afleverDatum: string, bruto: number, netto: number}[] = [];
@@ -33,13 +33,7 @@ export class FacturenSchermComponent implements OnInit {
     this.filter();
   }
 
-  veranderJaar(event: any) {
-    this.inputJaar = (<HTMLInputElement>event.target).value;
-    this.filter();
-  }
-
-  veranderKwartaal(event: any) {
-    const kwartaal = (<HTMLInputElement>event.target).value;
+  veranderKwartaal(kwartaal: string) {
     switch (kwartaal) {
       case 'Kwartaal 1':  this.kwartaalMaanden = ['01', '02', '03'];
         break;
@@ -50,10 +44,10 @@ export class FacturenSchermComponent implements OnInit {
       case 'Kwartaal 4':  this.kwartaalMaanden = ['10', '11', '12'];
         break;
     }
-    this.filter();
   }
 
   filter() {
+    this.veranderKwartaal(this.geselecteerdKwartaal);
     this.shownFacturen = [];
     let maand: string;
     let jaar: string;
@@ -66,8 +60,8 @@ export class FacturenSchermComponent implements OnInit {
         jaar = this.allFacturen[i].datum.slice(6, 10);
 
         if (this.kwartaalSwitch) {
-          if (jaar === this.inputJaar && (maand === this.kwartaalMaanden[0] ||
-            maand === this.kwartaalMaanden[1] || maand === this.kwartaalMaanden[2])) {
+          if (jaar == this.inputJaar && (maand == this.kwartaalMaanden[0] ||
+            maand == this.kwartaalMaanden[1] || maand == this.kwartaalMaanden[2])) {
             this.shownFacturen.push(this.allFacturen[i]);
           } else {
             continue;

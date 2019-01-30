@@ -1,0 +1,44 @@
+<div class="col-6 backPanel kostenpostmargin" style="margin: 35px auto">
+  <div class="row">
+    <div class="col-8">
+      <p>Filter kostenpost aan/uit</p>
+    </div>
+    <div class="col-4 float-left">
+      <app-toggle-switch  [(switchStatus)]="kostenpostSwitchStatus" (input)="onKostenpostClick()"></app-toggle-switch>
+    </div>
+  </div>
+  <select [(ngModel)]="geselecteerdeKostenpost" (ngModelChange)="onKostenpostSelect()">
+    <option selected disabled>Kostenpost</option>
+    <option *ngFor="let kostenpost of kostenposten">{{kostenpost.naam}}</option>
+  </select>
+</div>
+<div class="col-6 backPanel">
+  <div class="row">
+    <div class="col-8">
+      <p>Filter kwartaal aan/uit</p>
+    </div>
+    <div class="col-4">
+      <app-toggle-switch
+        [(switchStatus)]="kwartaalSwitchStatus"
+        (input)="onKwartaalClick()">
+      </app-toggle-switch>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <input class="jaarbox"
+        type="number"
+        title="jaar"
+        [(ngModel)]="inputJaar"
+        (ngModelChange)="onJaarChange()">
+    </div>
+    <div class="col-6">
+      <select class="kwartaalselect" [(ngModel)]="kwartaal" (ngModelChange)="onKwartaalSelect()">
+        <option>Kwartaal 1</option>
+        <option>Kwartaal 2</option>
+        <option>Kwartaal 3</option>
+        <option>Kwartaal 4</option>
+      </select>
+    </div>
+  </div>
+</div>
