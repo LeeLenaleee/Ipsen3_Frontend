@@ -68,7 +68,9 @@ export class OffertesService {
 
         anchor.href = objectUrl;
         anchor.download = 'OfferteNummer: ' + id;
+        document.body.appendChild(anchor);
         anchor.click();
+        document.body.removeChild(anchor);
         window.URL.revokeObjectURL(objectUrl);
       });
   }

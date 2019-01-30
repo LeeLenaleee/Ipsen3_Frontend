@@ -69,7 +69,9 @@ export class FacturenService {
 
         anchor.href = objectUrl;
         anchor.download = 'FactuurNummer: ' + id;
+        document.body.appendChild(anchor);
         anchor.click();
+        document.body.removeChild(anchor);
         window.URL.revokeObjectURL(objectUrl);
       });
   }
