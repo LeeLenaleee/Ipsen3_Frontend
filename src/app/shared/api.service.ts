@@ -9,7 +9,7 @@ export class ApiService {
     }
 
     createURI(path: string) {
-        return 'http://195.181.246.85:8080/api' + path;
+        return 'http://localhost:8080/api' + path;
     }
 
     createHeaders(): HttpHeaders {

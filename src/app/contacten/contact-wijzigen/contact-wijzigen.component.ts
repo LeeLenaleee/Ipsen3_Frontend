@@ -55,7 +55,7 @@ export class ContactWijzigenComponent implements OnInit {
 
       this.toevoegenService.voegTelToe(tels, contact, id);
       this.toevoegenService.voegEmailToe(emails, contact, id);
-
+      this.zoekenService.krijgMogelijkeBedrijven('');
     }
   }
 
@@ -63,11 +63,14 @@ export class ContactWijzigenComponent implements OnInit {
   onButton() {
     if (confirm('Weet u het zeker?')) {
       const id = this.route.snapshot.params['id'];
-      this.wijzigenService.deleteContact(id)
-        .subscribe();
-
       this.wijzigenService.deleteTelefoons(id);
       this.wijzigenService.deleteEmails(id);
+
+      setTimeout(() => {
+        this.wijzigenService.deleteContact(id)
+          .subscribe();
+        this.zoekenService.krijgMogelijkeBedrijven('');
+      }, 10);
 
       this.router.navigate(['/contacten']);
     }
@@ -89,7 +92,6 @@ export class ContactWijzigenComponent implements OnInit {
             nummers.push(tel);
           }
           if (contact !== null && emails.length === this.aantalEmail) {
-            // this.setValues(contact, nummers, emails);
           }
         }
       );
@@ -101,7 +103,6 @@ export class ContactWijzigenComponent implements OnInit {
             emails.push(mail);
           }
           if (contact !== null && nummers.length === this.aantalTel) {
-            // this.setValues(contact, nummers, emails);
           }
         }
       );
@@ -110,7 +111,6 @@ export class ContactWijzigenComponent implements OnInit {
         (cont: Contact) => {
           contact = cont;
           this.router.navigate(['/contacten', cont.id, 'wijzigen']);
-          // if (emails.length === this.aantalEmail && nummers.length === this.aantalTel) {
           setTimeout(() => {
             this.setValues(contact, nummers, emails);
           }, 5);
@@ -132,12 +132,14 @@ export class ContactWijzigenComponent implements OnInit {
       this.aantalEmail = 3;
     }
   }
+
   telEraf() {
     this.aantalTel -= 1;
     if (this.aantalTel === 0) {
       this.aantalTel = 1;
     }
   }
+
   mailEraf() {
     this.aantalEmail -= 1;
     if (this.aantalEmail === 0) {
@@ -180,4 +182,22 @@ export class ContactWijzigenComponent implements OnInit {
     }
   }
 
+  onCapitalize(input: string) {
+    if (this.form.value[input] !== '') {
+      let woord = this.form.value[input];
+      const hoofdletter = woord[0].toUpperCase();
+      const rest = woord.slice(1);
+      woord = (hoofdletter + rest);
+
+      this.form.form.patchValue({[input]: woord});
+    }
+  }
+
+  onCapitalizePostcode() {
+    if (this.form.value['postcode'] !== '') {
+      const postcode = this.form.value['postcode'].toUpperCase();
+      this.form.form.patchValue({postcode: postcode});
+
+    }
+  }
 }
