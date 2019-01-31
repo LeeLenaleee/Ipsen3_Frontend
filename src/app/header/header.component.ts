@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    const user = localStorage.getItem('currentUser');
+    const user = sessionStorage.getItem('currentUser');
     this.header = user != null;
   }
 }

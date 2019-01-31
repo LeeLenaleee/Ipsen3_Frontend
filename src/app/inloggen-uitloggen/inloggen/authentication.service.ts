@@ -15,9 +15,9 @@ export class AuthenticationService {
         // login successful
         if (user !== null) {
           // store user details in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          localStorage.setItem('password', passwordHashed);
-          localStorage.setItem('email', email);
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
+          sessionStorage.setItem('password', passwordHashed);
+          sessionStorage.setItem('email', email);
         }
         return user;
       }));
@@ -27,6 +27,6 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     /*localStorage.removeItem('currentUser');
     localStorage.removeItem('password');*/
-    localStorage.clear();
+    sessionStorage.clear();
   }
 }

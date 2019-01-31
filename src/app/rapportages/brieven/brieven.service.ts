@@ -64,8 +64,8 @@ export class BrievenService {
     const downloadString = 'http://195.181.246.85:8080/api/brief/download?id=' + id;
 
     const anchor = document.createElement('a');
-    const headers = new Headers({ 'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' +
-        localStorage.getItem('password'))});
+    const headers = new Headers({ 'Authorization': 'basic ' + btoa(sessionStorage.getItem('email') + ':' +
+        sessionStorage.getItem('password'))});
     fetch(downloadString, { headers })
       .then(response => response.blob())
       .then(blobby => {

@@ -15,7 +15,7 @@ export class ApiService {
     createHeaders(): HttpHeaders {
       return new HttpHeaders(
           {
-            'Authorization': 'basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password'))
+            'Authorization': 'basic ' + btoa(sessionStorage.getItem('email') + ':' + sessionStorage.getItem('password'))
           });
     }
 

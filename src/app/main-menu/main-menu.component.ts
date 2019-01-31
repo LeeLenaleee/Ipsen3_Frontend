@@ -10,7 +10,7 @@ export class MainMenuComponent implements OnInit {
   currentUser: User;
 
   constructor() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
 
   ngOnInit() {

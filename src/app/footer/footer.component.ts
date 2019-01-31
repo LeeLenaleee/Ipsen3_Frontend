@@ -13,7 +13,7 @@ export class FooterComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    const user = localStorage.getItem('currentUser');
+    const user = sessionStorage.getItem('currentUser');
     this.footer = user != null;
   }
 

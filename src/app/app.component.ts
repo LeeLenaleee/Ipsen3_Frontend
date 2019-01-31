@@ -11,8 +11,8 @@ export class AppComponent implements AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    window.onunload = window.onbeforeunload = function () {
-      localStorage.clear();
-    };
+    /*window.onunload = window.onbeforeunload = function () {
+      sessionStorage.clear();
+    };*/
   }
 }
