@@ -21,6 +21,4 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   providers: [OnkostenResolver]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}
